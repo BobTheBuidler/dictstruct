@@ -1,0 +1,7 @@
+dictstruct
+==========
+
+.. toctree::
+   :maxdepth: 4
+
+   dictstruct

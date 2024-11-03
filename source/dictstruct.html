@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dictstruct package &mdash; dictstruct  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="dictstruct" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            dictstruct
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">dictstruct</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dictstruct package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dictstruct.main">dictstruct.main module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dictstruct.main.DictStruct"><code class="docutils literal notranslate"><span class="pre">DictStruct</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dictstruct.main.LazyDictStruct"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-dictstruct">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dictstruct</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">dictstruct</a></li>
+      <li class="breadcrumb-item active">dictstruct package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/dictstruct.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dictstruct-package">
+<h1>dictstruct package<a class="headerlink" href="#dictstruct-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-dictstruct.main">
+<span id="dictstruct-main-module"></span><h2>dictstruct.main module<a class="headerlink" href="#module-dictstruct.main" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dictstruct.main.</span></span><span class="sig-name descname"><span class="pre">DictStruct</span></span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.Struct" title="(in msgspec)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a></p>
+<p>A base class that extends the <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.Struct" title="(in msgspec)"><code class="xref py py-class docutils literal notranslate"><span class="pre">msgspec.Struct</span></code></a> class to provide dictionary-like access to struct fields.</p>
+<p>Allows iteration over the fields of a struct and provides a dictionary-like interface for retrieving values by field name.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">[&#39;field1&#39;, &#39;field2&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;field1&#39;</span><span class="p">]</span>
+<span class="go">&#39;value&#39;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__bool__">
+<span class="sig-name descname"><span class="pre">__bool__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.__bool__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.__bool__" title="Permalink to this definition"></a></dt>
+<dd><p>A Struct will always exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.__contains__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.__contains__" title="Permalink to this definition"></a></dt>
+<dd><p>Check if a key is in the struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The key to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the key is present and not <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__copy__" title="Permalink to this definition"></a></dt>
+<dd><p>copy a struct</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__delattr__">
+<span class="sig-name descname"><span class="pre">__delattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__delattr__" title="Permalink to this definition"></a></dt>
+<dd><p>Implement delattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__eq__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__ge__">
+<span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__ge__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self&gt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__getattribute__">
+<span class="sig-name descname"><span class="pre">__getattribute__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.__getattribute__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.__getattribute__" title="Permalink to this definition"></a></dt>
+<dd><p>Get the value of an attribute, raising AttributeError if the value is <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the attribute to fetch.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><strong>AttributeError</strong></a> – If the value is <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The value of the attribute.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.__getitem__" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup an attribute value via dictionary-style access.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the attribute to access.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.13)"><strong>KeyError</strong></a> – If the provided key is not a member of the struct.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The value of the attribute.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__gt__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.__hash__" title="Permalink to this definition"></a></dt>
+<dd><p>A frozen Struct is hashable but only if the fields are all hashable as well.</p>
+<p>This modified hash function converts any list fields to tuples and sets the new hash value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If the struct is not frozen.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The hash value of the struct.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.__iter__" title="Permalink to this definition"></a></dt>
+<dd><p>Iterate through the keys of the Struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Struct key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__le__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.__len__" title="Permalink to this definition"></a></dt>
+<dd><p>The number of keys in the Struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of keys.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__lt__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self&lt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__ne__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self!=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__reduce__">
+<span class="sig-name descname"><span class="pre">__reduce__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__reduce__" title="Permalink to this definition"></a></dt>
+<dd><p>reduce a struct</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__rich_repr__">
+<span class="sig-name descname"><span class="pre">__rich_repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__rich_repr__" title="Permalink to this definition"></a></dt>
+<dd><p>rich repr</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__setattr__">
+<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.DictStruct.__setattr__" title="Permalink to this definition"></a></dt>
+<dd><p>Implement setattr(self, name, value).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get the value associated with a key, or a default value if the key is not present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The key to look up.</p></li>
+<li><p><strong>default</strong> (<em>optional</em>) – The value to return if the key is not present.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value associated with the key, or the default value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.items" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an iterator over the struct’s field name and value pairs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator over the field name and value pairs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator[Tuple[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.keys" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an iterator over the field names of the struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator over the field names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#DictStruct.values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.DictStruct.values" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an iterator over the struct’s field values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator over the field values.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><a class="headerlink" href="#dictstruct.main.DictStruct.__dict__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dictstruct.main'</span></em><a class="headerlink" href="#dictstruct.main.DictStruct.__module__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('__dict__',)</span></em><a class="headerlink" href="#dictstruct.main.DictStruct.__slots__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__struct_config__">
+<span class="sig-name descname"><span class="pre">__struct_config__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;msgspec.structs.StructConfig</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dictstruct.main.DictStruct.__struct_config__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__struct_defaults__">
+<span class="sig-name descname"><span class="pre">__struct_defaults__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#dictstruct.main.DictStruct.__struct_defaults__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__struct_encode_fields__">
+<span class="sig-name descname"><span class="pre">__struct_encode_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#dictstruct.main.DictStruct.__struct_encode_fields__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.DictStruct.__struct_fields__">
+<span class="sig-name descname"><span class="pre">__struct_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#dictstruct.main.DictStruct.__struct_fields__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dictstruct.main.</span></span><span class="sig-name descname"><span class="pre">LazyDictStruct</span></span><a class="reference internal" href="../_modules/dictstruct/main.html#LazyDictStruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.LazyDictStruct" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dictstruct.main.DictStruct" title="dictstruct.main.DictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictStruct</span></code></a></p>
+<p>A subclass of DictStruct that supports JIT decoding of field values.</p>
+<p>It exists to optimize performance and memory usage by storing field values in a raw, undecoded format and decoding them only when accessed.</p>
+<p>This class is frozen, meaning its fields cannot be modified after creation.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">msgspec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cached_property</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">_myField</span><span class="p">:</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">Raw</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myField&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nd">@cached_property</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">myField</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="gp">... </span><span class="w">        </span><span class="sd">&#39;&#39;&#39;Decode the raw JSON data into a python object when accessed.&#39;&#39;&#39;</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_myField</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_data</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span><span class="s2">&quot;myField&quot;</span><span class="p">:</span> <span class="s2">&quot;some value&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_struct</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">_myField</span><span class="o">=</span><span class="n">raw_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">my_struct</span><span class="o">.</span><span class="n">myField</span><span class="p">)</span>
+<span class="go">&quot;some value&quot;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__bool__">
+<span class="sig-name descname"><span class="pre">__bool__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__bool__" title="Permalink to this definition"></a></dt>
+<dd><p>A Struct will always exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__contains__" title="Permalink to this definition"></a></dt>
+<dd><p>Check if a key is in the struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The key to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the key is present and not <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__copy__" title="Permalink to this definition"></a></dt>
+<dd><p>copy a struct</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__delattr__">
+<span class="sig-name descname"><span class="pre">__delattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__delattr__" title="Permalink to this definition"></a></dt>
+<dd><p>Implement delattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__eq__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__ge__">
+<span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__ge__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self&gt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__getattribute__">
+<span class="sig-name descname"><span class="pre">__getattribute__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__getattribute__" title="Permalink to this definition"></a></dt>
+<dd><p>Get the value of an attribute, raising AttributeError if the value is <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the attribute to fetch.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><strong>AttributeError</strong></a> – If the value is <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The value of the attribute.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__getitem__" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup an attribute value via dictionary-style access.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the attribute to access.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.13)"><strong>KeyError</strong></a> – If the provided key is not a member of the struct.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The value of the attribute.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__gt__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__hash__" title="Permalink to this definition"></a></dt>
+<dd><p>A frozen Struct is hashable but only if the fields are all hashable as well.</p>
+<p>This modified hash function converts any list fields to tuples and sets the new hash value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If the struct is not frozen.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The hash value of the struct.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__init_subclass__">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#LazyDictStruct.__init_subclass__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__init_subclass__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a subclass of LazyDictStruct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – Positional arguments.</p></li>
+<li><p><strong>**kwargs</strong> – Keyword arguments.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__iter__" title="Permalink to this definition"></a></dt>
+<dd><p>Iterate through the keys of the Struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Struct key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__le__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__len__" title="Permalink to this definition"></a></dt>
+<dd><p>The number of keys in the Struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of keys.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__lt__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self&lt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__ne__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self!=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__reduce__">
+<span class="sig-name descname"><span class="pre">__reduce__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__reduce__" title="Permalink to this definition"></a></dt>
+<dd><p>reduce a struct</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__rich_repr__">
+<span class="sig-name descname"><span class="pre">__rich_repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__rich_repr__" title="Permalink to this definition"></a></dt>
+<dd><p>rich repr</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__setattr__">
+<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__setattr__" title="Permalink to this definition"></a></dt>
+<dd><p>Implement setattr(self, name, value).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get the value associated with a key, or a default value if the key is not present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The key to look up.</p></li>
+<li><p><strong>default</strong> (<em>optional</em>) – The value to return if the key is not present.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value associated with the key, or the default value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.items" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an iterator over the struct’s field name and value pairs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator over the field name and value pairs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator[Tuple[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.keys" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an iterator over the field names of the struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator over the field names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dictstruct.main.LazyDictStruct.values" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an iterator over the struct’s field values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterator over the field values.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__annotations__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'dictstruct.main',</span> <span class="pre">'__doc__':</span> <span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">A</span> <span class="pre">subclass</span> <span class="pre">of</span> <span class="pre">DictStruct</span> <span class="pre">that</span> <span class="pre">supports</span> <span class="pre">JIT</span> <span class="pre">decoding</span> <span class="pre">of</span> <span class="pre">field</span> <span class="pre">values.\n\n</span>&#160;&#160;&#160; <span class="pre">It</span> <span class="pre">exists</span> <span class="pre">to</span> <span class="pre">optimize</span> <span class="pre">performance</span> <span class="pre">and</span> <span class="pre">memory</span> <span class="pre">usage</span> <span class="pre">by</span> <span class="pre">storing</span> <span class="pre">field</span> <span class="pre">values</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">raw,</span> <span class="pre">undecoded</span> <span class="pre">format</span> <span class="pre">and</span> <span class="pre">decoding</span> <span class="pre">them</span> <span class="pre">only</span> <span class="pre">when</span> <span class="pre">accessed.\n\n</span>&#160;&#160;&#160; <span class="pre">This</span> <span class="pre">class</span> <span class="pre">is</span> <span class="pre">frozen,</span> <span class="pre">meaning</span> <span class="pre">its</span> <span class="pre">fields</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">modified</span> <span class="pre">after</span> <span class="pre">creation.\n\n</span>&#160;&#160;&#160; <span class="pre">Example:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&gt;&gt;&gt;</span> <span class="pre">import</span> <span class="pre">msgspec\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&gt;&gt;&gt;</span> <span class="pre">from</span> <span class="pre">functools</span> <span class="pre">import</span> <span class="pre">cached_property\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&gt;&gt;&gt;</span> <span class="pre">class</span> <span class="pre">MyStruct(LazyDictStruct):\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">...</span>&#160;&#160;&#160;&#160; <span class="pre">_myField:</span> <span class="pre">msgspec.Raw</span> <span class="pre">=</span> <span class="pre">msgspec.field(name=\'myField\')\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">...</span>&#160;&#160;&#160;&#160; <span class="pre">&#64;cached_property\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">...</span>&#160;&#160;&#160;&#160; <span class="pre">def</span> <span class="pre">myField(self)</span> <span class="pre">-&gt;</span> <span class="pre">str:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">...</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">\'\'\'Decode</span> <span class="pre">the</span> <span class="pre">raw</span> <span class="pre">JSON</span> <span class="pre">data</span> <span class="pre">into</span> <span class="pre">a</span> <span class="pre">python</span> <span class="pre">object</span> <span class="pre">when</span> <span class="pre">accessed.\'\'\'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">...</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">return</span> <span class="pre">msgspec.json.decode(self._myField,</span> <span class="pre">type=str)\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">...\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&gt;&gt;&gt;</span> <span class="pre">raw_data</span> <span class="pre">=</span> <span class="pre">msgspec.json.encode({&quot;myField&quot;:</span> <span class="pre">&quot;some</span> <span class="pre">value&quot;})\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&gt;&gt;&gt;</span> <span class="pre">my_struct</span> <span class="pre">=</span> <span class="pre">MyStruct(_myField=raw_data)\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&gt;&gt;&gt;</span> <span class="pre">print(my_struct.myField)\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">&quot;some</span> <span class="pre">value&quot;\n</span>&#160;&#160;&#160; <span class="pre">',</span> <span class="pre">'__init_subclass__':</span> <span class="pre">&lt;classmethod(&lt;function</span> <span class="pre">LazyDictStruct.__init_subclass__&gt;)&gt;,</span> <span class="pre">'__slots__':</span> <span class="pre">(),</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__dict__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dictstruct.main'</span></em><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__module__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__slots__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__struct_config__">
+<span class="sig-name descname"><span class="pre">__struct_config__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;msgspec.structs.StructConfig</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__struct_config__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__struct_defaults__">
+<span class="sig-name descname"><span class="pre">__struct_defaults__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__struct_defaults__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__struct_encode_fields__">
+<span class="sig-name descname"><span class="pre">__struct_encode_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__struct_encode_fields__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__struct_fields__">
+<span class="sig-name descname"><span class="pre">__struct_fields__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></em><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__struct_fields__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-dictstruct">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dictstruct" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="dictstruct" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BobTheBuidler.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
