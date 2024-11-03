@@ -34,12 +34,6 @@ jobs:
 
       - name: Install Project
         run: poetry install --no-interaction
-
-      - name: Install dependencies
-        # pip will install despite the conflicts, poetry will prevent it
-        run: |
-          poetry run pip install wheel
-          poetry run pip install sphinx sphinx-rtd-theme
         
       - name: Build documentation config
         run: make docs
