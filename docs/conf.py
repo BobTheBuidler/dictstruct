@@ -41,7 +41,7 @@ html_static_path = ["_static"]
 autodoc_default_options = {
     "members": True,
     "special-members": True,
-    "inherited-members": True,
+    "inherited-members": False,
     "undoc-members": False,
     "member-order": "groupwise",
     # hide private methods that aren't relevant to us here
