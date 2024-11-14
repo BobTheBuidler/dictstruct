@@ -36,9 +36,6 @@ jobs:
 
       - name: Install Project
         run: poetry install --no-interaction
-        
-      - name: Build documentation config
-        run: make docs
 
       - name: Build documentation
         run: |
