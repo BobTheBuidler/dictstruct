@@ -341,6 +341,10 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a subclass of LazyDictStruct.</span>
 
+<span class="sd">        Resolve any lazy field names (prefixed with an underscore) and overwrite</span>
+<span class="sd">        `cls.__struct_fields__` so it contains the names of the materialized properties</span>
+<span class="sd">        you defined on your subclass.</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            *args: Positional arguments.</span>
 <span class="sd">            **kwargs: Keyword arguments.</span>

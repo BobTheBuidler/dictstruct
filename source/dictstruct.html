@@ -403,6 +403,9 @@
 <dt class="sig sig-object py" id="dictstruct.main.LazyDictStruct.__init_subclass__">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dictstruct/main.html#LazyDictStruct.__init_subclass__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.main.LazyDictStruct.__init_subclass__" title="Permalink to this definition"></a></dt>
 <dd><p>Initialize a subclass of LazyDictStruct.</p>
+<p>Resolve any lazy field names (prefixed with an underscore) and overwrite
+<cite>cls.__struct_fields__</cite> so it contains the names of the materialized properties
+you defined on your subclass.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
