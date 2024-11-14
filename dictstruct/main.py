@@ -37,6 +37,15 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
 
         Returns:
             True if the key is present and not :obj:`~UNSET`, False otherwise.
+
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            >>> s = MyStruct(field1="value")
+            >>> 'field1' in s
+            True
+            >>> 'field2' in s
+            False
         """
         return key in self.__struct_fields__ and getattr(self, key, UNSET) is not UNSET
 
@@ -48,8 +57,14 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
             key: The key to look up.
             default (optional): The value to return if the key is not present.
 
-        Returns:
-            Any: The value associated with the key, or the default value.
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            >>> s = MyStruct(field1="value")
+            >>> s.get('field1')
+            'value'
+            >>> s.get('field2', 'default')
+            'default'
         """
         return getattr(self, key, default)
 
@@ -63,8 +78,16 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         Raises:
             KeyError: If the provided key is not a member of the struct.
 
-        Returns:
-            The value of the attribute.
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            >>> s = MyStruct(field1="value")
+            >>> s['field1']
+            'value'
+            >>> s['field2']
+            Traceback (most recent call last):
+                ...
+            KeyError: ('field2', MyStruct(field1='value'))
         """
         try:
             return getattr(self, attr)
@@ -81,8 +104,14 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         Raises:
             AttributeError: If the value is :obj:`~UNSET`.
 
-        Returns:
-            The value of the attribute.
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str = UNSET
+            >>> s = MyStruct()
+            >>> s.field1
+            Traceback (most recent call last):
+                ...
+            AttributeError: "'MyStruct' object has no attribute 'field1'"
         """
         value = super().__getattribute__(attr)
         if value is UNSET:
@@ -97,6 +126,14 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
 
         Yields:
             Struct key.
+
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            ...     field2: int
+            >>> s = MyStruct(field1="value", field2=42)
+            >>> list(iter(s))
+            ['field1', 'field2']
         """
         for field in self.__struct_fields__:
             value = getattr(self, field, UNSET)
@@ -107,8 +144,13 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         """
         The number of keys in the Struct.
 
-        Returns:
-            The number of keys.
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            ...     field2: int
+            >>> s = MyStruct(field1="value", field2=42)
+            >>> len(s)
+            2
         """
         return len([key for key in self])
 
@@ -116,8 +158,13 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         """
         Returns an iterator over the field names of the struct.
 
-        Returns:
-            An iterator over the field names.
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            ...     field2: int
+            >>> s = MyStruct(field1="value", field2=42)
+            >>> list(s.keys())
+            ['field1', 'field2']
         """
         yield from self
 
@@ -125,8 +172,13 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         """
         Returns an iterator over the struct's field name and value pairs.
 
-        Returns:
-            Iterator[Tuple[str, Any]]: An iterator over the field name and value pairs.
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            ...     field2: int
+            >>> s = MyStruct(field1="value", field2=42)
+            >>> list(s.items())
+            [('field1', 'value'), ('field2', 42)]
         """
         for key in self.__struct_fields__:
             value = getattr(self, key, UNSET)
@@ -137,8 +189,13 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         """
         Returns an iterator over the struct's field values.
 
-        Returns:
-            An iterator over the field values.
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            ...     field2: int
+            >>> s = MyStruct(field1="value", field2=42)
+            >>> list(s.values())
+            ['value', 42]
         """
         for key in self.__struct_fields__:
             value = getattr(self, key, UNSET)
@@ -149,13 +206,18 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         """
         A frozen Struct is hashable but only if the fields are all hashable as well.
 
-        This modified hash function converts any list fields to tuples and sets the new hash value.
+        This modified hash function attempts to hash the fields directly and converts any list fields to tuples if a `TypeError` is raised.
 
         Raises:
             TypeError: If the struct is not frozen.
 
-        Returns:
-            The hash value of the struct.
+        Example:
+            >>> class MyStruct(DictStruct, frozen=True):
+            ...     field1: str
+            ...     field2: list
+            >>> s = MyStruct(field1="value", field2=[1, 2, 3])
+            >>> hash(s)
+            123456789  # Example output, actual value will vary
         """
         if not self.__struct_config__.frozen:
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
@@ -208,6 +270,9 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg,misc]
         Args:
             *args: Positional arguments.
             **kwargs: Keyword arguments.
+
+        See Also:
+            :class:`DictStruct` for the base class implementation.
         """
         super().__init_subclass__(*args, **kwargs)
 
