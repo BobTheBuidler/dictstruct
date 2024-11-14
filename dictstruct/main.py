@@ -270,6 +270,10 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg,misc]
         """
         Initialize a subclass of LazyDictStruct.
 
+        Resolve any lazy field names (prefixed with an underscore) and overwrite
+        `cls.__struct_fields__` so it contains the names of the materialized properties
+        you defined on your subclass.
+
         Args:
             *args: Positional arguments.
             **kwargs: Keyword arguments.
