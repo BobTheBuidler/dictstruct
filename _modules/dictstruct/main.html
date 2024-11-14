@@ -108,6 +108,15 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            True if the key is present and not :obj:`~UNSET`, False otherwise.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; &#39;field1&#39; in s</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; &#39;field2&#39; in s</span>
+<span class="sd">            False</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__struct_fields__</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">UNSET</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">UNSET</span></div>
 
@@ -119,8 +128,14 @@
 <span class="sd">            key: The key to look up.</span>
 <span class="sd">            default (optional): The value to return if the key is not present.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            Any: The value associated with the key, or the default value.</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; s.get(&#39;field1&#39;)</span>
+<span class="sd">            &#39;value&#39;</span>
+<span class="sd">            &gt;&gt;&gt; s.get(&#39;field2&#39;, &#39;default&#39;)</span>
+<span class="sd">            &#39;default&#39;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span></div>
 
@@ -134,8 +149,16 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            KeyError: If the provided key is not a member of the struct.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            The value of the attribute.</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; s[&#39;field1&#39;]</span>
+<span class="sd">            &#39;value&#39;</span>
+<span class="sd">            &gt;&gt;&gt; s[&#39;field2&#39;]</span>
+<span class="sd">            Traceback (most recent call last):</span>
+<span class="sd">                ...</span>
+<span class="sd">            KeyError: (&#39;field2&#39;, MyStruct(field1=&#39;value&#39;))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
@@ -150,10 +173,19 @@
 <span class="sd">            attr: The name of the attribute to fetch.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            AttributeError: If the value is :obj:`~UNSET`.</span>
+<span class="sd">            AttributeError: If the attribute is not found or its value is :obj:`~UNSET`.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            The value of the attribute.</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str = UNSET</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct()</span>
+<span class="sd">            &gt;&gt;&gt; s.field1</span>
+<span class="sd">            Traceback (most recent call last):</span>
+<span class="sd">                ...</span>
+<span class="sd">            AttributeError: &quot;&#39;MyStruct&#39; object has no attribute &#39;field1&#39;&quot;</span>
+
+<span class="sd">        See Also:</span>
+<span class="sd">            :meth:`__getitem__` for dictionary-style access.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">UNSET</span><span class="p">:</span>
@@ -168,6 +200,14 @@
 
 <span class="sd">        Yields:</span>
 <span class="sd">            Struct key.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            ...     field2: int</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;, field2=42)</span>
+<span class="sd">            &gt;&gt;&gt; list(iter(s))</span>
+<span class="sd">            [&#39;field1&#39;, &#39;field2&#39;]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__struct_fields__</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">UNSET</span><span class="p">)</span>
@@ -178,8 +218,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of keys in the Struct.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            The number of keys.</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            ...     field2: int</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;, field2=42)</span>
+<span class="sd">            &gt;&gt;&gt; len(s)</span>
+<span class="sd">            2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">([</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">])</span></div>
 
@@ -187,8 +232,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns an iterator over the field names of the struct.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            An iterator over the field names.</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            ...     field2: int</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;, field2=42)</span>
+<span class="sd">            &gt;&gt;&gt; list(s.keys())</span>
+<span class="sd">            [&#39;field1&#39;, &#39;field2&#39;]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">yield from</span> <span class="bp">self</span></div>
 
@@ -196,8 +246,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns an iterator over the struct&#39;s field name and value pairs.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            Iterator[Tuple[str, Any]]: An iterator over the field name and value pairs.</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            ...     field2: int</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;, field2=42)</span>
+<span class="sd">            &gt;&gt;&gt; list(s.items())</span>
+<span class="sd">            [(&#39;field1&#39;, &#39;value&#39;), (&#39;field2&#39;, 42)]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__struct_fields__</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">UNSET</span><span class="p">)</span>
@@ -208,8 +263,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns an iterator over the struct&#39;s field values.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            An iterator over the field values.</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            ...     field2: int</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;, field2=42)</span>
+<span class="sd">            &gt;&gt;&gt; list(s.values())</span>
+<span class="sd">            [&#39;value&#39;, 42]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__struct_fields__</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">UNSET</span><span class="p">)</span>
@@ -220,13 +280,18 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A frozen Struct is hashable but only if the fields are all hashable as well.</span>
 
-<span class="sd">        This modified hash function converts any list fields to tuples and sets the new hash value.</span>
+<span class="sd">        This modified hash function attempts to hash the fields directly and converts any list fields to tuples if a `TypeError` is raised.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            TypeError: If the struct is not frozen.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            The hash value of the struct.</span>
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct, frozen=True):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            ...     field2: list</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;, field2=[1, 2, 3])</span>
+<span class="sd">            &gt;&gt;&gt; hash(s)</span>
+<span class="sd">            123456789  # Example output, actual value will vary</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__struct_config__</span><span class="o">.</span><span class="n">frozen</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unhashable type: &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
@@ -279,6 +344,9 @@
 <span class="sd">        Args:</span>
 <span class="sd">            *args: Positional arguments.</span>
 <span class="sd">            **kwargs: Keyword arguments.</span>
+
+<span class="sd">        See Also:</span>
+<span class="sd">            :class:`DictStruct` for the base class implementation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init_subclass__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
