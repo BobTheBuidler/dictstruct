@@ -36,7 +36,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
             key: The key to check.
 
         Returns:
-            True if the key is present and not :obj:`~UNSET`, False otherwise.
+            True if the key is present and not :obj:`~msgspec.UNSET`, False otherwise.
 
         Example:
             >>> class MyStruct(DictStruct):
@@ -96,13 +96,13 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
 
     def __getattribute__(self, attr: str) -> Any:
         """
-        Get the value of an attribute, raising AttributeError if the value is :obj:`UNSET`.
+        Get the value of an attribute, raising AttributeError if the value is :obj:`~msgspec.UNSET`.
 
         Args:
             attr: The name of the attribute to fetch.
 
         Raises:
-            AttributeError: If the attribute is not found or its value is :obj:`~UNSET`.
+            AttributeError: If the attribute is not found or its value is :obj:`~msgspec.UNSET`.
 
         Example:
             >>> class MyStruct(DictStruct):
