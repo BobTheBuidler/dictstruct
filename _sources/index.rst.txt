@@ -6,11 +6,10 @@
 Welcome to dictstruct's documentation!
 =============================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   source/modules.rst
+.. automodule:: dictstruct
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Indices and tables
 ==================
