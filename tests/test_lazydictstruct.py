@@ -47,17 +47,16 @@ class MyLazyStruct(LazyDictStruct):
 
 @pytest.fixture
 def my_lazy_struct() -> MyLazyStruct:
-    """Fixture for creating a MyLazyStruct instance.
+    """
+    Fixture for creating a MyLazyStruct instance.
 
-    Returns:
-        An instance of MyLazyStruct decoded from raw JSON data.
+    This fixture provides an instance of :class:`MyLazyStruct` decoded from raw JSON data.
+    It is used in test functions to supply a consistent test object.
 
     Example:
-        >>> struct = my_lazy_struct()
-        >>> struct.field1
-        'value'
-        >>> struct.field2
-        42
+        def test_example(my_lazy_struct):
+            assert my_lazy_struct.field1 == 'value'
+            assert my_lazy_struct.field2 == 42
     """
     data = b'{"field1": "value", "field2": 42}'
     return json.decode(data, type=MyLazyStruct)
