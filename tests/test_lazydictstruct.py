@@ -10,21 +10,53 @@ class MyLazyStruct(LazyDictStruct):
 
     @property
     def field1(self) -> str:
-        """Returns the decoded string representation of _field1."""
+        """
+        Returns the decoded string representation of _field1.
+
+        This property decodes the raw JSON data stored in `_field1` to a string
+        when accessed.
+
+        Example:
+            >>> struct = MyLazyStruct(_field1=b'"example"', _field2=b'42')
+            >>> struct.field1
+            'example'
+
+        See Also:
+            :meth:`msgspec.json.decode` for decoding details.
+        """
         return json.decode(self._field1, type=str)
 
     @property
     def field2(self) -> int:
-        """Returns the decoded integer representation of _field2."""
+        """
+        Returns the decoded integer representation of _field2.
+
+        This property decodes the raw JSON data stored in `_field2` to an integer
+        when accessed.
+
+        Example:
+            >>> struct = MyLazyStruct(_field1=b'"example"', _field2=b'42')
+            >>> struct.field2
+            42
+
+        See Also:
+            :meth:`msgspec.json.decode` for decoding details.
+        """
         return json.decode(self._field2, type=int)
 
 
 @pytest.fixture
 def my_lazy_struct() -> MyLazyStruct:
-    """Fixture for creating a MyLazyStruct instance.
+    """
+    Fixture for creating a MyLazyStruct instance.
 
-    Returns:
-        An instance of MyLazyStruct decoded from raw JSON data.
+    This fixture provides an instance of :class:`MyLazyStruct` decoded from raw JSON data.
+    It is used in test functions to supply a consistent test object.
+
+    Example:
+        def test_example(my_lazy_struct):
+            assert my_lazy_struct.field1 == 'value'
+            assert my_lazy_struct.field2 == 42
     """
     data = b'{"field1": "value", "field2": 42}'
     return json.decode(data, type=MyLazyStruct)
