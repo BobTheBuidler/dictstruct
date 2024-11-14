@@ -42,7 +42,7 @@ autodoc_default_options = {
     "members": True,
     "special-members": True,
     "inherited-members": True,
-    "undoc-members": True,
+    "undoc-members": False,
     "member-order": "groupwise",
     # hide private methods that aren't relevant to us here
     # "exclude-members": ",".join([]),
