@@ -102,7 +102,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
             attr: The name of the attribute to fetch.
 
         Raises:
-            AttributeError: If the value is :obj:`~UNSET`.
+            AttributeError: If the attribute is not found or its value is :obj:`~UNSET`.
 
         Example:
             >>> class MyStruct(DictStruct):
@@ -112,6 +112,9 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
             Traceback (most recent call last):
                 ...
             AttributeError: "'MyStruct' object has no attribute 'field1'"
+
+        See Also:
+            :meth:`__getitem__` for dictionary-style access.
         """
         value = super().__getattribute__(attr)
         if value is UNSET:
