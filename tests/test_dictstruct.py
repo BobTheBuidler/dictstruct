@@ -1,5 +1,5 @@
 import pytest
-from dictstruct.main import DictStruct
+from dictstruct._main import DictStruct
 from msgspec import UNSET
 
 
