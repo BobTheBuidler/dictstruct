@@ -104,7 +104,7 @@
 <span class="sd">            key: The key to check.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            True if the key is present and not :obj:`~UNSET`, False otherwise.</span>
+<span class="sd">            True if the key is present and not :obj:`~msgspec.UNSET`, False otherwise.</span>
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
@@ -164,13 +164,13 @@
 
 <div class="viewcode-block" id="DictStruct.__getattribute__"><a class="viewcode-back" href="../../index.html#dictstruct.DictStruct.__getattribute__">[docs]</a>    <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the value of an attribute, raising AttributeError if the value is :obj:`UNSET`.</span>
+<span class="sd">        Get the value of an attribute, raising AttributeError if the value is :obj:`~msgspec.UNSET`.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            attr: The name of the attribute to fetch.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            AttributeError: If the attribute is not found or its value is :obj:`~UNSET`.</span>
+<span class="sd">            AttributeError: If the attribute is not found or its value is :obj:`~msgspec.UNSET`.</span>
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>

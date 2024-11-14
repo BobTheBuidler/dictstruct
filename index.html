@@ -95,9 +95,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-dictstruct">
-<span id="dictstruct"></span><h1>dictstruct<a class="headerlink" href="#module-dictstruct" title="Permalink to this heading"></a></h1>
-<dl class="py class">
+  <section id="dictstruct">
+<h1>dictstruct<a class="headerlink" href="#dictstruct" title="Permalink to this heading"></a></h1>
+<p>I made this library because I wanted to use msgspec to decode Ethereum RPC responses but I still needed the resulting objects to be compatible with the standard dictionary API</p>
+<p>You may find yourself in a similar position. You may find yourself using dictstruct to solve your problem. You may find yourself elated to focus on better things.</p>
+<p>And you may ask yourself, “Well, how did I get here!?”</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="https://private-user-images.githubusercontent.com/70677534/382577015-fdb3bf24-036e-4c0b-a117-5ae122d09d74.jpg"><img alt="Well, how did I get here!?" src="https://private-user-images.githubusercontent.com/70677534/382577015-fdb3bf24-036e-4c0b-a117-5ae122d09d74.jpg" /></a>
+</figure>
+<span class="target" id="module-dictstruct"></span><dl class="py class">
 <dt class="sig sig-object py" id="dictstruct.DictStruct">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dictstruct.</span></span><span class="sig-name descname"><span class="pre">DictStruct</span></span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.Struct" title="(in msgspec)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a></p>
@@ -134,7 +140,7 @@
 <dd class="field-odd"><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The key to check.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if the key is present and not <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>, False otherwise.</p>
+<dd class="field-even"><p>True if the key is present and not <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.UNSET" title="(in msgspec)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code></a>, False otherwise.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
@@ -155,13 +161,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="dictstruct.DictStruct.__getattribute__">
 <span class="sig-name descname"><span class="pre">__getattribute__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct.__getattribute__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct.__getattribute__" title="Permalink to this definition"></a></dt>
-<dd><p>Get the value of an attribute, raising AttributeError if the value is <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>.</p>
+<dd><p>Get the value of an attribute, raising AttributeError if the value is <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.UNSET" title="(in msgspec)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the attribute to fetch.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><strong>AttributeError</strong></a> – If the attribute is not found or its value is <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code>.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><strong>AttributeError</strong></a> – If the attribute is not found or its value is <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.UNSET" title="(in msgspec)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code></a>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a></p>
