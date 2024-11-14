@@ -1,17 +1,6 @@
 dictstruct package
 ==================
 
-Submodules
-----------
-
-dictstruct.main module
-----------------------
-
-.. automodule:: dictstruct.main
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 
