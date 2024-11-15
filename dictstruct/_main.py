@@ -25,7 +25,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
     """
 
     def __bool__(self) -> Literal[True]:
-        """A Struct will always exist."""
+        """Unline a dictionary, a Struct will always exist."""
         return True
 
     def __contains__(self, key: str) -> bool:
