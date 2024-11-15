@@ -14,7 +14,7 @@ And you may ask yourself, "Well, how did I get here!?"
 
 .. figure:: https://private-user-images.githubusercontent.com/70677534/382577015-fdb3bf24-036e-4c0b-a117-5ae122d09d74.jpg
    :scale: 50 %
-   :alt: Well, how did I get here!?
+   :alt: And you may ask yourself, "Well, how did I get here!?"
 
 .. automodule:: dictstruct
    :members:
