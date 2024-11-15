@@ -25,7 +25,14 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
     """
 
     def __bool__(self) -> Literal[True]:
-        """Unline a dictionary, a Struct will always exist."""
+        """Unlike a dictionary, a Struct will always exist.
+
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     pass
+            >>> bool(MyStruct())
+            True
+        """
         return True
 
     def __contains__(self, key: str) -> bool:
@@ -102,7 +109,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
             attr: The name of the attribute to fetch.
 
         Raises:
-            AttributeError: If the attribute is not found or its value is :obj:`~msgspec.UNSET`.
+            AttributeError: If the attribute is not found or is considered unset (:obj:`~msgspec.UNSET`).
 
         Example:
             >>> class MyStruct(DictStruct):
