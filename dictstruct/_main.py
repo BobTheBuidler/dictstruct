@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Iterator, Tuple
+from typing import Any, Iterator, Literal, Tuple
 
 from msgspec import UNSET, Struct
 
@@ -24,8 +24,8 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         'value'
     """
 
-    def __bool__(self) -> bool:
-        """A Struct will always exist."""
+    def __bool__(self) -> Literal[True]:
+        """Unline a dictionary, a Struct will always exist."""
         return True
 
     def __contains__(self, key: str) -> bool:
