@@ -71,11 +71,18 @@
 
 <div class="viewcode-block" id="LazyDictStruct"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct">[docs]</a><span class="k">class</span> <span class="nc">LazyDictStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># type: ignore [call-arg,misc]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A subclass of DictStruct that supports JIT decoding of field values.</span>
+<span class="sd">    A subclass of :class:`DictStruct` that supports Just-In-Time (JIT) decoding of field values.</span>
 
-<span class="sd">    It exists to optimize performance and memory usage by storing field values in a raw, undecoded format and decoding them only when accessed.</span>
+<span class="sd">    `LazyDictStruct` is designed for developers who need to efficiently handle large or complex data structures, particularly when working with serialized data formats like JSON. By storing field values in a raw, undecoded format, this class allows for deferred decoding, meaning that data is only decoded when accessed. This approach can lead to significant performance improvements and reduced memory usage, especially in scenarios where not all fields are always needed.</span>
 
-<span class="sd">    This class is frozen, meaning its fields cannot be modified after creation.</span>
+<span class="sd">    Key Features:</span>
+<span class="sd">    - **JIT Decoding**: Decode data only when accessed, saving processing time and memory.</span>
+<span class="sd">    - **Immutable Structure**: As a frozen dataclass, instances are immutable, ensuring data integrity after creation.</span>
+<span class="sd">    - **Compatibility**: Inherits from :class:`DictStruct`, making it compatible with the standard dictionary API, allowing for easy integration with existing codebases that rely on dictionary-like data structures.</span>
+
+<span class="sd">    Use Cases:</span>
+<span class="sd">    - Handling large JSON responses from APIs where only a subset of the data is needed at any given time.</span>
+<span class="sd">    - Optimizing applications that process data lazily, improving startup times and reducing resource consumption.</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">        &gt;&gt;&gt; import msgspec</span>
@@ -83,23 +90,29 @@
 <span class="sd">        &gt;&gt;&gt; class MyStruct(LazyDictStruct):</span>
 <span class="sd">        ...     _myField: msgspec.Raw = msgspec.field(name=&#39;myField&#39;)</span>
 <span class="sd">        ...     @cached_property</span>
-<span class="sd">        ...     def myField(self) -&gt; str:</span>
+<span class="sd">        ...     def myField(self) -&gt; YourGiantJsonObject:</span>
 <span class="sd">        ...         &#39;&#39;&#39;Decode the raw JSON data into a python object when accessed.&#39;&#39;&#39;</span>
-<span class="sd">        ...         return msgspec.json.decode(self._myField, type=str)</span>
+<span class="sd">        ...         return msgspec.json.decode(self._myField, type=YourGiantJsonObject)</span>
 <span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; # Encode data into a raw JSON format</span>
 <span class="sd">        &gt;&gt;&gt; raw_data = msgspec.json.encode({&quot;myField&quot;: &quot;some value&quot;})</span>
+<span class="sd">        &gt;&gt;&gt; # Create an instance of MyStruct with the raw data</span>
 <span class="sd">        &gt;&gt;&gt; my_struct = MyStruct(_myField=raw_data)</span>
+<span class="sd">        &gt;&gt;&gt; # Access the decoded field value</span>
 <span class="sd">        &gt;&gt;&gt; print(my_struct.myField)</span>
 <span class="sd">        &quot;some value&quot;</span>
+
+<span class="sd">    See Also:</span>
+<span class="sd">        :class:`DictStruct` for the base class implementation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="LazyDictStruct.__init_subclass__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__init_subclass__">[docs]</a>    <span class="k">def</span> <span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize a subclass of LazyDictStruct.</span>
+<span class="sd">        Initialize a subclass of :class:`LazyDictStruct`.</span>
 
-<span class="sd">        Resolve any lazy field names (prefixed with an underscore) and overwrite</span>
+<span class="sd">        This method resolves any lazy field names (prefixed with an underscore) and overwrites</span>
 <span class="sd">        `cls.__struct_fields__` so it contains the names of the materialized properties</span>
-<span class="sd">        you defined on your subclass.</span>
+<span class="sd">        defined on your subclass.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            *args: Positional arguments.</span>

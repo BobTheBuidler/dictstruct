@@ -123,7 +123,14 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="dictstruct.DictStruct.__bool__">
 <span class="sig-name descname"><span class="pre">__bool__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct.__bool__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct.__bool__" title="Permalink to this definition"></a></dt>
-<dd><p>Unline a dictionary, a Struct will always exist.</p>
+<dd><p>Unlike a dictionary, a Struct will always exist.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">MyStruct</span><span class="p">())</span>
+<span class="go">True</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.13)"><em>Literal</em></a>[True]</p>
@@ -167,7 +174,7 @@
 <dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the attribute to fetch.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><strong>AttributeError</strong></a> – If the attribute is not found or its value is <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.UNSET" title="(in msgspec)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code></a>.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><strong>AttributeError</strong></a> – If the attribute is not found or is considered unset (<a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.UNSET" title="(in msgspec)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code></a>).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a></p>
@@ -393,32 +400,45 @@
 <dt class="sig sig-object py" id="dictstruct.LazyDictStruct">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dictstruct.</span></span><span class="sig-name descname"><span class="pre">LazyDictStruct</span></span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#dictstruct.DictStruct" title="dictstruct._main.DictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictStruct</span></code></a></p>
-<p>A subclass of DictStruct that supports JIT decoding of field values.</p>
-<p>It exists to optimize performance and memory usage by storing field values in a raw, undecoded format and decoding them only when accessed.</p>
-<p>This class is frozen, meaning its fields cannot be modified after creation.</p>
+<p>A subclass of <a class="reference internal" href="#dictstruct.DictStruct" title="dictstruct.DictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictStruct</span></code></a> that supports Just-In-Time (JIT) decoding of field values.</p>
+<p><cite>LazyDictStruct</cite> is designed for developers who need to efficiently handle large or complex data structures, particularly when working with serialized data formats like JSON. By storing field values in a raw, undecoded format, this class allows for deferred decoding, meaning that data is only decoded when accessed. This approach can lead to significant performance improvements and reduced memory usage, especially in scenarios where not all fields are always needed.</p>
+<p>Key Features:
+- <strong>JIT Decoding</strong>: Decode data only when accessed, saving processing time and memory.
+- <strong>Immutable Structure</strong>: As a frozen dataclass, instances are immutable, ensuring data integrity after creation.
+- <strong>Compatibility</strong>: Inherits from <a class="reference internal" href="#dictstruct.DictStruct" title="dictstruct.DictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictStruct</span></code></a>, making it compatible with the standard dictionary API, allowing for easy integration with existing codebases that rely on dictionary-like data structures.</p>
+<p>Use Cases:
+- Handling large JSON responses from APIs where only a subset of the data is needed at any given time.
+- Optimizing applications that process data lazily, improving startup times and reducing resource consumption.</p>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">msgspec</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cached_property</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">_myField</span><span class="p">:</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">Raw</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myField&#39;</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="nd">@cached_property</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">myField</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">myField</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">YourGiantJsonObject</span><span class="p">:</span>
 <span class="gp">... </span><span class="w">        </span><span class="sd">&#39;&#39;&#39;Decode the raw JSON data into a python object when accessed.&#39;&#39;&#39;</span>
-<span class="gp">... </span>        <span class="k">return</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_myField</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_myField</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">YourGiantJsonObject</span><span class="p">)</span>
 <span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Encode data into a raw JSON format</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">raw_data</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span><span class="s2">&quot;myField&quot;</span><span class="p">:</span> <span class="s2">&quot;some value&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create an instance of MyStruct with the raw data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">my_struct</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">_myField</span><span class="o">=</span><span class="n">raw_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Access the decoded field value</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">my_struct</span><span class="o">.</span><span class="n">myField</span><span class="p">)</span>
 <span class="go">&quot;some value&quot;</span>
 </pre></div>
 </div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dictstruct.DictStruct" title="dictstruct.DictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictStruct</span></code></a> for the base class implementation.</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="dictstruct.LazyDictStruct.__init_subclass__">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct.__init_subclass__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct.__init_subclass__" title="Permalink to this definition"></a></dt>
-<dd><p>Initialize a subclass of LazyDictStruct.</p>
-<p>Resolve any lazy field names (prefixed with an underscore) and overwrite
+<dd><p>Initialize a subclass of <a class="reference internal" href="#dictstruct.LazyDictStruct" title="dictstruct.LazyDictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">LazyDictStruct</span></code></a>.</p>
+<p>This method resolves any lazy field names (prefixed with an underscore) and overwrites
 <cite>cls.__struct_fields__</cite> so it contains the names of the materialized properties
-you defined on your subclass.</p>
+defined on your subclass.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
