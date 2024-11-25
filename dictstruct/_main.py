@@ -234,7 +234,8 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         if cached_hash := self.__dict__.get("__hash__"):
             return cached_hash
         fields = (
-            getattr(self, field_name, None) for field_name in self.__struct_fields__
+            object.__getattribute__(self, field_name)
+            for field_name in self.__struct_fields__
         )
         try:
             # Skip if-checks, just try it
