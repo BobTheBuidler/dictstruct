@@ -233,7 +233,10 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
         if cached_hash := self.__dict__.get("__hash__"):
             return cached_hash
-        fields = (object.__getattribute__(self, field_name) for field_name in self.__struct_fields__)
+        fields = (
+            object.__getattribute__(self, field_name)
+            for field_name in self.__struct_fields__
+        )
         try:
             # Skip if-checks, just try it
             try:
