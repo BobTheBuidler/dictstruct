@@ -123,7 +123,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         See Also:
             :meth:`__getitem__` for dictionary-style access.
         """
-        value = super().__getattribute__(attr)
+        value = object.__getattribute__(self, attr)
         if value is UNSET:
             raise AttributeError(
                 f"'{type(self).__name__}' object has no attribute '{attr}'"
