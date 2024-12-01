@@ -81,15 +81,29 @@
 
 <span class="sd">    Allows iteration over the fields of a struct and provides a dictionary-like interface for retrieving values by field name.</span>
 
+<span class="sd">    Note:</span>
+<span class="sd">        Attempting to access an attribute that is set to :obj:`~msgspec.UNSET` will raise an :class:`AttributeError`</span>
+<span class="sd">        when accessed as an attribute, or a :class:`KeyError` when accessed using dictionary-style access. This behavior</span>
+<span class="sd">        indicates that the attribute/key is not present on the DictStruct object.</span>
+
 <span class="sd">    Example:</span>
 <span class="sd">        &gt;&gt;&gt; class MyStruct(DictStruct):</span>
 <span class="sd">        ...     field1: str</span>
 <span class="sd">        ...     field2: int</span>
+<span class="sd">        ...     field3: int = UNSET</span>
 <span class="sd">        &gt;&gt;&gt; s = MyStruct(field1=&quot;value&quot;, field2=42)</span>
 <span class="sd">        &gt;&gt;&gt; list(s.keys())</span>
 <span class="sd">        [&#39;field1&#39;, &#39;field2&#39;]</span>
 <span class="sd">        &gt;&gt;&gt; s[&#39;field1&#39;]</span>
 <span class="sd">        &#39;value&#39;</span>
+<span class="sd">        &gt;&gt;&gt; s.field3</span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">            ...</span>
+<span class="sd">        AttributeError: &quot;&#39;MyStruct&#39; object has no attribute &#39;field3&#39;&quot;</span>
+<span class="sd">        &gt;&gt;&gt; s[&#39;field3&#39;]</span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">            ...</span>
+<span class="sd">        KeyError: (&#39;field3&#39;, MyStruct(field1=&#39;value&#39;))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DictStruct.__bool__"><a class="viewcode-back" href="../../index.html#dictstruct.DictStruct.__bool__">[docs]</a>    <span class="k">def</span> <span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]:</span>

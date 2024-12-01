@@ -109,15 +109,30 @@
 <dd><p>Bases: <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.Struct" title="(in msgspec)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a></p>
 <p>A base class that extends the <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.Struct" title="(in msgspec)"><code class="xref py py-class docutils literal notranslate"><span class="pre">msgspec.Struct</span></code></a> class to provide dictionary-like access to struct fields.</p>
 <p>Allows iteration over the fields of a struct and provides a dictionary-like interface for retrieving values by field name.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Attempting to access an attribute that is set to <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.UNSET" title="(in msgspec)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code></a> will raise an <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AttributeError</span></code></a>
+when accessed as an attribute, or a <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">KeyError</span></code></a> when accessed using dictionary-style access. This behavior
+indicates that the attribute/key is not present on the DictStruct object.</p>
+</div>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">... </span>    <span class="n">field3</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">UNSET</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <span class="go">[&#39;field1&#39;, &#39;field2&#39;]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;field1&#39;</span><span class="p">]</span>
 <span class="go">&#39;value&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">field3</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="gr">AttributeError</span>: <span class="n">&quot;&#39;MyStruct&#39; object has no attribute &#39;field3&#39;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;field3&#39;</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="gr">KeyError</span>: <span class="n">(&#39;field3&#39;, MyStruct(field1=&#39;value&#39;))</span>
 </pre></div>
 </div>
 <dl class="py method">
