@@ -13,15 +13,29 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
 
     Allows iteration over the fields of a struct and provides a dictionary-like interface for retrieving values by field name.
 
+    Note:
+        Attempting to access an attribute that is set to :obj:`~msgspec.UNSET` will raise an :class:`AttributeError`
+        when accessed as an attribute, or a :class:`KeyError` when accessed using dictionary-style access. This behavior
+        indicates that the attribute/key is not present on the DictStruct object.
+
     Example:
         >>> class MyStruct(DictStruct):
         ...     field1: str
         ...     field2: int
+        ...     field3: int = UNSET
         >>> s = MyStruct(field1="value", field2=42)
         >>> list(s.keys())
         ['field1', 'field2']
         >>> s['field1']
         'value'
+        >>> s.field3
+        Traceback (most recent call last):
+            ...
+        AttributeError: "'MyStruct' object has no attribute 'field3'"
+        >>> s['field3']
+        Traceback (most recent call last):
+            ...
+        KeyError: ('field3', MyStruct(field1='value'))
     """
 
     def __bool__(self) -> Literal[True]:
