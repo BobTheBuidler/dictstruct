@@ -164,7 +164,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
             if value is not UNSET:
                 yield field
 
-    def __len__(self) -> int:
+    def __len__(self) -> int:  # sourcery skip: identity-comprehension
         """
         The number of keys in the Struct.
 

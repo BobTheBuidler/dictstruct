@@ -1,3 +1,7 @@
+from typing import Any, Iterator, Tuple
+
+from msgspec import UNSET
+
 from dictstruct._main import DictStruct
 
 
@@ -60,12 +64,91 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg,misc]
 
         try:
             struct_fields = cls.__struct_fields__
-        except AttributeError:
+        except AttributeError as e:
             # TODO: debug this
-            # raise TypeError(cls, dir(cls), issubclass(cls, Struct))
             return
 
         resolved_fields = tuple(
             field[1:] if field[0] == "_" else field for field in struct_fields
         )
         cls.__struct_fields__ = resolved_fields
+
+    def __contains__(self, key: str) -> bool:
+        """
+        Check if a key is in the struct.
+
+        Args:
+            key: The key to check.
+
+        Returns:
+            True if the key is present and not :obj:`~msgspec.UNSET`, False otherwise.
+
+        Example:
+            >>> class MyStruct(LazyDictStruct):
+            ...     field1: str
+            >>> s = MyStruct(field1="value")
+            >>> 'field1' in s
+            True
+            >>> 'field2' in s
+            False
+        """
+        fields = self.__struct_fields__
+        return (key in fields or f"_{key}" in fields) and getattr(self, key, UNSET) is not UNSET
+
+    def __iter__(self) -> Iterator[str]:
+        """
+        Iterate through the keys of the Struct.
+
+        Yields:
+            Struct key.
+
+        Example:
+            >>> class MyStruct(LazyDictStruct):
+            ...     field1: str
+            ...     field2: int
+            >>> s = MyStruct(field1="value", field2=42)
+            >>> list(iter(s))
+            ['field1', 'field2']
+        """
+        for field in self.__struct_fields__:
+            value = getattr(self, field, UNSET)
+            if value is not UNSET:
+                yield field[1:] if field[0] == "_" else field
+
+    def items(self) -> Iterator[Tuple[str, Any]]:
+        """
+        Returns an iterator over the struct's field name and value pairs.
+
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            ...     field2: int
+            >>> s = MyStruct(field1="value", field2=42)
+            >>> list(s.items())
+            [('field1', 'value'), ('field2', 42)]
+        """
+        for key in self.__struct_fields__:
+            if key[0] == "_":
+                key = key[1:]
+            value = getattr(self, key, UNSET)
+            if value is not UNSET:
+                yield key, value
+
+    def values(self) -> Iterator[Any]:
+        """
+        Returns an iterator over the struct's field values.
+
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            ...     field2: int
+            >>> s = MyStruct(field1="value", field2=42)
+            >>> list(s.values())
+            ['value', 42]
+        """
+        for key in self.__struct_fields__:
+            if key[0] == "_":
+                key = key[1:]
+            value = getattr(self, key, UNSET)
+            if value is not UNSET:
+                yield value
