@@ -143,7 +143,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
                 f"'{type(self).__name__}' object has no attribute '{attr}'"
             )
         return value
-    
+
     def __setitem__(self, attr: str, value: Any) -> None:
         """
         Set the value of an attribute, raising AttributeError if the instance's type is frozen.
@@ -173,7 +173,6 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
             setattr(self, attr, value)
         except AttributeError as e:
             raise TypeError(*e.args) from e.__cause__
-
 
     def __iter__(self) -> Iterator[str]:
         """
