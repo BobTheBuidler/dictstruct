@@ -1,7 +1,7 @@
 import pytest
 from msgspec import Raw, field, json
 
-from dictstruct._main import LazyDictStruct
+from dictstruct._lazy import LazyDictStruct
 
 
 class MyLazyStruct(LazyDictStruct):
