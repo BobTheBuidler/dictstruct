@@ -61,7 +61,11 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#dictstruct.LazyDictStruct"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct</span></code></a><ul>
+<li><a class="reference internal" href="#dictstruct.LazyDictStruct.__contains__"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct.__contains__()</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.LazyDictStruct.__init_subclass__"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct.__init_subclass__()</span></code></a></li>
+<li><a class="reference internal" href="#dictstruct.LazyDictStruct.__iter__"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#dictstruct.LazyDictStruct.items"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct.items()</span></code></a></li>
+<li><a class="reference internal" href="#dictstruct.LazyDictStruct.values"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct.values()</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.LazyDictStruct.__annotations__"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct.__annotations__</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.LazyDictStruct.__module__"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct.__module__</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.LazyDictStruct.__slots__"><code class="docutils literal notranslate"><span class="pre">LazyDictStruct.__slots__</span></code></a></li>
@@ -448,6 +452,33 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 <p><a class="reference internal" href="#dictstruct.DictStruct" title="dictstruct.DictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictStruct</span></code></a> for the base class implementation.</p>
 </div>
 <dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.LazyDictStruct.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct.__contains__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct.__contains__" title="Permalink to this definition"></a></dt>
+<dd><p>Check if a key is in the struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The key to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the key is present and not <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.UNSET" title="(in msgspec)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNSET</span></code></a>, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;field1&#39;</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;field2&#39;</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="dictstruct.LazyDictStruct.__init_subclass__">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct.__init_subclass__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct.__init_subclass__" title="Permalink to this definition"></a></dt>
 <dd><p>Initialize a subclass of <a class="reference internal" href="#dictstruct.LazyDictStruct" title="dictstruct.LazyDictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">LazyDictStruct</span></code></a>.</p>
@@ -466,6 +497,69 @@ defined on your subclass.</p>
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="#dictstruct.DictStruct" title="dictstruct.DictStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictStruct</span></code></a> for the base class implementation.</p>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.LazyDictStruct.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct.__iter__" title="Permalink to this definition"></a></dt>
+<dd><p>Iterate through the keys of the Struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Struct key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="go">[&#39;field1&#39;, &#39;field2&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.LazyDictStruct.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct.items" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an iterator over the struct’s field name and value pairs.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="go">[(&#39;field1&#39;, &#39;value&#39;), (&#39;field2&#39;, 42)]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.LazyDictStruct.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct.values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct.values" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an iterator over the struct’s field values.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="go">[&#39;value&#39;, 42]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.13)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
