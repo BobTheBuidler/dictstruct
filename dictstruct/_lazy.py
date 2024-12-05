@@ -93,7 +93,8 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg,misc]
             False
         """
         fields = self.__struct_fields__
-        return (key in fields or f"_{key}" in fields) and getattr(self, key, UNSET) is not UNSET
+        in_fields = key in fields or f"_{key}" in fields
+        return in_fields and getattr(self, key, UNSET) is not UNSET
 
     def __iter__(self) -> Iterator[str]:
         """
