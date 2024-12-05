@@ -51,6 +51,7 @@
 <li><a class="reference internal" href="#dictstruct.DictStruct.__hash__"><code class="docutils literal notranslate"><span class="pre">DictStruct.__hash__()</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.DictStruct.__iter__"><code class="docutils literal notranslate"><span class="pre">DictStruct.__iter__()</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.DictStruct.__len__"><code class="docutils literal notranslate"><span class="pre">DictStruct.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#dictstruct.DictStruct.__setitem__"><code class="docutils literal notranslate"><span class="pre">DictStruct.__setitem__()</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.DictStruct.get"><code class="docutils literal notranslate"><span class="pre">DictStruct.get()</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.DictStruct.items"><code class="docutils literal notranslate"><span class="pre">DictStruct.items()</span></code></a></li>
 <li><a class="reference internal" href="#dictstruct.DictStruct.keys"><code class="docutils literal notranslate"><span class="pre">DictStruct.keys()</span></code></a></li>
@@ -111,7 +112,7 @@
 <dt class="sig sig-object py" id="dictstruct.DictStruct">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dictstruct.</span></span><span class="sig-name descname"><span class="pre">DictStruct</span></span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.Struct" title="(in msgspec)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a></p>
-<p>A base class that extends the <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.Struct" title="(in msgspec)"><code class="xref py py-class docutils literal notranslate"><span class="pre">msgspec.Struct</span></code></a> class to provide dictionary-like access to struct fields.</p>
+<p>A base class that extends the <a class="reference external" href="https://jcristharif.com/msgspec/api.html#msgspec.Struct" title="(in msgspec)"><code class="xref py py-class docutils literal notranslate"><span class="pre">msgspec.Struct</span></code></a> class to be compatible with the standard python dictionary API.</p>
 <p>Allows iteration over the fields of a struct and provides a dictionary-like interface for retrieving values by field name.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -309,6 +310,41 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dictstruct.DictStruct.__setitem__">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct.__setitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct.__setitem__" title="Permalink to this definition"></a></dt>
+<dd><p>Set the value of an attribute, raising AttributeError if the instance’s type is frozen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the item to set.</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a>) – The value to set.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><strong>AttributeError</strong></a> – If the type of the instance was initialized with <cite>frozen=True</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="s2">&quot;some value&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;field1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;new value&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now let&#39;s try with a frozen struct</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyFrozenStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyFrozenStruct</span><span class="p">(</span><span class="s2">&quot;some value&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;field1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;new value&quot;</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="gr">AttributeError</span>: <span class="n">&quot;immutable type: &#39;MyFrozenStruct&#39;&quot;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">

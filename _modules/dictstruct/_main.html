@@ -77,7 +77,7 @@
 
 <div class="viewcode-block" id="DictStruct"><a class="viewcode-back" href="../../index.html#dictstruct.DictStruct">[docs]</a><span class="k">class</span> <span class="nc">DictStruct</span><span class="p">(</span><span class="n">Struct</span><span class="p">,</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># type: ignore [call-arg]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A base class that extends the :class:`msgspec.Struct` class to provide dictionary-like access to struct fields.</span>
+<span class="sd">    A base class that extends the :class:`msgspec.Struct` class to be compatible with the standard python dictionary API.</span>
 
 <span class="sd">    Allows iteration over the fields of a struct and provides a dictionary-like interface for retrieving values by field name.</span>
 
@@ -180,8 +180,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span></div>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e.__cause__</span></div>
 
 <div class="viewcode-block" id="DictStruct.__getattribute__"><a class="viewcode-back" href="../../index.html#dictstruct.DictStruct.__getattribute__">[docs]</a>    <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -211,6 +211,36 @@
                 <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; object has no attribute &#39;</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="DictStruct.__setitem__"><a class="viewcode-back" href="../../index.html#dictstruct.DictStruct.__setitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the value of an attribute, raising AttributeError if the instance&#39;s type is frozen.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            attr: The name of the item to set.</span>
+<span class="sd">            value: The value to set.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            AttributeError: If the type of the instance was initialized with `frozen=True`.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyStruct(DictStruct):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            &gt;&gt;&gt; s = MyStruct(&quot;some value&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; s[&quot;field1&quot;] = &quot;new value&quot;</span>
+<span class="sd">            &gt;&gt;&gt; # Now let&#39;s try with a frozen struct</span>
+<span class="sd">            &gt;&gt;&gt; class MyFrozenStruct(DictStruct, frozen=True):</span>
+<span class="sd">            ...     field1: str</span>
+<span class="sd">            &gt;&gt;&gt; s = MyFrozenStruct(&quot;some value&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; s[&quot;field1&quot;] = &quot;new value&quot;</span>
+<span class="sd">            Traceback (most recent call last):</span>
+<span class="sd">                ...</span>
+<span class="sd">            AttributeError: &quot;immutable type: &#39;MyFrozenStruct&#39;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="o">*</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e.__cause__</span></div>
 
 <div class="viewcode-block" id="DictStruct.__iter__"><a class="viewcode-back" href="../../index.html#dictstruct.DictStruct.__iter__">[docs]</a>    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
