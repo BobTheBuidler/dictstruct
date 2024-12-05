@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
     """
-    A base class that extends the :class:`msgspec.Struct` class to provide dictionary-like access to struct fields.
+    A base class that extends the :class:`msgspec.Struct` class to be compatible with the standard python dictionary API.
 
     Allows iteration over the fields of a struct and provides a dictionary-like interface for retrieving values by field name.
 
@@ -112,8 +112,8 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         """
         try:
             return getattr(self, attr)
-        except AttributeError:
-            raise KeyError(attr, self) from None
+        except AttributeError as e:
+            raise KeyError(attr, self) from e.__cause__
 
     def __getattribute__(self, attr: str) -> Any:
         """
@@ -143,6 +143,36 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
                 f"'{type(self).__name__}' object has no attribute '{attr}'"
             )
         return value
+
+    def __setitem__(self, attr: str, value: Any) -> None:
+        """
+        Set the value of an attribute, raising AttributeError if the instance's type is frozen.
+
+        Args:
+            attr: The name of the item to set.
+            value: The value to set.
+
+        Raises:
+            AttributeError: If the type of the instance was initialized with `frozen=True`.
+
+        Example:
+            >>> class MyStruct(DictStruct):
+            ...     field1: str
+            >>> s = MyStruct("some value")
+            >>> s["field1"] = "new value"
+            >>> # Now let's try with a frozen struct
+            >>> class MyFrozenStruct(DictStruct, frozen=True):
+            ...     field1: str
+            >>> s = MyFrozenStruct("some value")
+            >>> s["field1"] = "new value"
+            Traceback (most recent call last):
+                ...
+            AttributeError: "immutable type: 'MyFrozenStruct'"
+        """
+        try:
+            setattr(self, attr, value)
+        except AttributeError as e:
+            raise TypeError(*e.args) from e.__cause__
 
     def __iter__(self) -> Iterator[str]:
         """
