@@ -1,10 +1,9 @@
-import logging
 from typing import Any, Iterator, Literal, Tuple
 
 from msgspec import UNSET, Struct
 
 
-logger = logging.getLogger(__name__)
+_getattribute = object.__getattribute__
 
 
 class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
@@ -137,7 +136,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         See Also:
             :meth:`__getitem__` for dictionary-style access.
         """
-        value = object.__getattribute__(self, attr)
+        value = _getattribute(self, attr)
         if value is UNSET:
             raise AttributeError(
                 f"'{type(self).__name__}' object has no attribute '{attr}'"
@@ -278,7 +277,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         if cached_hash := self.__dict__.get("__hash__"):
             return cached_hash
         fields = (
-            object.__getattribute__(self, field_name)
+            _getattribute(self, field_name)
             for field_name in self.__struct_fields__
         )
         try:
@@ -292,3 +291,4 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         except Exception as e:
             e.args = *e.args, "recursed in hash fn"
         return self.__dict__["__hash__"]
+    
