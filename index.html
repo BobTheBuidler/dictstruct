@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dictstruct &mdash; dictstruct  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -121,7 +121,7 @@ when accessed as an attribute, or a <a class="reference external" href="https://
 indicates that the attribute/key is not present on the DictStruct object.</p>
 </div>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">... </span>    <span class="n">field3</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">UNSET</span>
@@ -145,7 +145,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 <span class="sig-name descname"><span class="pre">__bool__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct.__bool__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct.__bool__" title="Permalink to this definition"></a></dt>
 <dd><p>Unlike a dictionary, a Struct will always exist.</p>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">pass</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">MyStruct</span><span class="p">())</span>
 <span class="go">True</span>
@@ -174,7 +174,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;field1&#39;</span> <span class="ow">in</span> <span class="n">s</span>
@@ -201,7 +201,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">UNSET</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">field1</span>
@@ -232,7 +232,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;field1&#39;</span><span class="p">]</span>
@@ -259,7 +259,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">list</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -282,7 +282,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -297,7 +297,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 <span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct.__len__" title="Permalink to this definition"></a></dt>
 <dd><p>The number of keys in the Struct.</p>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -331,12 +331,12 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="s2">&quot;some value&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;field1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;new value&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now let&#39;s try with a frozen struct</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyFrozenStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyFrozenStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyFrozenStruct</span><span class="p">(</span><span class="s2">&quot;some value&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;field1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;new value&quot;</span>
@@ -363,7 +363,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">)</span>
@@ -379,7 +379,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 <span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct.items" title="Permalink to this definition"></a></dt>
 <dd><p>Returns an iterator over the struct’s field name and value pairs.</p>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -399,7 +399,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 <span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct.keys" title="Permalink to this definition"></a></dt>
 <dd><p>Returns an iterator over the field names of the struct.</p>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -419,7 +419,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 <span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_main.html#DictStruct.values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.DictStruct.values" title="Permalink to this definition"></a></dt>
 <dd><p>Returns an iterator over the struct’s field values.</p>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -465,12 +465,12 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 - Handling large JSON responses from APIs where only a subset of the data is needed at any given time.
 - Optimizing applications that process data lazily, improving startup times and reducing resource consumption.</p>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">msgspec</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cached_property</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">msgspec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">cached_property</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">_myField</span><span class="p">:</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">Raw</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myField&#39;</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="nd">@cached_property</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">myField</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">YourGiantJsonObject</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">myField</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">YourGiantJsonObject</span><span class="p">:</span>
 <span class="gp">... </span><span class="w">        </span><span class="sd">&#39;&#39;&#39;Decode the raw JSON data into a python object when accessed.&#39;&#39;&#39;</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_myField</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">YourGiantJsonObject</span><span class="p">)</span>
 <span class="gp">...</span>
@@ -503,7 +503,7 @@ indicates that the attribute/key is not present on the DictStruct object.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;field1&#39;</span> <span class="ow">in</span> <span class="n">s</span>
@@ -548,7 +548,7 @@ defined on your subclass.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">LazyDictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -563,7 +563,7 @@ defined on your subclass.</p>
 <span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct.items" title="Permalink to this definition"></a></dt>
 <dd><p>Returns an iterator over the struct’s field name and value pairs.</p>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -583,7 +583,7 @@ defined on your subclass.</p>
 <span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dictstruct/_lazy.html#LazyDictStruct.values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dictstruct.LazyDictStruct.values" title="Permalink to this definition"></a></dt>
 <dd><p>Returns an iterator over the struct’s field values.</p>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">field1</span><span class="p">:</span> <span class="nb">str</span>
 <span class="gp">... </span>    <span class="n">field2</span><span class="p">:</span> <span class="nb">int</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">MyStruct</span><span class="p">(</span><span class="n">field1</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">field2</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>

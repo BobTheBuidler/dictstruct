@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dictstruct._lazy &mdash; dictstruct  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -66,14 +66,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for dictstruct._lazy</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Tuple</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Tuple</span>
 
-<span class="kn">from</span> <span class="nn">msgspec</span> <span class="kn">import</span> <span class="n">UNSET</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">msgspec</span><span class="w"> </span><span class="kn">import</span> <span class="n">UNSET</span>
 
-<span class="kn">from</span> <span class="nn">dictstruct._main</span> <span class="kn">import</span> <span class="n">DictStruct</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dictstruct._main</span><span class="w"> </span><span class="kn">import</span> <span class="n">DictStruct</span>
 
 
-<div class="viewcode-block" id="LazyDictStruct"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct">[docs]</a><span class="k">class</span> <span class="nc">LazyDictStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># type: ignore [call-arg,misc]</span>
+<div class="viewcode-block" id="LazyDictStruct"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LazyDictStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># type: ignore [call-arg,misc]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A subclass of :class:`DictStruct` that supports Just-In-Time (JIT) decoding of field values.</span>
 
@@ -110,7 +110,7 @@
 <span class="sd">        :class:`DictStruct` for the base class implementation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="LazyDictStruct.__init_subclass__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__init_subclass__">[docs]</a>    <span class="k">def</span> <span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="LazyDictStruct.__init_subclass__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__init_subclass__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a subclass of :class:`LazyDictStruct`.</span>
 
@@ -141,7 +141,7 @@
         <span class="p">)</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">__struct_fields__</span> <span class="o">=</span> <span class="n">resolved_fields</span></div>
 
-<div class="viewcode-block" id="LazyDictStruct.__contains__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__contains__">[docs]</a>    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="LazyDictStruct.__contains__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__contains__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if a key is in the struct.</span>
 
@@ -164,7 +164,7 @@
         <span class="n">in_fields</span> <span class="o">=</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">fields</span> <span class="ow">or</span> <span class="sa">f</span><span class="s2">&quot;_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">fields</span>
         <span class="k">return</span> <span class="n">in_fields</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">UNSET</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">UNSET</span></div>
 
-<div class="viewcode-block" id="LazyDictStruct.__iter__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__iter__">[docs]</a>    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="LazyDictStruct.__iter__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__iter__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterate through the keys of the Struct.</span>
 
@@ -184,7 +184,7 @@
             <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">UNSET</span><span class="p">:</span>
                 <span class="k">yield</span> <span class="n">field</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;_&quot;</span> <span class="k">else</span> <span class="n">field</span></div>
 
-<div class="viewcode-block" id="LazyDictStruct.items"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.items">[docs]</a>    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<div class="viewcode-block" id="LazyDictStruct.items"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.items">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns an iterator over the struct&#39;s field name and value pairs.</span>
 
@@ -203,7 +203,7 @@
             <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">UNSET</span><span class="p">:</span>
                 <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span></div>
 
-<div class="viewcode-block" id="LazyDictStruct.values"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.values">[docs]</a>    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<div class="viewcode-block" id="LazyDictStruct.values"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.values">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns an iterator over the struct&#39;s field values.</span>
 
