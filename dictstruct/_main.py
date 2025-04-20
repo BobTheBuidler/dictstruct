@@ -277,8 +277,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         if cached_hash := self.__dict__.get("__hash__"):
             return cached_hash
         fields = (
-            _getattribute(self, field_name)
-            for field_name in self.__struct_fields__
+            _getattribute(self, field_name) for field_name in self.__struct_fields__
         )
         try:
             # Skip if-checks, just try it
@@ -291,4 +290,3 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         except Exception as e:
             e.args = *e.args, "recursed in hash fn"
         return self.__dict__["__hash__"]
-    
