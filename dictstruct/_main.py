@@ -6,7 +6,7 @@ from msgspec import UNSET, Struct
 _getattribute = object.__getattribute__
 
 
-class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
+class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
     """
     A base class that extends the :class:`msgspec.Struct` class to be compatible with the standard python dictionary API.
 
@@ -275,10 +275,9 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
         if not self.__struct_config__.frozen:
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
         if cached_hash := self.__dict__.get("__hash__"):
-            return cached_hash
+            return cached_hash  # type: ignore [no-any-return]
         fields = (
-            _getattribute(self, field_name)
-            for field_name in self.__struct_fields__
+            _getattribute(self, field_name) for field_name in self.__struct_fields__
         )
         try:
             # Skip if-checks, just try it
@@ -290,5 +289,4 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg]
                 )
         except Exception as e:
             e.args = *e.args, "recursed in hash fn"
-        return self.__dict__["__hash__"]
-    
+        return self.__dict__["__hash__"]  # type: ignore [no-any-return]
