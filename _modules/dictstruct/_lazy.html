@@ -73,7 +73,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">dictstruct._main</span><span class="w"> </span><span class="kn">import</span> <span class="n">DictStruct</span>
 
 
-<div class="viewcode-block" id="LazyDictStruct"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LazyDictStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># type: ignore [call-arg,misc]</span>
+<div class="viewcode-block" id="LazyDictStruct"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">LazyDictStruct</span><span class="p">(</span><span class="n">DictStruct</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># type: ignore [call-arg]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A subclass of :class:`DictStruct` that supports Just-In-Time (JIT) decoding of field values.</span>
 
@@ -110,7 +110,7 @@
 <span class="sd">        :class:`DictStruct` for the base class implementation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="LazyDictStruct.__init_subclass__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__init_subclass__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="LazyDictStruct.__init_subclass__"><a class="viewcode-back" href="../../index.html#dictstruct.LazyDictStruct.__init_subclass__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a subclass of :class:`LazyDictStruct`.</span>
 
