@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from setuptools import find_packages, setup
 from mypyc.build import mypycify
@@ -11,6 +12,17 @@ except ModuleNotFoundError:
 with Path("pyproject.toml").open("rb") as f:
     pyproject_data = tomllib.load(f)
     poetry_config = pyproject_data["tool"]["poetry"]
+
+
+ext_modules = [] if sys.version_info < (3, 9) else mypycify(
+    [
+        "dictstruct",
+        "--pretty",
+        "--install-types",
+        "--non-interactive",
+        "--disable-error-code=unused-ignore",
+    ]
+)
 
 
 def poetry_dependencies_to_install_requires(poetry_deps):
@@ -159,15 +171,6 @@ setup(
     install_requires=poetry_dependencies_to_install_requires(
         poetry_config["dependencies"]
     ),
-    ext_modules=mypycify(
-        [
-            "dictstruct/__init__.py",
-            "dictstruct/_main.py",
-            "--pretty",
-            "--install-types",
-            "--non-interactive",
-            "--disable-error-code=unused-ignore",
-        ]
-    ),
+    ext_modules=ext_modules,
     zip_safe=False,
 )
