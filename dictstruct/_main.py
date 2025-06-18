@@ -114,7 +114,7 @@ class DictStruct(msgspec.Struct, dict=True):  # type: ignore [call-arg, misc]
             KeyError: ('field2', MyStruct(field1='value'))
         """
         try:
-            return getattr(self, attr)
+            return self.__getattribute__(attr)
         except AttributeError as e:
             raise KeyError(attr, self) from e.__cause__
 
