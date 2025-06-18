@@ -125,59 +125,61 @@ def __contains___DictStruct_obj.__call__(__mypyc_self__, self, key):
     r3 :: i32
     r4 :: bit
     r5, r6 :: bool
-    r7 :: dict
-    r8 :: str
+    r7 :: object
+    r8 :: bool
     r9, r10 :: object
-    r11 :: dict
-    r12 :: str
-    r13 :: object
-    r14, r15 :: bit
-    r16 :: bool
+    r11 :: bool
+    r12, r13 :: bit
+    r14 :: bool
 L0:
     r0 = '__struct_fields__'
     r1 = CPyObject_GetAttr(self, r0)
-    if is_error(r1) goto L10 (error at __contains__:72) else goto L1
+    if is_error(r1) goto L14 (error at __contains__:74) else goto L1
 L1:
     r2 = cast(tuple, r1)
-    if is_error(r2) goto L10 (error at __contains__:72) else goto L2
+    if is_error(r2) goto L14 (error at __contains__:74) else goto L2
 L2:
     r3 = PySequence_Contains(r2, key)
     dec_ref r2
     r4 = r3 >= 0 :: signed
-    if not r4 goto L10 (error at __contains__:72) else goto L3 :: bool
+    if not r4 goto L14 (error at __contains__:74) else goto L3 :: bool
 L3:
     r5 = truncate r3: i32 to builtins.bool
     if r5 goto L5 else goto L4 :: bool
 L4:
     r6 = r5
-    goto L9
+    goto L13
 L5:
-    r7 = dictstruct._main.globals :: static
-    r8 = 'UNSET'
-    r9 = CPyDict_GetItem(r7, r8)
-    if is_error(r9) goto L10 (error at __contains__:72) else goto L6
+    r7 = dictstruct._main.UNSET :: static
+    if is_error(r7) goto L6 else goto L8
 L6:
-    r10 = CPyObject_GetAttr3(self, key, r9)
-    dec_ref r9
-    if is_error(r10) goto L10 (error at __contains__:72) else goto L7
+    r8 = raise NameError('value for final name "UNSET" was not set')
+    if not r8 goto L14 (error at __contains__:74) else goto L7 :: bool
 L7:
-    r11 = dictstruct._main.globals :: static
-    r12 = 'UNSET'
-    r13 = CPyDict_GetItem(r11, r12)
-    if is_error(r13) goto L11 (error at __contains__:72) else goto L8
+    unreachable
 L8:
-    r14 = r10 == r13
-    dec_ref r10
-    dec_ref r13
-    r15 = r14 ^ 1
-    r6 = r15
+    r9 = CPyObject_GetAttr3(self, key, r7)
+    if is_error(r9) goto L14 (error at __contains__:74) else goto L9
 L9:
-    return r6
+    r10 = dictstruct._main.UNSET :: static
+    if is_error(r10) goto L15 else goto L12
 L10:
-    r16 = <error> :: bool
-    return r16
+    r11 = raise NameError('value for final name "UNSET" was not set')
+    if not r11 goto L14 (error at __contains__:74) else goto L11 :: bool
 L11:
-    dec_ref r10
+    unreachable
+L12:
+    r12 = r9 == r10
+    dec_ref r9
+    r13 = r12 ^ 1
+    r6 = r13
+L13:
+    return r6
+L14:
+    r14 = <error> :: bool
+    return r14
+L15:
+    dec_ref r9
     goto L10
 
 def get_DictStruct_obj.__get__(__mypyc_self__, instance, owner):
@@ -214,7 +216,7 @@ L1:
 L2:
     r1 = CPyObject_GetAttr3(self, key, default)
     dec_ref default
-    if is_error(r1) goto L4 (error at get:91) else goto L3
+    if is_error(r1) goto L4 (error at get:93) else goto L3
 L3:
     return r1
 L4:
@@ -265,7 +267,7 @@ def __getitem___DictStruct_obj.__call__(__mypyc_self__, self, attr):
 L0:
 L1:
     r0 = CPyObject_GetAttr(self, attr)
-    if is_error(r0) goto L3 (error at __getitem__:115) else goto L2
+    if is_error(r0) goto L3 (error at __getitem__:117) else goto L2
 L2:
     return r0
 L3:
@@ -273,7 +275,7 @@ L3:
     r2 = builtins :: module
     r3 = 'AttributeError'
     r4 = CPyObject_GetAttr(r2, r3)
-    if is_error(r4) goto L11 (error at __getitem__:116) else goto L4
+    if is_error(r4) goto L11 (error at __getitem__:118) else goto L4
 L4:
     r5 = CPy_ExceptionMatches(r4)
     dec_ref r4
@@ -284,17 +286,17 @@ L5:
     r7 = builtins :: module
     r8 = 'KeyError'
     r9 = CPyObject_GetAttr(r7, r8)
-    if is_error(r9) goto L11 (error at __getitem__:117) else goto L6
+    if is_error(r9) goto L11 (error at __getitem__:119) else goto L6
 L6:
     r10 = [attr, self]
     r11 = load_address r10
     r12 = PyObject_Vectorcall(r9, r11, 2, 0)
     dec_ref r9
-    if is_error(r12) goto L11 (error at __getitem__:117) else goto L7
+    if is_error(r12) goto L11 (error at __getitem__:119) else goto L7
 L7:
     CPy_Raise(r12)
     dec_ref r12
-    if not 0 goto L11 (error at __getitem__:117) else goto L14 :: bool
+    if not 0 goto L11 (error at __getitem__:119) else goto L14 :: bool
 L8:
     unreachable
 L9:
@@ -347,92 +349,92 @@ def __getattribute___DictStruct_obj.__call__(__mypyc_self__, self, attr):
     r1 :: bool
     r2 :: object[2]
     r3 :: object_ptr
-    r4 :: object
-    r5 :: dict
-    r6 :: str
-    r7 :: object
-    r8 :: bit
-    r9 :: str
-    r10 :: object
-    r11 :: str
-    r12 :: object
-    r13, r14, r15, r16 :: str
-    r17 :: object
-    r18 :: str
-    r19 :: object
-    r20 :: object[1]
-    r21 :: object_ptr
-    r22, r23 :: object
+    r4, r5 :: object
+    r6 :: bool
+    r7 :: bit
+    r8 :: str
+    r9 :: object
+    r10 :: str
+    r11 :: object
+    r12, r13, r14, r15 :: str
+    r16 :: object
+    r17 :: str
+    r18 :: object
+    r19 :: object[1]
+    r20 :: object_ptr
+    r21, r22 :: object
 L0:
     r0 = dictstruct._main._getattribute :: static
     if is_error(r0) goto L1 else goto L3
 L1:
     r1 = raise NameError('value for final name "_getattribute" was not set')
-    if not r1 goto L14 (error at __getattribute__:141) else goto L2 :: bool
+    if not r1 goto L16 (error at __getattribute__:143) else goto L2 :: bool
 L2:
     unreachable
 L3:
     r2 = [self, attr]
     r3 = load_address r2
     r4 = PyObject_Vectorcall(r0, r3, 2, 0)
-    if is_error(r4) goto L14 (error at __getattribute__:141) else goto L4
+    if is_error(r4) goto L16 (error at __getattribute__:143) else goto L4
 L4:
-    r5 = dictstruct._main.globals :: static
-    r6 = 'UNSET'
-    r7 = CPyDict_GetItem(r5, r6)
-    if is_error(r7) goto L15 (error at __getattribute__:142) else goto L5
+    r5 = dictstruct._main.UNSET :: static
+    if is_error(r5) goto L17 else goto L7
 L5:
-    r8 = r4 == r7
-    dec_ref r7
-    if r8 goto L16 else goto L13 :: bool
+    r6 = raise NameError('value for final name "UNSET" was not set')
+    if not r6 goto L16 (error at __getattribute__:144) else goto L6 :: bool
 L6:
-    r9 = "'"
-    r10 = PyObject_Type(self)
-    r11 = '__name__'
-    r12 = CPyObject_GetAttr(r10, r11)
-    dec_ref r10
-    if is_error(r12) goto L14 (error at __getattribute__:144) else goto L7
-L7:
-    r13 = cast(str, r12)
-    if is_error(r13) goto L14 (error at __getattribute__:144) else goto L8
-L8:
-    r14 = "' object has no attribute '"
-    r15 = "'"
-    r16 = CPyStr_Build(5, r9, r13, r14, attr, r15)
-    dec_ref r13
-    if is_error(r16) goto L14 (error at __getattribute__:144) else goto L9
-L9:
-    r17 = builtins :: module
-    r18 = 'AttributeError'
-    r19 = CPyObject_GetAttr(r17, r18)
-    if is_error(r19) goto L17 (error at __getattribute__:143) else goto L10
-L10:
-    r20 = [r16]
-    r21 = load_address r20
-    r22 = PyObject_Vectorcall(r19, r21, 1, 0)
-    dec_ref r19
-    if is_error(r22) goto L17 (error at __getattribute__:143) else goto L11
-L11:
-    dec_ref r16
-    CPy_Raise(r22)
-    dec_ref r22
-    if not 0 goto L14 (error at __getattribute__:143) else goto L12 :: bool
-L12:
     unreachable
+L7:
+    r7 = r4 == r5
+    if r7 goto L18 else goto L15 :: bool
+L8:
+    r8 = "'"
+    r9 = PyObject_Type(self)
+    r10 = '__name__'
+    r11 = CPyObject_GetAttr(r9, r10)
+    dec_ref r9
+    if is_error(r11) goto L16 (error at __getattribute__:146) else goto L9
+L9:
+    r12 = cast(str, r11)
+    if is_error(r12) goto L16 (error at __getattribute__:146) else goto L10
+L10:
+    r13 = "' object has no attribute '"
+    r14 = "'"
+    r15 = CPyStr_Build(5, r8, r12, r13, attr, r14)
+    dec_ref r12
+    if is_error(r15) goto L16 (error at __getattribute__:146) else goto L11
+L11:
+    r16 = builtins :: module
+    r17 = 'AttributeError'
+    r18 = CPyObject_GetAttr(r16, r17)
+    if is_error(r18) goto L19 (error at __getattribute__:145) else goto L12
+L12:
+    r19 = [r15]
+    r20 = load_address r19
+    r21 = PyObject_Vectorcall(r18, r20, 1, 0)
+    dec_ref r18
+    if is_error(r21) goto L19 (error at __getattribute__:145) else goto L13
 L13:
-    return r4
+    dec_ref r15
+    CPy_Raise(r21)
+    dec_ref r21
+    if not 0 goto L16 (error at __getattribute__:145) else goto L14 :: bool
 L14:
-    r23 = <error> :: object
-    return r23
+    unreachable
 L15:
-    dec_ref r4
-    goto L14
+    return r4
 L16:
-    dec_ref r4
-    goto L6
+    r22 = <error> :: object
+    return r22
 L17:
-    dec_ref r16
-    goto L14
+    dec_ref r4
+    goto L5
+L18:
+    dec_ref r4
+    goto L8
+L19:
+    dec_ref r15
+    goto L16
 
 def __setitem___DictStruct_obj.__get__(__mypyc_self__, instance, owner):
     __mypyc_self__, instance, owner, r0 :: object
@@ -484,13 +486,13 @@ L0:
 L1:
     r0 = PyObject_SetAttr(self, attr, value)
     r1 = r0 >= 0 :: signed
-    if not r1 goto L2 (error at __setitem__:174) else goto L18 :: bool
+    if not r1 goto L2 (error at __setitem__:176) else goto L18 :: bool
 L2:
     r2 = CPy_CatchError()
     r3 = builtins :: module
     r4 = 'AttributeError'
     r5 = CPyObject_GetAttr(r3, r4)
-    if is_error(r5) goto L16 (error at __setitem__:175) else goto L3
+    if is_error(r5) goto L16 (error at __setitem__:177) else goto L3
 L3:
     r6 = CPy_ExceptionMatches(r5)
     dec_ref r5
@@ -500,39 +502,39 @@ L4:
     r8 = 'args'
     r9 = CPyObject_GetAttr(r7, r8)
     dec_ref r7
-    if is_error(r9) goto L16 (error at __setitem__:176) else goto L5
+    if is_error(r9) goto L16 (error at __setitem__:178) else goto L5
 L5:
     r10 = cast(tuple, r9)
-    if is_error(r10) goto L16 (error at __setitem__:176) else goto L6
+    if is_error(r10) goto L16 (error at __setitem__:178) else goto L6
 L6:
     r11 = builtins :: module
     r12 = 'TypeError'
     r13 = CPyObject_GetAttr(r11, r12)
-    if is_error(r13) goto L20 (error at __setitem__:176) else goto L7
+    if is_error(r13) goto L20 (error at __setitem__:178) else goto L7
 L7:
     r14 = PyList_New(0)
-    if is_error(r14) goto L21 (error at __setitem__:176) else goto L8
+    if is_error(r14) goto L21 (error at __setitem__:178) else goto L8
 L8:
     r15 = CPyList_Extend(r14, r10)
     dec_ref r10
-    if is_error(r15) goto L22 (error at __setitem__:176) else goto L23
+    if is_error(r15) goto L22 (error at __setitem__:178) else goto L23
 L9:
     r16 = PyList_AsTuple(r14)
     dec_ref r14
-    if is_error(r16) goto L24 (error at __setitem__:176) else goto L10
+    if is_error(r16) goto L24 (error at __setitem__:178) else goto L10
 L10:
     r17 = PyDict_New()
-    if is_error(r17) goto L25 (error at __setitem__:176) else goto L11
+    if is_error(r17) goto L25 (error at __setitem__:178) else goto L11
 L11:
     r18 = PyObject_Call(r13, r16, r17)
     dec_ref r13
     dec_ref r16
     dec_ref r17
-    if is_error(r18) goto L16 (error at __setitem__:176) else goto L12
+    if is_error(r18) goto L16 (error at __setitem__:178) else goto L12
 L12:
     CPy_Raise(r18)
     dec_ref r18
-    if not 0 goto L16 (error at __setitem__:176) else goto L26 :: bool
+    if not 0 goto L16 (error at __setitem__:178) else goto L26 :: bool
 L13:
     unreachable
 L14:
@@ -624,206 +626,208 @@ def __iter___DictStruct_gen.__mypyc_generator_helper__(__mypyc_self__, type, val
     r20 :: bool
     r21 :: dictstruct._main.DictStruct
     r22 :: str
-    r23 :: dict
-    r24 :: str
-    r25, r26 :: object
-    r27 :: bool
-    r28 :: object
-    r29 :: dict
-    r30 :: str
-    r31 :: object
-    r32, r33 :: bit
-    r34 :: str
-    r35 :: bool
-    r36 :: object
-    r37 :: bit
-    r38, r39 :: short_int
+    r23 :: object
+    r24 :: bool
+    r25 :: object
+    r26 :: bool
+    r27, r28 :: object
+    r29 :: bool
+    r30, r31 :: bit
+    r32 :: str
+    r33 :: bool
+    r34 :: object
+    r35 :: bit
+    r36, r37 :: short_int
+    r38 :: bool
+    r39 :: object
     r40 :: bool
-    r41 :: object
-    r42 :: bool
-    r43, r44 :: bit
-    r45 :: bool
-    r46 :: object
+    r41, r42 :: bit
+    r43 :: bool
+    r44 :: object
 L0:
     r0 = __mypyc_self__.__mypyc_env__
-    if is_error(r0) goto L41 (error at __iter__:178) else goto L1
+    if is_error(r0) goto L45 (error at __iter__:180) else goto L1
 L1:
     r1 = r0.__mypyc_next_label__
-    if is_error(r1) goto L42 (error at __iter__:178) else goto L37
+    if is_error(r1) goto L46 (error at __iter__:180) else goto L41
 L2:
     r2 = load_address _Py_NoneStruct
     r3 = type != r2
-    if r3 goto L43 else goto L5 :: bool
+    if r3 goto L47 else goto L5 :: bool
 L3:
     CPyErr_SetObjectAndTraceback(type, value, traceback)
-    if not 0 goto L41 (error at __iter__:178) else goto L4 :: bool
+    if not 0 goto L45 (error at __iter__:180) else goto L4 :: bool
 L4:
     unreachable
 L5:
     r4 = r0.self
-    if is_error(r4) goto L42 (error at __iter__:193) else goto L6
+    if is_error(r4) goto L46 (error at __iter__:195) else goto L6
 L6:
     r5 = '__struct_fields__'
     r6 = CPyObject_GetAttr(r4, r5)
     dec_ref r4
-    if is_error(r6) goto L42 (error at __iter__:193) else goto L7
+    if is_error(r6) goto L46 (error at __iter__:195) else goto L7
 L7:
     r7 = cast(tuple, r6)
-    if is_error(r7) goto L42 (error at __iter__:193) else goto L8
+    if is_error(r7) goto L46 (error at __iter__:195) else goto L8
 L8:
     r0.__mypyc_temp__0 = r7; r8 = is_error
-    if not r8 goto L42 (error at __iter__:-1) else goto L9 :: bool
+    if not r8 goto L46 (error at __iter__:-1) else goto L9 :: bool
 L9:
     r0.__mypyc_temp__1 = 0; r9 = is_error
-    if not r9 goto L42 (error at __iter__:-1) else goto L10 :: bool
+    if not r9 goto L46 (error at __iter__:-1) else goto L10 :: bool
 L10:
     r10 = r0.__mypyc_temp__0
-    if is_error(r10) goto L42 (error at __iter__:193) else goto L11
+    if is_error(r10) goto L46 (error at __iter__:195) else goto L11
 L11:
     r11 = get_element_ptr r10 ob_size :: PyVarObject
     r12 = load_mem r11 :: native_int*
     dec_ref r10
     r13 = r12 << 1
     r14 = r0.__mypyc_temp__1
-    if is_error(r14) goto L42 (error at __iter__:193) else goto L12
+    if is_error(r14) goto L46 (error at __iter__:195) else goto L12
 L12:
     r15 = r14 < r13 :: signed
-    if r15 goto L13 else goto L34 :: bool
+    if r15 goto L13 else goto L38 :: bool
 L13:
     r16 = r0.__mypyc_temp__0
-    if is_error(r16) goto L42 (error at __iter__:193) else goto L14
+    if is_error(r16) goto L46 (error at __iter__:195) else goto L14
 L14:
     r17 = r0.__mypyc_temp__1
-    if is_error(r17) goto L44 (error at __iter__:193) else goto L15
+    if is_error(r17) goto L48 (error at __iter__:195) else goto L15
 L15:
     r18 = CPySequenceTuple_GetItem(r16, r17)
     dec_ref r16
-    if is_error(r18) goto L42 (error at __iter__:193) else goto L16
+    if is_error(r18) goto L46 (error at __iter__:195) else goto L16
 L16:
     r19 = cast(str, r18)
-    if is_error(r19) goto L42 (error at __iter__:193) else goto L17
+    if is_error(r19) goto L46 (error at __iter__:195) else goto L17
 L17:
     r0.field = r19; r20 = is_error
-    if not r20 goto L42 (error at __iter__:193) else goto L18 :: bool
+    if not r20 goto L46 (error at __iter__:195) else goto L18 :: bool
 L18:
     r21 = r0.self
-    if is_error(r21) goto L42 (error at __iter__:194) else goto L19
+    if is_error(r21) goto L46 (error at __iter__:196) else goto L19
 L19:
     r22 = r0.field
-    if is_error(r22) goto L45 (error at __iter__:194) else goto L20
+    if is_error(r22) goto L49 (error at __iter__:196) else goto L20
 L20:
-    r23 = dictstruct._main.globals :: static
-    r24 = 'UNSET'
-    r25 = CPyDict_GetItem(r23, r24)
-    if is_error(r25) goto L46 (error at __iter__:194) else goto L21
+    r23 = dictstruct._main.UNSET :: static
+    if is_error(r23) goto L50 else goto L23
 L21:
-    r26 = CPyObject_GetAttr3(r21, r22, r25)
+    r24 = raise NameError('value for final name "UNSET" was not set')
+    if not r24 goto L45 (error at __iter__:196) else goto L22 :: bool
+L22:
+    unreachable
+L23:
+    r25 = CPyObject_GetAttr3(r21, r22, r23)
     dec_ref r21
     dec_ref r22
-    dec_ref r25
-    if is_error(r26) goto L42 (error at __iter__:194) else goto L22
-L22:
-    r0.value = r26; r27 = is_error
-    if not r27 goto L42 (error at __iter__:194) else goto L23 :: bool
-L23:
-    r28 = r0.value
-    if is_error(r28) goto L42 (error at __iter__:195) else goto L24
+    if is_error(r25) goto L46 (error at __iter__:196) else goto L24
 L24:
-    r29 = dictstruct._main.globals :: static
-    r30 = 'UNSET'
-    r31 = CPyDict_GetItem(r29, r30)
-    if is_error(r31) goto L47 (error at __iter__:195) else goto L25
+    r0.value = r25; r26 = is_error
+    if not r26 goto L46 (error at __iter__:196) else goto L25 :: bool
 L25:
-    r32 = r28 == r31
-    dec_ref r28
-    dec_ref r31
-    r33 = r32 ^ 1
-    if r33 goto L26 else goto L32 :: bool
+    r27 = r0.value
+    if is_error(r27) goto L46 (error at __iter__:197) else goto L26
 L26:
-    r34 = r0.field
-    if is_error(r34) goto L42 (error at __iter__:196) else goto L27
+    r28 = dictstruct._main.UNSET :: static
+    if is_error(r28) goto L51 else goto L29
 L27:
-    r0.__mypyc_next_label__ = 2; r35 = is_error
-    dec_ref r0
-    if not r35 goto L48 (error at __iter__:196) else goto L28 :: bool
+    r29 = raise NameError('value for final name "UNSET" was not set')
+    if not r29 goto L45 (error at __iter__:197) else goto L28 :: bool
 L28:
-    return r34
+    unreachable
 L29:
-    r36 = load_address _Py_NoneStruct
-    r37 = type != r36
-    if r37 goto L49 else goto L32 :: bool
+    r30 = r27 == r28
+    dec_ref r27
+    r31 = r30 ^ 1
+    if r31 goto L30 else goto L36 :: bool
 L30:
-    CPyErr_SetObjectAndTraceback(type, value, traceback)
-    if not 0 goto L41 (error at __iter__:196) else goto L31 :: bool
+    r32 = r0.field
+    if is_error(r32) goto L46 (error at __iter__:198) else goto L31
 L31:
-    unreachable
-L32:
-    r38 = r0.__mypyc_temp__1
-    if is_error(r38) goto L42 (error at __iter__:193) else goto L33
-L33:
-    r39 = r38 + 2
-    r0.__mypyc_temp__1 = r39; r40 = is_error
-    if not r40 goto L42 (error at __iter__:193) else goto L10 :: bool
-L34:
-    r41 = box(None, 1)
-    r0.__mypyc_next_label__ = -2; r42 = is_error
+    r0.__mypyc_next_label__ = 2; r33 = is_error
     dec_ref r0
-    if not r42 goto L41 (error at __iter__:178) else goto L35 :: bool
+    if not r33 goto L52 (error at __iter__:198) else goto L32 :: bool
+L32:
+    return r32
+L33:
+    r34 = load_address _Py_NoneStruct
+    r35 = type != r34
+    if r35 goto L53 else goto L36 :: bool
+L34:
+    CPyErr_SetObjectAndTraceback(type, value, traceback)
+    if not 0 goto L45 (error at __iter__:198) else goto L35 :: bool
 L35:
-    CPyGen_SetStopIterationValue(r41)
-    if not 0 goto L41 else goto L36 :: bool
-L36:
     unreachable
+L36:
+    r36 = r0.__mypyc_temp__1
+    if is_error(r36) goto L46 (error at __iter__:195) else goto L37
 L37:
-    r43 = r1 == 0
-    if r43 goto L50 else goto L38 :: bool
+    r37 = r36 + 2
+    r0.__mypyc_temp__1 = r37; r38 = is_error
+    if not r38 goto L46 (error at __iter__:195) else goto L10 :: bool
 L38:
-    r44 = r1 == 2
-    dec_ref r1 :: int
-    if r44 goto L29 else goto L51 :: bool
+    r39 = box(None, 1)
+    r0.__mypyc_next_label__ = -2; r40 = is_error
+    dec_ref r0
+    if not r40 goto L45 (error at __iter__:180) else goto L39 :: bool
 L39:
-    r45 = raise StopIteration
-    if not r45 goto L41 (error at __iter__:178) else goto L40 :: bool
+    CPyGen_SetStopIterationValue(r39)
+    if not 0 goto L45 else goto L40 :: bool
 L40:
     unreachable
 L41:
-    r46 = <error> :: object
-    return r46
+    r41 = r1 == 0
+    if r41 goto L54 else goto L42 :: bool
 L42:
-    dec_ref r0
-    goto L41
+    r42 = r1 == 2
+    dec_ref r1 :: int
+    if r42 goto L33 else goto L55 :: bool
 L43:
+    r43 = raise StopIteration
+    if not r43 goto L45 (error at __iter__:180) else goto L44 :: bool
+L44:
+    unreachable
+L45:
+    r44 = <error> :: object
+    return r44
+L46:
+    dec_ref r0
+    goto L45
+L47:
     dec_ref r0
     goto L3
-L44:
+L48:
     dec_ref r0
     dec_ref r16
-    goto L41
-L45:
+    goto L45
+L49:
     dec_ref r0
     dec_ref r21
-    goto L41
-L46:
+    goto L45
+L50:
     dec_ref r0
     dec_ref r21
     dec_ref r22
-    goto L41
-L47:
-    dec_ref r0
-    dec_ref r28
-    goto L41
-L48:
-    dec_ref r34
-    goto L41
-L49:
-    dec_ref r0
-    goto L30
-L50:
-    dec_ref r1 :: int
-    goto L2
+    goto L21
 L51:
     dec_ref r0
-    goto L39
+    dec_ref r27
+    goto L27
+L52:
+    dec_ref r32
+    goto L45
+L53:
+    dec_ref r0
+    goto L34
+L54:
+    dec_ref r1 :: int
+    goto L2
+L55:
+    dec_ref r0
+    goto L43
 
 def __iter___DictStruct_gen.__next__(__mypyc_self__):
     __mypyc_self__ :: dictstruct._main.__iter___DictStruct_gen
@@ -967,22 +971,22 @@ def __iter___DictStruct_obj.__call__(__mypyc_self__, self):
     r5 :: object
 L0:
     r0 = __iter___DictStruct_env()
-    if is_error(r0) goto L6 (error at __iter__:178) else goto L1
+    if is_error(r0) goto L6 (error at __iter__:180) else goto L1
 L1:
     inc_ref self
     r0.self = self; r1 = is_error
-    if not r1 goto L7 (error at __iter__:178) else goto L2 :: bool
+    if not r1 goto L7 (error at __iter__:180) else goto L2 :: bool
 L2:
     r2 = __iter___DictStruct_gen()
-    if is_error(r2) goto L7 (error at __iter__:178) else goto L3
+    if is_error(r2) goto L7 (error at __iter__:180) else goto L3
 L3:
     inc_ref r0
     r2.__mypyc_env__ = r0; r3 = is_error
-    if not r3 goto L8 (error at __iter__:178) else goto L4 :: bool
+    if not r3 goto L8 (error at __iter__:180) else goto L4 :: bool
 L4:
     r0.__mypyc_next_label__ = 0; r4 = is_error
     dec_ref r0
-    if not r4 goto L9 (error at __iter__:178) else goto L5 :: bool
+    if not r4 goto L9 (error at __iter__:180) else goto L5 :: bool
 L5:
     return r2
 L6:
@@ -1033,26 +1037,26 @@ def __len___DictStruct_obj.__call__(__mypyc_self__, self):
     r10 :: int
 L0:
     r0 = PyList_New(0)
-    if is_error(r0) goto L7 (error at __len__:210) else goto L1
+    if is_error(r0) goto L7 (error at __len__:212) else goto L1
 L1:
     r1 = PyObject_GetIter(self)
-    if is_error(r1) goto L8 (error at __len__:210) else goto L2
+    if is_error(r1) goto L8 (error at __len__:212) else goto L2
 L2:
     r2 = PyIter_Next(r1)
     if is_error(r2) goto L9 else goto L3
 L3:
     r3 = borrow cast(str, r2)
-    if is_error(r3) goto L10 (error at __len__:210) else goto L4
+    if is_error(r3) goto L10 (error at __len__:212) else goto L4
 L4:
     inc_ref r3
     dec_ref r2
     r4 = PyList_Append(r0, r3)
     dec_ref r3
     r5 = r4 >= 0 :: signed
-    if not r5 goto L11 (error at __len__:210) else goto L2 :: bool
+    if not r5 goto L11 (error at __len__:212) else goto L2 :: bool
 L5:
     r6 = CPy_NoErrOccurred()
-    if not r6 goto L8 (error at __len__:210) else goto L6 :: bool
+    if not r6 goto L8 (error at __len__:212) else goto L6 :: bool
 L6:
     r7 = get_element_ptr r0 ob_size :: PyVarObject
     r8 = load_mem r7 :: native_int*
@@ -1128,26 +1132,26 @@ L0:
     r0 = <error> :: object
     r1 = r0
     r2 = __mypyc_self__.__mypyc_env__
-    if is_error(r2) goto L43 (error at keys:212) else goto L1
+    if is_error(r2) goto L43 (error at keys:214) else goto L1
 L1:
     r3 = r2.__mypyc_next_label__
-    if is_error(r3) goto L44 (error at keys:212) else goto L38
+    if is_error(r3) goto L44 (error at keys:214) else goto L38
 L2:
     r4 = load_address _Py_NoneStruct
     r5 = type != r4
     if r5 goto L45 else goto L5 :: bool
 L3:
     CPyErr_SetObjectAndTraceback(type, value, traceback)
-    if not 0 goto L42 (error at keys:212) else goto L4 :: bool
+    if not 0 goto L42 (error at keys:214) else goto L4 :: bool
 L4:
     unreachable
 L5:
     r6 = r2.self
-    if is_error(r6) goto L44 (error at keys:224) else goto L6
+    if is_error(r6) goto L44 (error at keys:226) else goto L6
 L6:
     r7 = PyObject_GetIter(r6)
     dec_ref r6
-    if is_error(r7) goto L44 (error at keys:224) else goto L7
+    if is_error(r7) goto L44 (error at keys:226) else goto L7
 L7:
     r2.__mypyc_temp__2 = r7; r8 = is_error
     if not r8 goto L44 (error at keys:-1) else goto L8 :: bool
@@ -1160,7 +1164,7 @@ L9:
     if is_error(r10) goto L46 else goto L12
 L10:
     r11 = CPy_FetchStopIterationValue()
-    if is_error(r11) goto L47 (error at keys:224) else goto L11
+    if is_error(r11) goto L47 (error at keys:226) else goto L11
 L11:
     r12 = r11
     dec_ref r12
@@ -1169,7 +1173,7 @@ L12:
     r13 = r10
 L13:
     r2.__mypyc_next_label__ = 2; r14 = is_error
-    if not r14 goto L48 (error at keys:224) else goto L49 :: bool
+    if not r14 goto L48 (error at keys:226) else goto L49 :: bool
 L14:
     return r13
 L15:
@@ -1178,7 +1182,7 @@ L15:
     if r16 goto L16 else goto L18 :: bool
 L16:
     CPyErr_SetObjectAndTraceback(type, value, traceback)
-    if not 0 goto L19 (error at keys:224) else goto L50 :: bool
+    if not 0 goto L19 (error at keys:226) else goto L50 :: bool
 L17:
     unreachable
 L18:
@@ -1195,7 +1199,7 @@ L20:
 L21:
     r21 = CPy_YieldFromErrorHandle(r20, r19)
     dec_ref r20
-    if is_error(r21) goto L51 (error at keys:224) else goto L22
+    if is_error(r21) goto L51 (error at keys:226) else goto L22
 L22:
     if r21 goto L25 else goto L23 :: bool
 L23:
@@ -1240,7 +1244,7 @@ L32:
     goto L13
 L33:
     r28 = CPy_FetchStopIterationValue()
-    if is_error(r28) goto L47 (error at keys:224) else goto L34
+    if is_error(r28) goto L47 (error at keys:226) else goto L34
 L34:
     r12 = r28
     dec_ref r12
@@ -1248,7 +1252,7 @@ L35:
     r29 = box(None, 1)
     r2.__mypyc_next_label__ = -2; r30 = is_error
     dec_ref r2
-    if not r30 goto L42 (error at keys:212) else goto L36 :: bool
+    if not r30 goto L42 (error at keys:214) else goto L36 :: bool
 L36:
     CPyGen_SetStopIterationValue(r29)
     if not 0 goto L42 else goto L37 :: bool
@@ -1263,7 +1267,7 @@ L39:
     if r32 goto L15 else goto L56 :: bool
 L40:
     r33 = raise StopIteration
-    if not r33 goto L42 (error at keys:212) else goto L41 :: bool
+    if not r33 goto L42 (error at keys:214) else goto L41 :: bool
 L41:
     unreachable
 L42:
@@ -1462,22 +1466,22 @@ def keys_DictStruct_obj.__call__(__mypyc_self__, self):
     r5 :: object
 L0:
     r0 = keys_DictStruct_env()
-    if is_error(r0) goto L6 (error at keys:212) else goto L1
+    if is_error(r0) goto L6 (error at keys:214) else goto L1
 L1:
     inc_ref self
     r0.self = self; r1 = is_error
-    if not r1 goto L7 (error at keys:212) else goto L2 :: bool
+    if not r1 goto L7 (error at keys:214) else goto L2 :: bool
 L2:
     r2 = keys_DictStruct_gen()
-    if is_error(r2) goto L7 (error at keys:212) else goto L3
+    if is_error(r2) goto L7 (error at keys:214) else goto L3
 L3:
     inc_ref r0
     r2.__mypyc_env__ = r0; r3 = is_error
-    if not r3 goto L8 (error at keys:212) else goto L4 :: bool
+    if not r3 goto L8 (error at keys:214) else goto L4 :: bool
 L4:
     r0.__mypyc_next_label__ = 0; r4 = is_error
     dec_ref r0
-    if not r4 goto L9 (error at keys:212) else goto L5 :: bool
+    if not r4 goto L9 (error at keys:214) else goto L5 :: bool
 L5:
     return r2
 L6:
@@ -1538,218 +1542,220 @@ def items_DictStruct_gen.__mypyc_generator_helper__(__mypyc_self__, type, value,
     r20 :: bool
     r21 :: dictstruct._main.DictStruct
     r22 :: str
-    r23 :: dict
-    r24 :: str
-    r25, r26 :: object
-    r27 :: bool
-    r28 :: object
-    r29 :: dict
-    r30 :: str
-    r31 :: object
-    r32, r33 :: bit
-    r34 :: str
+    r23 :: object
+    r24 :: bool
+    r25 :: object
+    r26 :: bool
+    r27, r28 :: object
+    r29 :: bool
+    r30, r31 :: bit
+    r32 :: str
+    r33 :: object
+    r34 :: tuple[str, object]
     r35 :: object
-    r36 :: tuple[str, object]
+    r36 :: bool
     r37 :: object
-    r38 :: bool
-    r39 :: object
-    r40 :: bit
-    r41, r42 :: short_int
+    r38 :: bit
+    r39, r40 :: short_int
+    r41 :: bool
+    r42 :: object
     r43 :: bool
-    r44 :: object
-    r45 :: bool
-    r46, r47 :: bit
-    r48 :: bool
-    r49 :: object
+    r44, r45 :: bit
+    r46 :: bool
+    r47 :: object
 L0:
     r0 = __mypyc_self__.__mypyc_env__
-    if is_error(r0) goto L42 (error at items:226) else goto L1
+    if is_error(r0) goto L46 (error at items:228) else goto L1
 L1:
     r1 = r0.__mypyc_next_label__
-    if is_error(r1) goto L43 (error at items:226) else goto L38
+    if is_error(r1) goto L47 (error at items:228) else goto L42
 L2:
     r2 = load_address _Py_NoneStruct
     r3 = type != r2
-    if r3 goto L44 else goto L5 :: bool
+    if r3 goto L48 else goto L5 :: bool
 L3:
     CPyErr_SetObjectAndTraceback(type, value, traceback)
-    if not 0 goto L42 (error at items:226) else goto L4 :: bool
+    if not 0 goto L46 (error at items:228) else goto L4 :: bool
 L4:
     unreachable
 L5:
     r4 = r0.self
-    if is_error(r4) goto L43 (error at items:238) else goto L6
+    if is_error(r4) goto L47 (error at items:240) else goto L6
 L6:
     r5 = '__struct_fields__'
     r6 = CPyObject_GetAttr(r4, r5)
     dec_ref r4
-    if is_error(r6) goto L43 (error at items:238) else goto L7
+    if is_error(r6) goto L47 (error at items:240) else goto L7
 L7:
     r7 = cast(tuple, r6)
-    if is_error(r7) goto L43 (error at items:238) else goto L8
+    if is_error(r7) goto L47 (error at items:240) else goto L8
 L8:
     r0.__mypyc_temp__4 = r7; r8 = is_error
-    if not r8 goto L43 (error at items:-1) else goto L9 :: bool
+    if not r8 goto L47 (error at items:-1) else goto L9 :: bool
 L9:
     r0.__mypyc_temp__5 = 0; r9 = is_error
-    if not r9 goto L43 (error at items:-1) else goto L10 :: bool
+    if not r9 goto L47 (error at items:-1) else goto L10 :: bool
 L10:
     r10 = r0.__mypyc_temp__4
-    if is_error(r10) goto L43 (error at items:238) else goto L11
+    if is_error(r10) goto L47 (error at items:240) else goto L11
 L11:
     r11 = get_element_ptr r10 ob_size :: PyVarObject
     r12 = load_mem r11 :: native_int*
     dec_ref r10
     r13 = r12 << 1
     r14 = r0.__mypyc_temp__5
-    if is_error(r14) goto L43 (error at items:238) else goto L12
+    if is_error(r14) goto L47 (error at items:240) else goto L12
 L12:
     r15 = r14 < r13 :: signed
-    if r15 goto L13 else goto L35 :: bool
+    if r15 goto L13 else goto L39 :: bool
 L13:
     r16 = r0.__mypyc_temp__4
-    if is_error(r16) goto L43 (error at items:238) else goto L14
+    if is_error(r16) goto L47 (error at items:240) else goto L14
 L14:
     r17 = r0.__mypyc_temp__5
-    if is_error(r17) goto L45 (error at items:238) else goto L15
+    if is_error(r17) goto L49 (error at items:240) else goto L15
 L15:
     r18 = CPySequenceTuple_GetItem(r16, r17)
     dec_ref r16
-    if is_error(r18) goto L43 (error at items:238) else goto L16
+    if is_error(r18) goto L47 (error at items:240) else goto L16
 L16:
     r19 = cast(str, r18)
-    if is_error(r19) goto L43 (error at items:238) else goto L17
+    if is_error(r19) goto L47 (error at items:240) else goto L17
 L17:
     r0.key = r19; r20 = is_error
-    if not r20 goto L43 (error at items:238) else goto L18 :: bool
+    if not r20 goto L47 (error at items:240) else goto L18 :: bool
 L18:
     r21 = r0.self
-    if is_error(r21) goto L43 (error at items:239) else goto L19
+    if is_error(r21) goto L47 (error at items:241) else goto L19
 L19:
     r22 = r0.key
-    if is_error(r22) goto L46 (error at items:239) else goto L20
+    if is_error(r22) goto L50 (error at items:241) else goto L20
 L20:
-    r23 = dictstruct._main.globals :: static
-    r24 = 'UNSET'
-    r25 = CPyDict_GetItem(r23, r24)
-    if is_error(r25) goto L47 (error at items:239) else goto L21
+    r23 = dictstruct._main.UNSET :: static
+    if is_error(r23) goto L51 else goto L23
 L21:
-    r26 = CPyObject_GetAttr3(r21, r22, r25)
+    r24 = raise NameError('value for final name "UNSET" was not set')
+    if not r24 goto L46 (error at items:241) else goto L22 :: bool
+L22:
+    unreachable
+L23:
+    r25 = CPyObject_GetAttr3(r21, r22, r23)
     dec_ref r21
     dec_ref r22
-    dec_ref r25
-    if is_error(r26) goto L43 (error at items:239) else goto L22
-L22:
-    r0.value = r26; r27 = is_error
-    if not r27 goto L43 (error at items:239) else goto L23 :: bool
-L23:
-    r28 = r0.value
-    if is_error(r28) goto L43 (error at items:240) else goto L24
+    if is_error(r25) goto L47 (error at items:241) else goto L24
 L24:
-    r29 = dictstruct._main.globals :: static
-    r30 = 'UNSET'
-    r31 = CPyDict_GetItem(r29, r30)
-    if is_error(r31) goto L48 (error at items:240) else goto L25
+    r0.value = r25; r26 = is_error
+    if not r26 goto L47 (error at items:241) else goto L25 :: bool
 L25:
-    r32 = r28 == r31
-    dec_ref r28
-    dec_ref r31
-    r33 = r32 ^ 1
-    if r33 goto L26 else goto L33 :: bool
+    r27 = r0.value
+    if is_error(r27) goto L47 (error at items:242) else goto L26
 L26:
-    r34 = r0.key
-    if is_error(r34) goto L43 (error at items:241) else goto L27
+    r28 = dictstruct._main.UNSET :: static
+    if is_error(r28) goto L52 else goto L29
 L27:
-    r35 = r0.value
-    if is_error(r35) goto L49 (error at items:241) else goto L28
+    r29 = raise NameError('value for final name "UNSET" was not set')
+    if not r29 goto L46 (error at items:242) else goto L28 :: bool
 L28:
-    r36 = (r34, r35)
-    r37 = box(tuple[str, object], r36)
-    r0.__mypyc_next_label__ = 2; r38 = is_error
-    dec_ref r0
-    if not r38 goto L50 (error at items:241) else goto L29 :: bool
+    unreachable
 L29:
-    return r37
+    r30 = r27 == r28
+    dec_ref r27
+    r31 = r30 ^ 1
+    if r31 goto L30 else goto L37 :: bool
 L30:
-    r39 = load_address _Py_NoneStruct
-    r40 = type != r39
-    if r40 goto L51 else goto L33 :: bool
+    r32 = r0.key
+    if is_error(r32) goto L47 (error at items:243) else goto L31
 L31:
-    CPyErr_SetObjectAndTraceback(type, value, traceback)
-    if not 0 goto L42 (error at items:241) else goto L32 :: bool
+    r33 = r0.value
+    if is_error(r33) goto L53 (error at items:243) else goto L32
 L32:
-    unreachable
-L33:
-    r41 = r0.__mypyc_temp__5
-    if is_error(r41) goto L43 (error at items:238) else goto L34
-L34:
-    r42 = r41 + 2
-    r0.__mypyc_temp__5 = r42; r43 = is_error
-    if not r43 goto L43 (error at items:238) else goto L10 :: bool
-L35:
-    r44 = box(None, 1)
-    r0.__mypyc_next_label__ = -2; r45 = is_error
+    r34 = (r32, r33)
+    r35 = box(tuple[str, object], r34)
+    r0.__mypyc_next_label__ = 2; r36 = is_error
     dec_ref r0
-    if not r45 goto L42 (error at items:226) else goto L36 :: bool
+    if not r36 goto L54 (error at items:243) else goto L33 :: bool
+L33:
+    return r35
+L34:
+    r37 = load_address _Py_NoneStruct
+    r38 = type != r37
+    if r38 goto L55 else goto L37 :: bool
+L35:
+    CPyErr_SetObjectAndTraceback(type, value, traceback)
+    if not 0 goto L46 (error at items:243) else goto L36 :: bool
 L36:
-    CPyGen_SetStopIterationValue(r44)
-    if not 0 goto L42 else goto L37 :: bool
-L37:
     unreachable
+L37:
+    r39 = r0.__mypyc_temp__5
+    if is_error(r39) goto L47 (error at items:240) else goto L38
 L38:
-    r46 = r1 == 0
-    if r46 goto L52 else goto L39 :: bool
+    r40 = r39 + 2
+    r0.__mypyc_temp__5 = r40; r41 = is_error
+    if not r41 goto L47 (error at items:240) else goto L10 :: bool
 L39:
-    r47 = r1 == 2
-    dec_ref r1 :: int
-    if r47 goto L30 else goto L53 :: bool
+    r42 = box(None, 1)
+    r0.__mypyc_next_label__ = -2; r43 = is_error
+    dec_ref r0
+    if not r43 goto L46 (error at items:228) else goto L40 :: bool
 L40:
-    r48 = raise StopIteration
-    if not r48 goto L42 (error at items:226) else goto L41 :: bool
+    CPyGen_SetStopIterationValue(r42)
+    if not 0 goto L46 else goto L41 :: bool
 L41:
     unreachable
 L42:
-    r49 = <error> :: object
-    return r49
+    r44 = r1 == 0
+    if r44 goto L56 else goto L43 :: bool
 L43:
-    dec_ref r0
-    goto L42
+    r45 = r1 == 2
+    dec_ref r1 :: int
+    if r45 goto L34 else goto L57 :: bool
 L44:
+    r46 = raise StopIteration
+    if not r46 goto L46 (error at items:228) else goto L45 :: bool
+L45:
+    unreachable
+L46:
+    r47 = <error> :: object
+    return r47
+L47:
+    dec_ref r0
+    goto L46
+L48:
     dec_ref r0
     goto L3
-L45:
+L49:
     dec_ref r0
     dec_ref r16
-    goto L42
-L46:
+    goto L46
+L50:
     dec_ref r0
     dec_ref r21
-    goto L42
-L47:
+    goto L46
+L51:
     dec_ref r0
     dec_ref r21
     dec_ref r22
-    goto L42
-L48:
-    dec_ref r0
-    dec_ref r28
-    goto L42
-L49:
-    dec_ref r0
-    dec_ref r34
-    goto L42
-L50:
-    dec_ref r37
-    goto L42
-L51:
-    dec_ref r0
-    goto L31
+    goto L21
 L52:
-    dec_ref r1 :: int
-    goto L2
+    dec_ref r0
+    dec_ref r27
+    goto L27
 L53:
     dec_ref r0
-    goto L40
+    dec_ref r32
+    goto L46
+L54:
+    dec_ref r35
+    goto L46
+L55:
+    dec_ref r0
+    goto L35
+L56:
+    dec_ref r1 :: int
+    goto L2
+L57:
+    dec_ref r0
+    goto L44
 
 def items_DictStruct_gen.__next__(__mypyc_self__):
     __mypyc_self__ :: dictstruct._main.items_DictStruct_gen
@@ -1893,22 +1899,22 @@ def items_DictStruct_obj.__call__(__mypyc_self__, self):
     r5 :: object
 L0:
     r0 = items_DictStruct_env()
-    if is_error(r0) goto L6 (error at items:226) else goto L1
+    if is_error(r0) goto L6 (error at items:228) else goto L1
 L1:
     inc_ref self
     r0.self = self; r1 = is_error
-    if not r1 goto L7 (error at items:226) else goto L2 :: bool
+    if not r1 goto L7 (error at items:228) else goto L2 :: bool
 L2:
     r2 = items_DictStruct_gen()
-    if is_error(r2) goto L7 (error at items:226) else goto L3
+    if is_error(r2) goto L7 (error at items:228) else goto L3
 L3:
     inc_ref r0
     r2.__mypyc_env__ = r0; r3 = is_error
-    if not r3 goto L8 (error at items:226) else goto L4 :: bool
+    if not r3 goto L8 (error at items:228) else goto L4 :: bool
 L4:
     r0.__mypyc_next_label__ = 0; r4 = is_error
     dec_ref r0
-    if not r4 goto L9 (error at items:226) else goto L5 :: bool
+    if not r4 goto L9 (error at items:228) else goto L5 :: bool
 L5:
     return r2
 L6:
@@ -1969,206 +1975,208 @@ def values_DictStruct_gen.__mypyc_generator_helper__(__mypyc_self__, type, value
     r20 :: bool
     r21 :: dictstruct._main.DictStruct
     r22 :: str
-    r23 :: dict
-    r24 :: str
-    r25, r26 :: object
-    r27 :: bool
-    r28 :: object
-    r29 :: dict
-    r30 :: str
-    r31 :: object
-    r32, r33 :: bit
+    r23 :: object
+    r24 :: bool
+    r25 :: object
+    r26 :: bool
+    r27, r28 :: object
+    r29 :: bool
+    r30, r31 :: bit
+    r32 :: object
+    r33 :: bool
     r34 :: object
-    r35 :: bool
-    r36 :: object
-    r37 :: bit
-    r38, r39 :: short_int
+    r35 :: bit
+    r36, r37 :: short_int
+    r38 :: bool
+    r39 :: object
     r40 :: bool
-    r41 :: object
-    r42 :: bool
-    r43, r44 :: bit
-    r45 :: bool
-    r46 :: object
+    r41, r42 :: bit
+    r43 :: bool
+    r44 :: object
 L0:
     r0 = __mypyc_self__.__mypyc_env__
-    if is_error(r0) goto L41 (error at values:243) else goto L1
+    if is_error(r0) goto L45 (error at values:245) else goto L1
 L1:
     r1 = r0.__mypyc_next_label__
-    if is_error(r1) goto L42 (error at values:243) else goto L37
+    if is_error(r1) goto L46 (error at values:245) else goto L41
 L2:
     r2 = load_address _Py_NoneStruct
     r3 = type != r2
-    if r3 goto L43 else goto L5 :: bool
+    if r3 goto L47 else goto L5 :: bool
 L3:
     CPyErr_SetObjectAndTraceback(type, value, traceback)
-    if not 0 goto L41 (error at values:243) else goto L4 :: bool
+    if not 0 goto L45 (error at values:245) else goto L4 :: bool
 L4:
     unreachable
 L5:
     r4 = r0.self
-    if is_error(r4) goto L42 (error at values:255) else goto L6
+    if is_error(r4) goto L46 (error at values:257) else goto L6
 L6:
     r5 = '__struct_fields__'
     r6 = CPyObject_GetAttr(r4, r5)
     dec_ref r4
-    if is_error(r6) goto L42 (error at values:255) else goto L7
+    if is_error(r6) goto L46 (error at values:257) else goto L7
 L7:
     r7 = cast(tuple, r6)
-    if is_error(r7) goto L42 (error at values:255) else goto L8
+    if is_error(r7) goto L46 (error at values:257) else goto L8
 L8:
     r0.__mypyc_temp__6 = r7; r8 = is_error
-    if not r8 goto L42 (error at values:-1) else goto L9 :: bool
+    if not r8 goto L46 (error at values:-1) else goto L9 :: bool
 L9:
     r0.__mypyc_temp__7 = 0; r9 = is_error
-    if not r9 goto L42 (error at values:-1) else goto L10 :: bool
+    if not r9 goto L46 (error at values:-1) else goto L10 :: bool
 L10:
     r10 = r0.__mypyc_temp__6
-    if is_error(r10) goto L42 (error at values:255) else goto L11
+    if is_error(r10) goto L46 (error at values:257) else goto L11
 L11:
     r11 = get_element_ptr r10 ob_size :: PyVarObject
     r12 = load_mem r11 :: native_int*
     dec_ref r10
     r13 = r12 << 1
     r14 = r0.__mypyc_temp__7
-    if is_error(r14) goto L42 (error at values:255) else goto L12
+    if is_error(r14) goto L46 (error at values:257) else goto L12
 L12:
     r15 = r14 < r13 :: signed
-    if r15 goto L13 else goto L34 :: bool
+    if r15 goto L13 else goto L38 :: bool
 L13:
     r16 = r0.__mypyc_temp__6
-    if is_error(r16) goto L42 (error at values:255) else goto L14
+    if is_error(r16) goto L46 (error at values:257) else goto L14
 L14:
     r17 = r0.__mypyc_temp__7
-    if is_error(r17) goto L44 (error at values:255) else goto L15
+    if is_error(r17) goto L48 (error at values:257) else goto L15
 L15:
     r18 = CPySequenceTuple_GetItem(r16, r17)
     dec_ref r16
-    if is_error(r18) goto L42 (error at values:255) else goto L16
+    if is_error(r18) goto L46 (error at values:257) else goto L16
 L16:
     r19 = cast(str, r18)
-    if is_error(r19) goto L42 (error at values:255) else goto L17
+    if is_error(r19) goto L46 (error at values:257) else goto L17
 L17:
     r0.key = r19; r20 = is_error
-    if not r20 goto L42 (error at values:255) else goto L18 :: bool
+    if not r20 goto L46 (error at values:257) else goto L18 :: bool
 L18:
     r21 = r0.self
-    if is_error(r21) goto L42 (error at values:256) else goto L19
+    if is_error(r21) goto L46 (error at values:258) else goto L19
 L19:
     r22 = r0.key
-    if is_error(r22) goto L45 (error at values:256) else goto L20
+    if is_error(r22) goto L49 (error at values:258) else goto L20
 L20:
-    r23 = dictstruct._main.globals :: static
-    r24 = 'UNSET'
-    r25 = CPyDict_GetItem(r23, r24)
-    if is_error(r25) goto L46 (error at values:256) else goto L21
+    r23 = dictstruct._main.UNSET :: static
+    if is_error(r23) goto L50 else goto L23
 L21:
-    r26 = CPyObject_GetAttr3(r21, r22, r25)
+    r24 = raise NameError('value for final name "UNSET" was not set')
+    if not r24 goto L45 (error at values:258) else goto L22 :: bool
+L22:
+    unreachable
+L23:
+    r25 = CPyObject_GetAttr3(r21, r22, r23)
     dec_ref r21
     dec_ref r22
-    dec_ref r25
-    if is_error(r26) goto L42 (error at values:256) else goto L22
-L22:
-    r0.value = r26; r27 = is_error
-    if not r27 goto L42 (error at values:256) else goto L23 :: bool
-L23:
-    r28 = r0.value
-    if is_error(r28) goto L42 (error at values:257) else goto L24
+    if is_error(r25) goto L46 (error at values:258) else goto L24
 L24:
-    r29 = dictstruct._main.globals :: static
-    r30 = 'UNSET'
-    r31 = CPyDict_GetItem(r29, r30)
-    if is_error(r31) goto L47 (error at values:257) else goto L25
+    r0.value = r25; r26 = is_error
+    if not r26 goto L46 (error at values:258) else goto L25 :: bool
 L25:
-    r32 = r28 == r31
-    dec_ref r28
-    dec_ref r31
-    r33 = r32 ^ 1
-    if r33 goto L26 else goto L32 :: bool
+    r27 = r0.value
+    if is_error(r27) goto L46 (error at values:259) else goto L26
 L26:
-    r34 = r0.value
-    if is_error(r34) goto L42 (error at values:258) else goto L27
+    r28 = dictstruct._main.UNSET :: static
+    if is_error(r28) goto L51 else goto L29
 L27:
-    r0.__mypyc_next_label__ = 2; r35 = is_error
-    dec_ref r0
-    if not r35 goto L48 (error at values:258) else goto L28 :: bool
+    r29 = raise NameError('value for final name "UNSET" was not set')
+    if not r29 goto L45 (error at values:259) else goto L28 :: bool
 L28:
-    return r34
+    unreachable
 L29:
-    r36 = load_address _Py_NoneStruct
-    r37 = type != r36
-    if r37 goto L49 else goto L32 :: bool
+    r30 = r27 == r28
+    dec_ref r27
+    r31 = r30 ^ 1
+    if r31 goto L30 else goto L36 :: bool
 L30:
-    CPyErr_SetObjectAndTraceback(type, value, traceback)
-    if not 0 goto L41 (error at values:258) else goto L31 :: bool
+    r32 = r0.value
+    if is_error(r32) goto L46 (error at values:260) else goto L31
 L31:
-    unreachable
-L32:
-    r38 = r0.__mypyc_temp__7
-    if is_error(r38) goto L42 (error at values:255) else goto L33
-L33:
-    r39 = r38 + 2
-    r0.__mypyc_temp__7 = r39; r40 = is_error
-    if not r40 goto L42 (error at values:255) else goto L10 :: bool
-L34:
-    r41 = box(None, 1)
-    r0.__mypyc_next_label__ = -2; r42 = is_error
+    r0.__mypyc_next_label__ = 2; r33 = is_error
     dec_ref r0
-    if not r42 goto L41 (error at values:243) else goto L35 :: bool
+    if not r33 goto L52 (error at values:260) else goto L32 :: bool
+L32:
+    return r32
+L33:
+    r34 = load_address _Py_NoneStruct
+    r35 = type != r34
+    if r35 goto L53 else goto L36 :: bool
+L34:
+    CPyErr_SetObjectAndTraceback(type, value, traceback)
+    if not 0 goto L45 (error at values:260) else goto L35 :: bool
 L35:
-    CPyGen_SetStopIterationValue(r41)
-    if not 0 goto L41 else goto L36 :: bool
-L36:
     unreachable
+L36:
+    r36 = r0.__mypyc_temp__7
+    if is_error(r36) goto L46 (error at values:257) else goto L37
 L37:
-    r43 = r1 == 0
-    if r43 goto L50 else goto L38 :: bool
+    r37 = r36 + 2
+    r0.__mypyc_temp__7 = r37; r38 = is_error
+    if not r38 goto L46 (error at values:257) else goto L10 :: bool
 L38:
-    r44 = r1 == 2
-    dec_ref r1 :: int
-    if r44 goto L29 else goto L51 :: bool
+    r39 = box(None, 1)
+    r0.__mypyc_next_label__ = -2; r40 = is_error
+    dec_ref r0
+    if not r40 goto L45 (error at values:245) else goto L39 :: bool
 L39:
-    r45 = raise StopIteration
-    if not r45 goto L41 (error at values:243) else goto L40 :: bool
+    CPyGen_SetStopIterationValue(r39)
+    if not 0 goto L45 else goto L40 :: bool
 L40:
     unreachable
 L41:
-    r46 = <error> :: object
-    return r46
+    r41 = r1 == 0
+    if r41 goto L54 else goto L42 :: bool
 L42:
-    dec_ref r0
-    goto L41
+    r42 = r1 == 2
+    dec_ref r1 :: int
+    if r42 goto L33 else goto L55 :: bool
 L43:
+    r43 = raise StopIteration
+    if not r43 goto L45 (error at values:245) else goto L44 :: bool
+L44:
+    unreachable
+L45:
+    r44 = <error> :: object
+    return r44
+L46:
+    dec_ref r0
+    goto L45
+L47:
     dec_ref r0
     goto L3
-L44:
+L48:
     dec_ref r0
     dec_ref r16
-    goto L41
-L45:
+    goto L45
+L49:
     dec_ref r0
     dec_ref r21
-    goto L41
-L46:
+    goto L45
+L50:
     dec_ref r0
     dec_ref r21
     dec_ref r22
-    goto L41
-L47:
-    dec_ref r0
-    dec_ref r28
-    goto L41
-L48:
-    dec_ref r34
-    goto L41
-L49:
-    dec_ref r0
-    goto L30
-L50:
-    dec_ref r1 :: int
-    goto L2
+    goto L21
 L51:
     dec_ref r0
-    goto L39
+    dec_ref r27
+    goto L27
+L52:
+    dec_ref r32
+    goto L45
+L53:
+    dec_ref r0
+    goto L34
+L54:
+    dec_ref r1 :: int
+    goto L2
+L55:
+    dec_ref r0
+    goto L43
 
 def values_DictStruct_gen.__next__(__mypyc_self__):
     __mypyc_self__ :: dictstruct._main.values_DictStruct_gen
@@ -2312,22 +2320,22 @@ def values_DictStruct_obj.__call__(__mypyc_self__, self):
     r5 :: object
 L0:
     r0 = values_DictStruct_env()
-    if is_error(r0) goto L6 (error at values:243) else goto L1
+    if is_error(r0) goto L6 (error at values:245) else goto L1
 L1:
     inc_ref self
     r0.self = self; r1 = is_error
-    if not r1 goto L7 (error at values:243) else goto L2 :: bool
+    if not r1 goto L7 (error at values:245) else goto L2 :: bool
 L2:
     r2 = values_DictStruct_gen()
-    if is_error(r2) goto L7 (error at values:243) else goto L3
+    if is_error(r2) goto L7 (error at values:245) else goto L3
 L3:
     inc_ref r0
     r2.__mypyc_env__ = r0; r3 = is_error
-    if not r3 goto L8 (error at values:243) else goto L4 :: bool
+    if not r3 goto L8 (error at values:245) else goto L4 :: bool
 L4:
     r0.__mypyc_next_label__ = 0; r4 = is_error
     dec_ref r0
-    if not r4 goto L9 (error at values:243) else goto L5 :: bool
+    if not r4 goto L9 (error at values:245) else goto L5 :: bool
 L5:
     return r2
 L6:
@@ -2473,16 +2481,16 @@ def __hash___DictStruct_obj.__call__(__mypyc_self__, self):
 L0:
     r0 = '__struct_config__'
     r1 = CPyObject_GetAttr(self, r0)
-    if is_error(r1) goto L79 (error at __hash__:277) else goto L1
+    if is_error(r1) goto L79 (error at __hash__:279) else goto L1
 L1:
     r2 = 'frozen'
     r3 = CPyObject_GetAttr(r1, r2)
     dec_ref r1
-    if is_error(r3) goto L79 (error at __hash__:277) else goto L2
+    if is_error(r3) goto L79 (error at __hash__:279) else goto L2
 L2:
     r4 = unbox(bool, r3)
     dec_ref r3
-    if is_error(r4) goto L79 (error at __hash__:277) else goto L3
+    if is_error(r4) goto L79 (error at __hash__:279) else goto L3
 L3:
     if r4 goto L11 else goto L4 :: bool
 L4:
@@ -2491,73 +2499,73 @@ L4:
     r7 = '__name__'
     r8 = CPyObject_GetAttr(r6, r7)
     dec_ref r6
-    if is_error(r8) goto L79 (error at __hash__:278) else goto L5
+    if is_error(r8) goto L79 (error at __hash__:280) else goto L5
 L5:
     r9 = cast(str, r8)
-    if is_error(r9) goto L79 (error at __hash__:278) else goto L6
+    if is_error(r9) goto L79 (error at __hash__:280) else goto L6
 L6:
     r10 = "'"
     r11 = CPyStr_Build(3, r5, r9, r10)
     dec_ref r9
-    if is_error(r11) goto L79 (error at __hash__:278) else goto L7
+    if is_error(r11) goto L79 (error at __hash__:280) else goto L7
 L7:
     r12 = builtins :: module
     r13 = 'TypeError'
     r14 = CPyObject_GetAttr(r12, r13)
-    if is_error(r14) goto L80 (error at __hash__:278) else goto L8
+    if is_error(r14) goto L80 (error at __hash__:280) else goto L8
 L8:
     r15 = [r11]
     r16 = load_address r15
     r17 = PyObject_Vectorcall(r14, r16, 1, 0)
     dec_ref r14
-    if is_error(r17) goto L80 (error at __hash__:278) else goto L9
+    if is_error(r17) goto L80 (error at __hash__:280) else goto L9
 L9:
     dec_ref r11
     CPy_Raise(r17)
     dec_ref r17
-    if not 0 goto L79 (error at __hash__:278) else goto L10 :: bool
+    if not 0 goto L79 (error at __hash__:280) else goto L10 :: bool
 L10:
     unreachable
 L11:
     r18 = '__dict__'
     r19 = CPyObject_GetAttr(self, r18)
-    if is_error(r19) goto L79 (error at __hash__:279) else goto L12
+    if is_error(r19) goto L79 (error at __hash__:281) else goto L12
 L12:
     r20 = cast(dict, r19)
-    if is_error(r20) goto L79 (error at __hash__:279) else goto L13
+    if is_error(r20) goto L79 (error at __hash__:281) else goto L13
 L13:
     r21 = '__hash__'
     r22 = CPyDict_GetWithNone(r20, r21)
     dec_ref r20
-    if is_error(r22) goto L79 (error at __hash__:279) else goto L14
+    if is_error(r22) goto L79 (error at __hash__:281) else goto L14
 L14:
     inc_ref r22
     cached_hash = r22
     r23 = PyObject_IsTrue(r22)
     dec_ref r22
     r24 = r23 >= 0 :: signed
-    if not r24 goto L81 (error at __hash__:279) else goto L15 :: bool
+    if not r24 goto L81 (error at __hash__:281) else goto L15 :: bool
 L15:
     r25 = truncate r23: i32 to builtins.bool
     if r25 goto L16 else goto L82 :: bool
 L16:
     r26 = unbox(int, cached_hash)
     dec_ref cached_hash
-    if is_error(r26) goto L79 (error at __hash__:280) else goto L17
+    if is_error(r26) goto L79 (error at __hash__:282) else goto L17
 L17:
     return r26
 L18:
     r27 = '__struct_fields__'
     r28 = CPyObject_GetAttr(self, r27)
-    if is_error(r28) goto L79 (error at __hash__:282) else goto L19
+    if is_error(r28) goto L79 (error at __hash__:284) else goto L19
 L19:
     r29 = cast(tuple, r28)
-    if is_error(r29) goto L79 (error at __hash__:282) else goto L20
+    if is_error(r29) goto L79 (error at __hash__:284) else goto L20
 L20:
     r30 = get_element_ptr r29 ob_size :: PyVarObject
     r31 = load_mem r30 :: native_int*
     r32 = PyList_New(r31)
-    if is_error(r32) goto L83 (error at __hash__:281) else goto L21
+    if is_error(r32) goto L83 (error at __hash__:283) else goto L21
 L21:
     r33 = 0
 L22:
@@ -2568,27 +2576,27 @@ L22:
     if r37 goto L23 else goto L84 :: bool
 L23:
     r38 = CPySequenceTuple_GetItem(r29, r33)
-    if is_error(r38) goto L85 (error at __hash__:281) else goto L24
+    if is_error(r38) goto L85 (error at __hash__:283) else goto L24
 L24:
     r39 = cast(str, r38)
-    if is_error(r39) goto L85 (error at __hash__:281) else goto L25
+    if is_error(r39) goto L85 (error at __hash__:283) else goto L25
 L25:
     r40 = dictstruct._main._getattribute :: static
     if is_error(r40) goto L86 else goto L28
 L26:
     r41 = raise NameError('value for final name "_getattribute" was not set')
-    if not r41 goto L79 (error at __hash__:282) else goto L27 :: bool
+    if not r41 goto L79 (error at __hash__:284) else goto L27 :: bool
 L27:
     unreachable
 L28:
     r42 = [self, r39]
     r43 = load_address r42
     r44 = PyObject_Vectorcall(r40, r43, 2, 0)
-    if is_error(r44) goto L87 (error at __hash__:282) else goto L29
+    if is_error(r44) goto L87 (error at __hash__:284) else goto L29
 L29:
     dec_ref r39
     r45 = CPyList_SetItemUnsafe(r32, r33, r44)
-    if not r45 goto L85 (error at __hash__:281) else goto L30 :: bool
+    if not r45 goto L85 (error at __hash__:283) else goto L30 :: bool
 L30:
     r46 = r33 + 2
     r33 = r46
@@ -2596,18 +2604,18 @@ L30:
 L31:
     r47 = PyObject_GetIter(r32)
     dec_ref r32
-    if is_error(r47) goto L79 (error at __hash__:281) else goto L32
+    if is_error(r47) goto L79 (error at __hash__:283) else goto L32
 L32:
 L33:
     r48 = CPyObject_Hash(r47)
-    if is_error(r48) goto L37 (error at __hash__:287) else goto L34
+    if is_error(r48) goto L37 (error at __hash__:289) else goto L34
 L34:
     r49 = '__dict__'
     r50 = CPyObject_GetAttr(self, r49)
-    if is_error(r50) goto L88 (error at __hash__:287) else goto L35
+    if is_error(r50) goto L88 (error at __hash__:289) else goto L35
 L35:
     r51 = cast(dict, r50)
-    if is_error(r51) goto L88 (error at __hash__:287) else goto L36
+    if is_error(r51) goto L88 (error at __hash__:289) else goto L36
 L36:
     r52 = '__hash__'
     r53 = box(int, r48)
@@ -2615,24 +2623,24 @@ L36:
     dec_ref r51
     dec_ref r53
     r55 = r54 >= 0 :: signed
-    if not r55 goto L37 (error at __hash__:287) else goto L89 :: bool
+    if not r55 goto L37 (error at __hash__:289) else goto L89 :: bool
 L37:
     r56 = CPy_CatchError()
     r57 = builtins :: module
     r58 = 'TypeError'
     r59 = CPyObject_GetAttr(r57, r58)
-    if is_error(r59) goto L90 (error at __hash__:288) else goto L38
+    if is_error(r59) goto L90 (error at __hash__:290) else goto L38
 L38:
     r60 = CPy_ExceptionMatches(r59)
     dec_ref r59
     if r60 goto L39 else goto L91 :: bool
 L39:
     r61 = PyList_New(0)
-    if is_error(r61) goto L90 (error at __hash__:289) else goto L40
+    if is_error(r61) goto L90 (error at __hash__:291) else goto L40
 L40:
     r62 = PyObject_GetIter(r47)
     dec_ref r47
-    if is_error(r62) goto L92 (error at __hash__:289) else goto L41
+    if is_error(r62) goto L92 (error at __hash__:291) else goto L41
 L41:
     r63 = PyIter_Next(r62)
     if is_error(r63) goto L93 else goto L42
@@ -2640,17 +2648,17 @@ L42:
     r64 = load_address PyList_Type
     r65 = PyObject_IsInstance(r63, r64)
     r66 = r65 >= 0 :: signed
-    if not r66 goto L94 (error at __hash__:290) else goto L43 :: bool
+    if not r66 goto L94 (error at __hash__:292) else goto L43 :: bool
 L43:
     r67 = truncate r65: i32 to builtins.bool
     if r67 goto L44 else goto L47 :: bool
 L44:
     r68 = cast(list, r63)
-    if is_error(r68) goto L95 (error at __hash__:290) else goto L45
+    if is_error(r68) goto L95 (error at __hash__:292) else goto L45
 L45:
     r69 = PyList_AsTuple(r68)
     dec_ref r68
-    if is_error(r69) goto L95 (error at __hash__:290) else goto L46
+    if is_error(r69) goto L95 (error at __hash__:292) else goto L46
 L46:
     r70 = r69
     goto L48
@@ -2660,25 +2668,25 @@ L48:
     r71 = PyList_Append(r61, r70)
     dec_ref r70
     r72 = r71 >= 0 :: signed
-    if not r72 goto L95 (error at __hash__:289) else goto L41 :: bool
+    if not r72 goto L95 (error at __hash__:291) else goto L41 :: bool
 L49:
     r73 = CPy_NoErrOccurred()
-    if not r73 goto L92 (error at __hash__:289) else goto L50 :: bool
+    if not r73 goto L92 (error at __hash__:291) else goto L50 :: bool
 L50:
     r74 = PyObject_GetIter(r61)
     dec_ref r61
-    if is_error(r74) goto L58 (error at __hash__:289) else goto L51
+    if is_error(r74) goto L58 (error at __hash__:291) else goto L51
 L51:
     r75 = CPyObject_Hash(r74)
     dec_ref r74
-    if is_error(r75) goto L58 (error at __hash__:289) else goto L52
+    if is_error(r75) goto L58 (error at __hash__:291) else goto L52
 L52:
     r76 = '__dict__'
     r77 = CPyObject_GetAttr(self, r76)
-    if is_error(r77) goto L96 (error at __hash__:289) else goto L53
+    if is_error(r77) goto L96 (error at __hash__:291) else goto L53
 L53:
     r78 = cast(dict, r77)
-    if is_error(r78) goto L96 (error at __hash__:289) else goto L54
+    if is_error(r78) goto L96 (error at __hash__:291) else goto L54
 L54:
     r79 = '__hash__'
     r80 = box(int, r75)
@@ -2686,7 +2694,7 @@ L54:
     dec_ref r78
     dec_ref r80
     r82 = r81 >= 0 :: signed
-    if not r82 goto L58 (error at __hash__:289) else goto L57 :: bool
+    if not r82 goto L58 (error at __hash__:291) else goto L57 :: bool
 L55:
     CPy_Reraise()
     if not 0 goto L58 else goto L97 :: bool
@@ -2708,7 +2716,7 @@ L60:
     r85 = builtins :: module
     r86 = 'Exception'
     r87 = CPyObject_GetAttr(r85, r86)
-    if is_error(r87) goto L72 (error at __hash__:292) else goto L61
+    if is_error(r87) goto L72 (error at __hash__:294) else goto L61
 L61:
     r88 = CPy_ExceptionMatches(r87)
     dec_ref r87
@@ -2717,33 +2725,33 @@ L62:
     r89 = CPy_GetExcValue()
     r90 = 'args'
     r91 = CPyObject_GetAttr(r89, r90)
-    if is_error(r91) goto L98 (error at __hash__:293) else goto L63
+    if is_error(r91) goto L98 (error at __hash__:295) else goto L63
 L63:
     r92 = cast(tuple, r91)
-    if is_error(r92) goto L98 (error at __hash__:293) else goto L64
+    if is_error(r92) goto L98 (error at __hash__:295) else goto L64
 L64:
     r93 = 'recursed in hash fn'
     r94 = PyList_New(0)
-    if is_error(r94) goto L99 (error at __hash__:293) else goto L65
+    if is_error(r94) goto L99 (error at __hash__:295) else goto L65
 L65:
     r95 = CPyList_Extend(r94, r92)
     dec_ref r92
-    if is_error(r95) goto L100 (error at __hash__:293) else goto L101
+    if is_error(r95) goto L100 (error at __hash__:295) else goto L101
 L66:
     r96 = PyList_Append(r94, r93)
     r97 = r96 >= 0 :: signed
-    if not r97 goto L100 (error at __hash__:293) else goto L67 :: bool
+    if not r97 goto L100 (error at __hash__:295) else goto L67 :: bool
 L67:
     r98 = PyList_AsTuple(r94)
     dec_ref r94
-    if is_error(r98) goto L98 (error at __hash__:293) else goto L68
+    if is_error(r98) goto L98 (error at __hash__:295) else goto L68
 L68:
     r99 = 'args'
     r100 = PyObject_SetAttr(r89, r99, r98)
     dec_ref r89
     dec_ref r98
     r101 = r100 >= 0 :: signed
-    if not r101 goto L72 (error at __hash__:293) else goto L71 :: bool
+    if not r101 goto L72 (error at __hash__:295) else goto L71 :: bool
 L69:
     CPy_Reraise()
     if not 0 goto L72 else goto L102 :: bool
@@ -2763,19 +2771,19 @@ L73:
 L74:
     r103 = '__dict__'
     r104 = CPyObject_GetAttr(self, r103)
-    if is_error(r104) goto L79 (error at __hash__:294) else goto L75
+    if is_error(r104) goto L79 (error at __hash__:296) else goto L75
 L75:
     r105 = cast(dict, r104)
-    if is_error(r105) goto L79 (error at __hash__:294) else goto L76
+    if is_error(r105) goto L79 (error at __hash__:296) else goto L76
 L76:
     r106 = '__hash__'
     r107 = CPyDict_GetItem(r105, r106)
     dec_ref r105
-    if is_error(r107) goto L79 (error at __hash__:294) else goto L77
+    if is_error(r107) goto L79 (error at __hash__:296) else goto L77
 L77:
     r108 = unbox(int, r107)
     dec_ref r107
-    if is_error(r108) goto L79 (error at __hash__:294) else goto L78
+    if is_error(r108) goto L79 (error at __hash__:296) else goto L78
 L78:
     return r108
 L79:
@@ -2868,109 +2876,123 @@ def __top_level__():
     r4, r5 :: object
     r6 :: str
     r7 :: dict
-    r8, r9 :: object
-    r10 :: str
-    r11 :: dict
-    r12, r13 :: object
-    r14 :: str
+    r8 :: object
+    r9 :: object_ptr
+    r10 :: object_ptr[1]
+    r11 :: c_ptr
+    r12 :: native_int[1]
+    r13 :: c_ptr
+    r14 :: object
     r15 :: dict
-    r16, r17 :: object
-    r18 :: str
+    r16, r17 :: str
+    r18 :: bit
     r19 :: object
     r20 :: str
-    r21 :: object
-    r22 :: dict
-    r23 :: str
-    r24 :: i32
-    r25 :: bit
-    r26 :: object
+    r21 :: dict
+    r22, r23 :: object
+    r24 :: str
+    r25 :: object
+    r26 :: dict
     r27 :: str
-    r28 :: object
-    r29 :: tuple
-    r30, r31 :: object
-    r32 :: str
-    r33 :: bool
-    r34, r35 :: str
-    r36 :: object
-    r37 :: object[2]
-    r38 :: object_ptr
+    r28 :: i32
+    r29 :: bit
+    r30 :: object
+    r31 :: str
+    r32 :: object
+    r33 :: str
+    r34 :: object
+    r35 :: dict
+    r36 :: str
+    r37 :: i32
+    r38 :: bit
     r39 :: object
-    r40, r41, r42, r43 :: dict
-    r44 :: dictstruct._main.__bool___DictStruct_obj
+    r40 :: str
+    r41 :: object
+    r42 :: tuple
+    r43, r44 :: object
     r45 :: str
-    r46 :: i32
-    r47 :: bit
-    r48 :: dictstruct._main.__contains___DictStruct_obj
-    r49 :: str
-    r50 :: i32
-    r51 :: bit
-    r52 :: dictstruct._main.get_DictStruct_obj
-    r53 :: str
-    r54 :: i32
-    r55 :: bit
-    r56 :: dictstruct._main.__getitem___DictStruct_obj
-    r57 :: str
-    r58 :: i32
-    r59 :: bit
-    r60 :: dictstruct._main.__getattribute___DictStruct_obj
-    r61 :: str
-    r62 :: i32
-    r63 :: bit
-    r64 :: dictstruct._main.__setitem___DictStruct_obj
-    r65 :: str
-    r66 :: i32
-    r67 :: bit
-    r68 :: dictstruct._main.__iter___DictStruct_obj
-    r69 :: str
-    r70 :: i32
-    r71 :: bit
-    r72 :: dictstruct._main.__len___DictStruct_obj
-    r73 :: str
-    r74 :: i32
-    r75 :: bit
-    r76 :: dictstruct._main.keys_DictStruct_obj
-    r77 :: str
-    r78 :: i32
-    r79 :: bit
-    r80 :: dictstruct._main.items_DictStruct_obj
-    r81 :: str
-    r82 :: i32
-    r83 :: bit
-    r84 :: dictstruct._main.values_DictStruct_obj
-    r85 :: str
-    r86 :: i32
-    r87 :: bit
-    r88 :: dictstruct._main.__hash___DictStruct_obj
-    r89 :: str
-    r90 :: i32
-    r91 :: bit
-    r92, r93 :: str
-    r94 :: i32
-    r95 :: bit
-    r96, r97 :: str
-    r98 :: i32
-    r99 :: bit
-    r100, r101 :: str
-    r102 :: i32
-    r103 :: bit
-    r104 :: object[3]
-    r105 :: object_ptr
-    r106 :: object
-    r107 :: dict
-    r108 :: str
-    r109, r110 :: object
-    r111 :: object[1]
-    r112 :: object_ptr
-    r113, r114 :: object
-    r115 :: object[1]
-    r116 :: object_ptr
-    r117 :: object
-    r118 :: dict
-    r119 :: str
-    r120 :: i32
-    r121 :: bit
-    r122 :: object
-    r123 :: None
+    r46 :: bool
+    r47, r48 :: str
+    r49 :: object
+    r50 :: object[2]
+    r51 :: object_ptr
+    r52 :: object
+    r53, r54, r55, r56 :: dict
+    r57 :: dictstruct._main.__bool___DictStruct_obj
+    r58 :: str
+    r59 :: i32
+    r60 :: bit
+    r61 :: dictstruct._main.__contains___DictStruct_obj
+    r62 :: str
+    r63 :: i32
+    r64 :: bit
+    r65 :: dictstruct._main.get_DictStruct_obj
+    r66 :: str
+    r67 :: i32
+    r68 :: bit
+    r69 :: dictstruct._main.__getitem___DictStruct_obj
+    r70 :: str
+    r71 :: i32
+    r72 :: bit
+    r73 :: dictstruct._main.__getattribute___DictStruct_obj
+    r74 :: str
+    r75 :: i32
+    r76 :: bit
+    r77 :: dictstruct._main.__setitem___DictStruct_obj
+    r78 :: str
+    r79 :: i32
+    r80 :: bit
+    r81 :: dictstruct._main.__iter___DictStruct_obj
+    r82 :: str
+    r83 :: i32
+    r84 :: bit
+    r85 :: dictstruct._main.__len___DictStruct_obj
+    r86 :: str
+    r87 :: i32
+    r88 :: bit
+    r89 :: dictstruct._main.keys_DictStruct_obj
+    r90 :: str
+    r91 :: i32
+    r92 :: bit
+    r93 :: dictstruct._main.items_DictStruct_obj
+    r94 :: str
+    r95 :: i32
+    r96 :: bit
+    r97 :: dictstruct._main.values_DictStruct_obj
+    r98 :: str
+    r99 :: i32
+    r100 :: bit
+    r101 :: dictstruct._main.__hash___DictStruct_obj
+    r102 :: str
+    r103 :: i32
+    r104 :: bit
+    r105, r106 :: str
+    r107 :: i32
+    r108 :: bit
+    r109, r110 :: str
+    r111 :: i32
+    r112 :: bit
+    r113, r114 :: str
+    r115 :: i32
+    r116 :: bit
+    r117 :: object[3]
+    r118 :: object_ptr
+    r119 :: object
+    r120 :: dict
+    r121 :: str
+    r122, r123 :: object
+    r124 :: object[1]
+    r125 :: object_ptr
+    r126, r127 :: object
+    r128 :: object[1]
+    r129 :: object_ptr
+    r130 :: object
+    r131 :: dict
+    r132 :: str
+    r133 :: i32
+    r134 :: bit
+    r135 :: object
+    r136 :: None
 L0:
     r0 = builtins :: module
     r1 = load_address _Py_NoneStruct
@@ -2979,7 +3001,7 @@ L0:
 L1:
     r3 = 'builtins'
     r4 = PyImport_Import(r3)
-    if is_error(r4) goto L53 (error at <module>:-1) else goto L2
+    if is_error(r4) goto L55 (error at <module>:-1) else goto L2
 L2:
     builtins = r4 :: module
     dec_ref r4
@@ -2988,265 +3010,282 @@ L3:
     r6 = 'typing'
     r7 = dictstruct._main.globals :: static
     r8 = CPyImport_ImportFromMany(r6, r5, r5, r7)
-    if is_error(r8) goto L53 (error at <module>:1) else goto L4
+    if is_error(r8) goto L55 (error at <module>:1) else goto L4
 L4:
     typing = r8 :: module
     dec_ref r8
-    r9 = ('UNSET', 'Struct')
-    r10 = 'msgspec'
-    r11 = dictstruct._main.globals :: static
-    r12 = CPyImport_ImportFromMany(r10, r9, r9, r11)
-    if is_error(r12) goto L53 (error at <module>:3) else goto L5
-L5:
-    msgspec = r12 :: module
-    dec_ref r12
-    r13 = ('mypyc_attr',)
-    r14 = 'mypy_extensions'
+    r9 = load_address msgspec :: module
+    r10 = [r9]
+    r11 = load_address r10
+    r12 = [3]
+    r13 = load_address r12
+    r14 = (('msgspec', 'msgspec', 'msgspec'),)
     r15 = dictstruct._main.globals :: static
-    r16 = CPyImport_ImportFromMany(r14, r13, r13, r15)
-    if is_error(r16) goto L53 (error at <module>:4) else goto L6
+    r16 = 'dictstruct/_main.py'
+    r17 = '<module>'
+    r18 = CPyImport_ImportMany(r14, r11, r15, r16, r17, r13)
+    if not r18 goto L55 else goto L5 :: bool
+L5:
+    r19 = ('mypyc_attr',)
+    r20 = 'mypy_extensions'
+    r21 = dictstruct._main.globals :: static
+    r22 = CPyImport_ImportFromMany(r20, r19, r19, r21)
+    if is_error(r22) goto L55 (error at <module>:4) else goto L6
 L6:
-    mypy_extensions = r16 :: module
-    dec_ref r16
-    r17 = builtins :: module
-    r18 = 'object'
-    r19 = CPyObject_GetAttr(r17, r18)
-    if is_error(r19) goto L53 (error at <module>:7) else goto L7
+    mypy_extensions = r22 :: module
+    dec_ref r22
+    r23 = msgspec :: module
+    r24 = 'UNSET'
+    r25 = CPyObject_GetAttr(r23, r24)
+    if is_error(r25) goto L55 (error at <module>:7) else goto L7
 L7:
-    r20 = '__getattribute__'
-    r21 = CPyObject_GetAttr(r19, r20)
-    dec_ref r19
-    if is_error(r21) goto L53 (error at <module>:7) else goto L8
+    dictstruct._main.UNSET = r25 :: static
+    r26 = dictstruct._main.globals :: static
+    r27 = 'UNSET'
+    r28 = CPyDict_SetItem(r26, r27, r25)
+    dec_ref r25
+    r29 = r28 >= 0 :: signed
+    if not r29 goto L55 (error at <module>:7) else goto L8 :: bool
 L8:
-    dictstruct._main._getattribute = r21 :: static
-    r22 = dictstruct._main.globals :: static
-    r23 = '_getattribute'
-    r24 = CPyDict_SetItem(r22, r23, r21)
-    dec_ref r21
-    r25 = r24 >= 0 :: signed
-    if not r25 goto L53 (error at <module>:7) else goto L9 :: bool
+    r30 = builtins :: module
+    r31 = 'object'
+    r32 = CPyObject_GetAttr(r30, r31)
+    if is_error(r32) goto L55 (error at <module>:9) else goto L9
 L9:
-    r26 = msgspec :: module
-    r27 = 'Struct'
-    r28 = CPyObject_GetAttr(r26, r27)
-    if is_error(r28) goto L53 (error at <module>:11) else goto L10
+    r33 = '__getattribute__'
+    r34 = CPyObject_GetAttr(r32, r33)
+    dec_ref r32
+    if is_error(r34) goto L55 (error at <module>:9) else goto L10
 L10:
-    r29 = PyTuple_Pack(1, r28)
-    dec_ref r28
-    if is_error(r29) goto L53 (error at <module>:11) else goto L11
+    dictstruct._main._getattribute = r34 :: static
+    r35 = dictstruct._main.globals :: static
+    r36 = '_getattribute'
+    r37 = CPyDict_SetItem(r35, r36, r34)
+    dec_ref r34
+    r38 = r37 >= 0 :: signed
+    if not r38 goto L55 (error at <module>:9) else goto L11 :: bool
 L11:
-    r30 = load_address PyType_Type
-    r31 = CPy_CalculateMetaclass(r30, r29)
-    if is_error(r31) goto L54 (error at <module>:11) else goto L12
+    r39 = msgspec :: module
+    r40 = 'Struct'
+    r41 = CPyObject_GetAttr(r39, r40)
+    if is_error(r41) goto L55 (error at <module>:13) else goto L12
 L12:
-    r32 = '__prepare__'
-    r33 = PyObject_HasAttr(r31, r32)
-    if r33 goto L13 else goto L17 :: bool
+    r42 = PyTuple_Pack(1, r41)
+    dec_ref r41
+    if is_error(r42) goto L55 (error at <module>:13) else goto L13
 L13:
-    r34 = 'DictStruct'
-    r35 = '__prepare__'
-    r36 = CPyObject_GetAttr(r31, r35)
-    if is_error(r36) goto L54 (error at <module>:11) else goto L14
+    r43 = load_address PyType_Type
+    r44 = CPy_CalculateMetaclass(r43, r42)
+    if is_error(r44) goto L56 (error at <module>:13) else goto L14
 L14:
-    r37 = [r34, r29]
-    r38 = load_address r37
-    r39 = PyObject_Vectorcall(r36, r38, 2, 0)
-    dec_ref r36
-    if is_error(r39) goto L54 (error at <module>:11) else goto L15
+    r45 = '__prepare__'
+    r46 = PyObject_HasAttr(r44, r45)
+    if r46 goto L15 else goto L19 :: bool
 L15:
-    r40 = cast(dict, r39)
-    if is_error(r40) goto L54 (error at <module>:11) else goto L16
+    r47 = 'DictStruct'
+    r48 = '__prepare__'
+    r49 = CPyObject_GetAttr(r44, r48)
+    if is_error(r49) goto L56 (error at <module>:13) else goto L16
 L16:
-    r41 = r40
-    goto L19
+    r50 = [r47, r42]
+    r51 = load_address r50
+    r52 = PyObject_Vectorcall(r49, r51, 2, 0)
+    dec_ref r49
+    if is_error(r52) goto L56 (error at <module>:13) else goto L17
 L17:
-    r42 = PyDict_New()
-    if is_error(r42) goto L54 (error at <module>:11) else goto L18
+    r53 = cast(dict, r52)
+    if is_error(r53) goto L56 (error at <module>:13) else goto L18
 L18:
-    r41 = r42
+    r54 = r53
+    goto L21
 L19:
-    r43 = PyDict_New()
-    if is_error(r43) goto L55 (error at <module>:11) else goto L20
+    r55 = PyDict_New()
+    if is_error(r55) goto L56 (error at <module>:13) else goto L20
 L20:
-    r44 = __bool___DictStruct_obj()
-    if is_error(r44) goto L56 (error at <module>:42) else goto L21
+    r54 = r55
 L21:
-    r45 = '__bool__'
-    r46 = CPyDict_SetItem(r41, r45, r44)
-    dec_ref r44
-    r47 = r46 >= 0 :: signed
-    if not r47 goto L56 (error at <module>:42) else goto L22 :: bool
+    r56 = PyDict_New()
+    if is_error(r56) goto L57 (error at <module>:13) else goto L22
 L22:
-    r48 = __contains___DictStruct_obj()
-    if is_error(r48) goto L56 (error at <module>:53) else goto L23
+    r57 = __bool___DictStruct_obj()
+    if is_error(r57) goto L58 (error at <module>:44) else goto L23
 L23:
-    r49 = '__contains__'
-    r50 = CPyDict_SetItem(r41, r49, r48)
-    dec_ref r48
-    r51 = r50 >= 0 :: signed
-    if not r51 goto L56 (error at <module>:53) else goto L24 :: bool
+    r58 = '__bool__'
+    r59 = CPyDict_SetItem(r54, r58, r57)
+    dec_ref r57
+    r60 = r59 >= 0 :: signed
+    if not r60 goto L58 (error at <module>:44) else goto L24 :: bool
 L24:
-    r52 = get_DictStruct_obj()
-    if is_error(r52) goto L56 (error at <module>:74) else goto L25
+    r61 = __contains___DictStruct_obj()
+    if is_error(r61) goto L58 (error at <module>:55) else goto L25
 L25:
-    r53 = 'get'
-    r54 = CPyDict_SetItem(r41, r53, r52)
-    dec_ref r52
-    r55 = r54 >= 0 :: signed
-    if not r55 goto L56 (error at <module>:74) else goto L26 :: bool
+    r62 = '__contains__'
+    r63 = CPyDict_SetItem(r54, r62, r61)
+    dec_ref r61
+    r64 = r63 >= 0 :: signed
+    if not r64 goto L58 (error at <module>:55) else goto L26 :: bool
 L26:
-    r56 = __getitem___DictStruct_obj()
-    if is_error(r56) goto L56 (error at <module>:93) else goto L27
+    r65 = get_DictStruct_obj()
+    if is_error(r65) goto L58 (error at <module>:76) else goto L27
 L27:
-    r57 = '__getitem__'
-    r58 = CPyDict_SetItem(r41, r57, r56)
-    dec_ref r56
-    r59 = r58 >= 0 :: signed
-    if not r59 goto L56 (error at <module>:93) else goto L28 :: bool
+    r66 = 'get'
+    r67 = CPyDict_SetItem(r54, r66, r65)
+    dec_ref r65
+    r68 = r67 >= 0 :: signed
+    if not r68 goto L58 (error at <module>:76) else goto L28 :: bool
 L28:
-    r60 = __getattribute___DictStruct_obj()
-    if is_error(r60) goto L56 (error at <module>:119) else goto L29
+    r69 = __getitem___DictStruct_obj()
+    if is_error(r69) goto L58 (error at <module>:95) else goto L29
 L29:
-    r61 = '__getattribute__'
-    r62 = CPyDict_SetItem(r41, r61, r60)
-    dec_ref r60
-    r63 = r62 >= 0 :: signed
-    if not r63 goto L56 (error at <module>:119) else goto L30 :: bool
+    r70 = '__getitem__'
+    r71 = CPyDict_SetItem(r54, r70, r69)
+    dec_ref r69
+    r72 = r71 >= 0 :: signed
+    if not r72 goto L58 (error at <module>:95) else goto L30 :: bool
 L30:
-    r64 = __setitem___DictStruct_obj()
-    if is_error(r64) goto L56 (error at <module>:148) else goto L31
+    r73 = __getattribute___DictStruct_obj()
+    if is_error(r73) goto L58 (error at <module>:121) else goto L31
 L31:
-    r65 = '__setitem__'
-    r66 = CPyDict_SetItem(r41, r65, r64)
-    dec_ref r64
-    r67 = r66 >= 0 :: signed
-    if not r67 goto L56 (error at <module>:148) else goto L32 :: bool
+    r74 = '__getattribute__'
+    r75 = CPyDict_SetItem(r54, r74, r73)
+    dec_ref r73
+    r76 = r75 >= 0 :: signed
+    if not r76 goto L58 (error at <module>:121) else goto L32 :: bool
 L32:
-    r68 = __iter___DictStruct_obj()
-    if is_error(r68) goto L56 (error at <module>:178) else goto L33
+    r77 = __setitem___DictStruct_obj()
+    if is_error(r77) goto L58 (error at <module>:150) else goto L33
 L33:
-    r69 = '__iter__'
-    r70 = CPyDict_SetItem(r41, r69, r68)
-    dec_ref r68
-    r71 = r70 >= 0 :: signed
-    if not r71 goto L56 (error at <module>:178) else goto L34 :: bool
+    r78 = '__setitem__'
+    r79 = CPyDict_SetItem(r54, r78, r77)
+    dec_ref r77
+    r80 = r79 >= 0 :: signed
+    if not r80 goto L58 (error at <module>:150) else goto L34 :: bool
 L34:
-    r72 = __len___DictStruct_obj()
-    if is_error(r72) goto L56 (error at <module>:198) else goto L35
+    r81 = __iter___DictStruct_obj()
+    if is_error(r81) goto L58 (error at <module>:180) else goto L35
 L35:
-    r73 = '__len__'
-    r74 = CPyDict_SetItem(r41, r73, r72)
-    dec_ref r72
-    r75 = r74 >= 0 :: signed
-    if not r75 goto L56 (error at <module>:198) else goto L36 :: bool
+    r82 = '__iter__'
+    r83 = CPyDict_SetItem(r54, r82, r81)
+    dec_ref r81
+    r84 = r83 >= 0 :: signed
+    if not r84 goto L58 (error at <module>:180) else goto L36 :: bool
 L36:
-    r76 = keys_DictStruct_obj()
-    if is_error(r76) goto L56 (error at <module>:212) else goto L37
+    r85 = __len___DictStruct_obj()
+    if is_error(r85) goto L58 (error at <module>:200) else goto L37
 L37:
-    r77 = 'keys'
-    r78 = CPyDict_SetItem(r41, r77, r76)
-    dec_ref r76
-    r79 = r78 >= 0 :: signed
-    if not r79 goto L56 (error at <module>:212) else goto L38 :: bool
+    r86 = '__len__'
+    r87 = CPyDict_SetItem(r54, r86, r85)
+    dec_ref r85
+    r88 = r87 >= 0 :: signed
+    if not r88 goto L58 (error at <module>:200) else goto L38 :: bool
 L38:
-    r80 = items_DictStruct_obj()
-    if is_error(r80) goto L56 (error at <module>:226) else goto L39
+    r89 = keys_DictStruct_obj()
+    if is_error(r89) goto L58 (error at <module>:214) else goto L39
 L39:
-    r81 = 'items'
-    r82 = CPyDict_SetItem(r41, r81, r80)
-    dec_ref r80
-    r83 = r82 >= 0 :: signed
-    if not r83 goto L56 (error at <module>:226) else goto L40 :: bool
+    r90 = 'keys'
+    r91 = CPyDict_SetItem(r54, r90, r89)
+    dec_ref r89
+    r92 = r91 >= 0 :: signed
+    if not r92 goto L58 (error at <module>:214) else goto L40 :: bool
 L40:
-    r84 = values_DictStruct_obj()
-    if is_error(r84) goto L56 (error at <module>:243) else goto L41
+    r93 = items_DictStruct_obj()
+    if is_error(r93) goto L58 (error at <module>:228) else goto L41
 L41:
-    r85 = 'values'
-    r86 = CPyDict_SetItem(r41, r85, r84)
-    dec_ref r84
-    r87 = r86 >= 0 :: signed
-    if not r87 goto L56 (error at <module>:243) else goto L42 :: bool
+    r94 = 'items'
+    r95 = CPyDict_SetItem(r54, r94, r93)
+    dec_ref r93
+    r96 = r95 >= 0 :: signed
+    if not r96 goto L58 (error at <module>:228) else goto L42 :: bool
 L42:
-    r88 = __hash___DictStruct_obj()
-    if is_error(r88) goto L56 (error at <module>:260) else goto L43
+    r97 = values_DictStruct_obj()
+    if is_error(r97) goto L58 (error at <module>:245) else goto L43
 L43:
-    r89 = '__hash__'
-    r90 = CPyDict_SetItem(r41, r89, r88)
-    dec_ref r88
-    r91 = r90 >= 0 :: signed
-    if not r91 goto L56 (error at <module>:260) else goto L44 :: bool
+    r98 = 'values'
+    r99 = CPyDict_SetItem(r54, r98, r97)
+    dec_ref r97
+    r100 = r99 >= 0 :: signed
+    if not r100 goto L58 (error at <module>:245) else goto L44 :: bool
 L44:
-    r92 = 'DictStruct'
-    r93 = '__annotations__'
-    r94 = CPyDict_SetItem(r41, r93, r43)
-    dec_ref r43
-    r95 = r94 >= 0 :: signed
-    if not r95 goto L55 (error at <module>:11) else goto L45 :: bool
+    r101 = __hash___DictStruct_obj()
+    if is_error(r101) goto L58 (error at <module>:262) else goto L45
 L45:
-    r96 = 'mypyc filler docstring'
-    r97 = '__doc__'
-    r98 = CPyDict_SetItem(r41, r97, r96)
-    r99 = r98 >= 0 :: signed
-    if not r99 goto L55 (error at <module>:11) else goto L46 :: bool
+    r102 = '__hash__'
+    r103 = CPyDict_SetItem(r54, r102, r101)
+    dec_ref r101
+    r104 = r103 >= 0 :: signed
+    if not r104 goto L58 (error at <module>:262) else goto L46 :: bool
 L46:
-    r100 = 'dictstruct._main'
-    r101 = '__module__'
-    r102 = CPyDict_SetItem(r41, r101, r100)
-    r103 = r102 >= 0 :: signed
-    if not r103 goto L55 (error at <module>:11) else goto L47 :: bool
+    r105 = 'DictStruct'
+    r106 = '__annotations__'
+    r107 = CPyDict_SetItem(r54, r106, r56)
+    dec_ref r56
+    r108 = r107 >= 0 :: signed
+    if not r108 goto L57 (error at <module>:13) else goto L47 :: bool
 L47:
-    r104 = [r92, r29, r41]
-    r105 = load_address r104
-    r106 = PyObject_Vectorcall(r31, r105, 3, 0)
-    if is_error(r106) goto L55 (error at <module>:11) else goto L48
+    r109 = 'mypyc filler docstring'
+    r110 = '__doc__'
+    r111 = CPyDict_SetItem(r54, r110, r109)
+    r112 = r111 >= 0 :: signed
+    if not r112 goto L57 (error at <module>:13) else goto L48 :: bool
 L48:
-    dec_ref r41
-    dec_ref r29
-    r107 = dictstruct._main.globals :: static
-    r108 = 'mypyc_attr'
-    r109 = CPyDict_GetItem(r107, r108)
-    if is_error(r109) goto L57 (error at <module>:10) else goto L49
+    r113 = 'dictstruct._main'
+    r114 = '__module__'
+    r115 = CPyDict_SetItem(r54, r114, r113)
+    r116 = r115 >= 0 :: signed
+    if not r116 goto L57 (error at <module>:13) else goto L49 :: bool
 L49:
-    r110 = box(bool, 0)
-    r111 = [r110]
-    r112 = load_address r111
-    r113 = ('native_class',)
-    r114 = PyObject_Vectorcall(r109, r112, 0, r113)
-    dec_ref r109
-    if is_error(r114) goto L57 (error at <module>:10) else goto L50
+    r117 = [r105, r42, r54]
+    r118 = load_address r117
+    r119 = PyObject_Vectorcall(r44, r118, 3, 0)
+    if is_error(r119) goto L57 (error at <module>:13) else goto L50
 L50:
-    r115 = [r106]
-    r116 = load_address r115
-    r117 = PyObject_Vectorcall(r114, r116, 1, 0)
-    dec_ref r114
-    if is_error(r117) goto L57 (error at <module>:11) else goto L51
+    dec_ref r54
+    dec_ref r42
+    r120 = dictstruct._main.globals :: static
+    r121 = 'mypyc_attr'
+    r122 = CPyDict_GetItem(r120, r121)
+    if is_error(r122) goto L59 (error at <module>:12) else goto L51
 L51:
-    dec_ref r106
-    dictstruct._main.DictStruct = r117 :: type
-    r118 = dictstruct._main.globals :: static
-    r119 = 'DictStruct'
-    r120 = CPyDict_SetItem(r118, r119, r117)
-    dec_ref r117
-    r121 = r120 >= 0 :: signed
-    if not r121 goto L53 (error at <module>:11) else goto L52 :: bool
+    r123 = box(bool, 0)
+    r124 = [r123]
+    r125 = load_address r124
+    r126 = ('native_class',)
+    r127 = PyObject_Vectorcall(r122, r125, 0, r126)
+    dec_ref r122
+    if is_error(r127) goto L59 (error at <module>:12) else goto L52
 L52:
-    r122 = dictstruct._main.DictStruct :: type
-    return 1
+    r128 = [r119]
+    r129 = load_address r128
+    r130 = PyObject_Vectorcall(r127, r129, 1, 0)
+    dec_ref r127
+    if is_error(r130) goto L59 (error at <module>:13) else goto L53
 L53:
-    r123 = <error> :: None
-    return r123
+    dec_ref r119
+    dictstruct._main.DictStruct = r130 :: type
+    r131 = dictstruct._main.globals :: static
+    r132 = 'DictStruct'
+    r133 = CPyDict_SetItem(r131, r132, r130)
+    dec_ref r130
+    r134 = r133 >= 0 :: signed
+    if not r134 goto L55 (error at <module>:13) else goto L54 :: bool
 L54:
-    dec_ref r29
-    goto L53
+    r135 = dictstruct._main.DictStruct :: type
+    return 1
 L55:
-    dec_ref r29
-    dec_ref r41
-    goto L53
+    r136 = <error> :: None
+    return r136
 L56:
-    dec_ref r29
-    dec_ref r41
-    dec_ref r43
-    goto L53
+    dec_ref r42
+    goto L55
 L57:
-    dec_ref r106
-    goto L53
+    dec_ref r42
+    dec_ref r54
+    goto L55
+L58:
+    dec_ref r42
+    dec_ref r54
+    dec_ref r56
+    goto L55
+L59:
+    dec_ref r119
+    goto L55

@@ -1,14 +1,16 @@
 from typing import Any, Final, Iterator, Literal, Tuple
 
-from msgspec import UNSET, Struct
+import msgspec
 from mypy_extensions import mypyc_attr
 
+
+UNSET: Final = msgspec.UNSET
 
 _getattribute: Final = object.__getattribute__
 
 
 @mypyc_attr(native_class=False)
-class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
+class DictStruct(msgspec.Struct, dict=True):  # type: ignore [call-arg, misc]
     """
     A base class that extends the :class:`msgspec.Struct` class to be compatible with the standard python dictionary API.
 
