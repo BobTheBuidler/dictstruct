@@ -7513,7 +7513,7 @@ fail: ;
 
 PyObject *CPyDef__main_____getitem___3_DictStruct_obj_____call__(PyObject *cpy_r___mypyc_self__, PyObject *cpy_r_self, PyObject *cpy_r_attr) {
     PyObject *cpy_r_r0;
-    PyObject *cpy_r_r1;
+    char cpy_r_r1;
     PyObject **cpy_r_r3;
     PyObject *cpy_r_r4;
     tuple_T3OOO cpy_r_r5;
@@ -7529,36 +7529,52 @@ PyObject *CPyDef__main_____getitem___3_DictStruct_obj_____call__(PyObject *cpy_r
     PyObject *cpy_r_r16;
     char cpy_r_r17;
     PyObject *cpy_r_r18;
-    cpy_r_r0 = (PyObject *)CPyType__main___DictStruct;
-    cpy_r_r1 = CPyStatics[40]; /* '__getattribute__' */
-    PyObject *cpy_r_r2[3] = {cpy_r_r0, cpy_r_self, cpy_r_attr};
+    char cpy_r_r19;
+    char cpy_r_r20;
+    PyObject *cpy_r_r21;
+    PyObject *cpy_r_r22;
+    PyObject *cpy_r_r23;
+    PyObject **cpy_r_r25;
+    PyObject *cpy_r_r26;
+    PyObject *cpy_r_r27;
+    cpy_r_r0 = CPyStatic__main____getattribute;
+    if (likely(cpy_r_r0 != NULL)) goto CPyL4;
+    PyErr_SetString(PyExc_NameError, "value for final name \"_getattribute\" was not set");
+    cpy_r_r1 = 0;
+    if (unlikely(!cpy_r_r1)) {
+        CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 117, CPyStatic__main___globals);
+        goto CPyL6;
+    }
+    CPy_Unreachable();
+CPyL4: ;
+    PyObject *cpy_r_r2[2] = {cpy_r_self, cpy_r_attr};
     cpy_r_r3 = (PyObject **)&cpy_r_r2;
-    cpy_r_r4 = PyObject_VectorcallMethod(cpy_r_r1, cpy_r_r3, 9223372036854775811ULL, 0);
+    cpy_r_r4 = PyObject_Vectorcall(cpy_r_r0, cpy_r_r3, 2, 0);
     if (unlikely(cpy_r_r4 == NULL)) {
         CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 117, CPyStatic__main___globals);
-        goto CPyL3;
+        goto CPyL6;
     }
-    return cpy_r_r4;
-CPyL3: ;
+    goto CPyL16;
+CPyL6: ;
     cpy_r_r5 = CPy_CatchError();
     cpy_r_r6 = CPyModule_builtins;
     cpy_r_r7 = CPyStatics[14]; /* 'AttributeError' */
     cpy_r_r8 = CPyObject_GetAttr(cpy_r_r6, cpy_r_r7);
     if (unlikely(cpy_r_r8 == NULL)) {
         CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 118, CPyStatic__main___globals);
-        goto CPyL11;
+        goto CPyL14;
     }
     cpy_r_r9 = CPy_ExceptionMatches(cpy_r_r8);
     CPy_DecRef(cpy_r_r8);
-    if (!cpy_r_r9) goto CPyL9;
+    if (!cpy_r_r9) goto CPyL12;
     cpy_r_r10 = CPy_GetExcValue();
     CPy_DecRef(cpy_r_r10);
     cpy_r_r11 = CPyModule_builtins;
-    cpy_r_r12 = CPyStatics[41]; /* 'KeyError' */
+    cpy_r_r12 = CPyStatics[40]; /* 'KeyError' */
     cpy_r_r13 = CPyObject_GetAttr(cpy_r_r11, cpy_r_r12);
     if (unlikely(cpy_r_r13 == NULL)) {
         CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 119, CPyStatic__main___globals);
-        goto CPyL11;
+        goto CPyL14;
     }
     PyObject *cpy_r_r14[2] = {cpy_r_attr, cpy_r_self};
     cpy_r_r15 = (PyObject **)&cpy_r_r14;
@@ -7566,46 +7582,97 @@ CPyL3: ;
     CPy_DecRef(cpy_r_r13);
     if (unlikely(cpy_r_r16 == NULL)) {
         CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 119, CPyStatic__main___globals);
-        goto CPyL11;
+        goto CPyL14;
     }
     CPy_Raise(cpy_r_r16);
     CPy_DecRef(cpy_r_r16);
     if (unlikely(!0)) {
         CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 119, CPyStatic__main___globals);
-        goto CPyL11;
-    } else
         goto CPyL14;
-CPyL8: ;
+    } else
+        goto CPyL26;
+CPyL11: ;
     CPy_Unreachable();
-CPyL9: ;
+CPyL12: ;
     CPy_Reraise();
     if (!0) {
-        goto CPyL11;
+        goto CPyL14;
     } else
-        goto CPyL15;
-CPyL10: ;
+        goto CPyL27;
+CPyL13: ;
     CPy_Unreachable();
-CPyL11: ;
+CPyL14: ;
     CPy_RestoreExcInfo(cpy_r_r5);
     CPy_DecRef(cpy_r_r5.f0);
     CPy_DecRef(cpy_r_r5.f1);
     CPy_DecRef(cpy_r_r5.f2);
     cpy_r_r17 = CPy_KeepPropagating();
-    if (!cpy_r_r17) goto CPyL13;
+    if (!cpy_r_r17) goto CPyL25;
     CPy_Unreachable();
-CPyL13: ;
-    cpy_r_r18 = NULL;
-    return cpy_r_r18;
-CPyL14: ;
+CPyL16: ;
+    cpy_r_r18 = CPyStatic__main___UNSET;
+    if (unlikely(cpy_r_r18 == NULL)) {
+        goto CPyL28;
+    } else
+        goto CPyL19;
+CPyL17: ;
+    PyErr_SetString(PyExc_NameError, "value for final name \"UNSET\" was not set");
+    cpy_r_r19 = 0;
+    if (unlikely(!cpy_r_r19)) {
+        CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 120, CPyStatic__main___globals);
+        goto CPyL25;
+    }
+    CPy_Unreachable();
+CPyL19: ;
+    cpy_r_r20 = cpy_r_r4 == cpy_r_r18;
+    if (cpy_r_r20) {
+        goto CPyL29;
+    } else
+        goto CPyL24;
+CPyL20: ;
+    cpy_r_r21 = CPyModule_builtins;
+    cpy_r_r22 = CPyStatics[40]; /* 'KeyError' */
+    cpy_r_r23 = CPyObject_GetAttr(cpy_r_r21, cpy_r_r22);
+    if (unlikely(cpy_r_r23 == NULL)) {
+        CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 121, CPyStatic__main___globals);
+        goto CPyL25;
+    }
+    PyObject *cpy_r_r24[2] = {cpy_r_attr, cpy_r_self};
+    cpy_r_r25 = (PyObject **)&cpy_r_r24;
+    cpy_r_r26 = PyObject_Vectorcall(cpy_r_r23, cpy_r_r25, 2, 0);
+    CPy_DECREF(cpy_r_r23);
+    if (unlikely(cpy_r_r26 == NULL)) {
+        CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 121, CPyStatic__main___globals);
+        goto CPyL25;
+    }
+    CPy_Raise(cpy_r_r26);
+    CPy_DECREF(cpy_r_r26);
+    if (unlikely(!0)) {
+        CPy_AddTraceback("dictstruct/_main.py", "__getitem__", 121, CPyStatic__main___globals);
+        goto CPyL25;
+    }
+    CPy_Unreachable();
+CPyL24: ;
+    return cpy_r_r4;
+CPyL25: ;
+    cpy_r_r27 = NULL;
+    return cpy_r_r27;
+CPyL26: ;
     CPy_DecRef(cpy_r_r5.f0);
     CPy_DecRef(cpy_r_r5.f1);
     CPy_DecRef(cpy_r_r5.f2);
-    goto CPyL8;
-CPyL15: ;
+    goto CPyL11;
+CPyL27: ;
     CPy_DecRef(cpy_r_r5.f0);
     CPy_DecRef(cpy_r_r5.f1);
     CPy_DecRef(cpy_r_r5.f2);
-    goto CPyL10;
+    goto CPyL13;
+CPyL28: ;
+    CPy_DecRef(cpy_r_r4);
+    goto CPyL17;
+CPyL29: ;
+    CPy_DECREF(cpy_r_r4);
+    goto CPyL20;
 }
 
 PyObject *CPyPy__main_____getitem___3_DictStruct_obj_____call__(PyObject *self, PyObject *const *args, size_t nargs, PyObject *kwnames) {
@@ -7704,7 +7771,7 @@ PyObject *CPyDef__main_____getattribute___3_DictStruct_obj_____call__(PyObject *
     PyErr_SetString(PyExc_NameError, "value for final name \"_getattribute\" was not set");
     cpy_r_r1 = 0;
     if (unlikely(!cpy_r_r1)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 143, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 146, CPyStatic__main___globals);
         goto CPyL16;
     }
     CPy_Unreachable();
@@ -7713,7 +7780,7 @@ CPyL3: ;
     cpy_r_r3 = (PyObject **)&cpy_r_r2;
     cpy_r_r4 = PyObject_Vectorcall(cpy_r_r0, cpy_r_r3, 2, 0);
     if (unlikely(cpy_r_r4 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 143, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 146, CPyStatic__main___globals);
         goto CPyL16;
     }
     cpy_r_r5 = CPyStatic__main___UNSET;
@@ -7725,7 +7792,7 @@ CPyL5: ;
     PyErr_SetString(PyExc_NameError, "value for final name \"UNSET\" was not set");
     cpy_r_r6 = 0;
     if (unlikely(!cpy_r_r6)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 144, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 147, CPyStatic__main___globals);
         goto CPyL16;
     }
     CPy_Unreachable();
@@ -7736,34 +7803,34 @@ CPyL7: ;
     } else
         goto CPyL15;
 CPyL8: ;
-    cpy_r_r8 = CPyStatics[42]; /* "'" */
+    cpy_r_r8 = CPyStatics[41]; /* "'" */
     cpy_r_r9 = PyObject_Type(cpy_r_self);
     cpy_r_r10 = CPyStatics[11]; /* '__name__' */
     cpy_r_r11 = CPyObject_GetAttr(cpy_r_r9, cpy_r_r10);
     CPy_DECREF(cpy_r_r9);
     if (unlikely(cpy_r_r11 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 146, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 149, CPyStatic__main___globals);
         goto CPyL16;
     }
     if (likely(PyUnicode_Check(cpy_r_r11)))
         cpy_r_r12 = cpy_r_r11;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__getattribute__", 146, CPyStatic__main___globals, "str", cpy_r_r11);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__getattribute__", 149, CPyStatic__main___globals, "str", cpy_r_r11);
         goto CPyL16;
     }
-    cpy_r_r13 = CPyStatics[43]; /* "' object has no attribute '" */
-    cpy_r_r14 = CPyStatics[42]; /* "'" */
+    cpy_r_r13 = CPyStatics[42]; /* "' object has no attribute '" */
+    cpy_r_r14 = CPyStatics[41]; /* "'" */
     cpy_r_r15 = CPyStr_Build(5, cpy_r_r8, cpy_r_r12, cpy_r_r13, cpy_r_attr, cpy_r_r14);
     CPy_DECREF(cpy_r_r12);
     if (unlikely(cpy_r_r15 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 146, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 149, CPyStatic__main___globals);
         goto CPyL16;
     }
     cpy_r_r16 = CPyModule_builtins;
     cpy_r_r17 = CPyStatics[14]; /* 'AttributeError' */
     cpy_r_r18 = CPyObject_GetAttr(cpy_r_r16, cpy_r_r17);
     if (unlikely(cpy_r_r18 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 145, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 148, CPyStatic__main___globals);
         goto CPyL19;
     }
     PyObject *cpy_r_r19[1] = {cpy_r_r15};
@@ -7771,14 +7838,14 @@ CPyL8: ;
     cpy_r_r21 = PyObject_Vectorcall(cpy_r_r18, cpy_r_r20, 1, 0);
     CPy_DECREF(cpy_r_r18);
     if (unlikely(cpy_r_r21 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 145, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 148, CPyStatic__main___globals);
         goto CPyL19;
     }
     CPy_DECREF(cpy_r_r15);
     CPy_Raise(cpy_r_r21);
     CPy_DECREF(cpy_r_r21);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 145, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 148, CPyStatic__main___globals);
         goto CPyL16;
     }
     CPy_Unreachable();
@@ -7825,7 +7892,7 @@ PyObject *CPyPy__main_____getattribute___3_DictStruct_obj_____call__(PyObject *s
     PyObject *retval = CPyDef__main_____getattribute___3_DictStruct_obj_____call__(arg___mypyc_self__, arg_self, arg_attr);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 121, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "__getattribute__", 124, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -7892,7 +7959,7 @@ char CPyDef__main_____setitem___3_DictStruct_obj_____call__(PyObject *cpy_r___my
     cpy_r_r0 = PyObject_SetAttr(cpy_r_self, cpy_r_attr, cpy_r_value);
     cpy_r_r1 = cpy_r_r0 >= 0;
     if (unlikely(!cpy_r_r1)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 176, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 179, CPyStatic__main___globals);
     } else
         goto CPyL18;
     cpy_r_r2 = CPy_CatchError();
@@ -7900,42 +7967,42 @@ char CPyDef__main_____setitem___3_DictStruct_obj_____call__(PyObject *cpy_r___my
     cpy_r_r4 = CPyStatics[14]; /* 'AttributeError' */
     cpy_r_r5 = CPyObject_GetAttr(cpy_r_r3, cpy_r_r4);
     if (unlikely(cpy_r_r5 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 177, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 180, CPyStatic__main___globals);
         goto CPyL16;
     }
     cpy_r_r6 = CPy_ExceptionMatches(cpy_r_r5);
     CPy_DecRef(cpy_r_r5);
     if (!cpy_r_r6) goto CPyL14;
     cpy_r_r7 = CPy_GetExcValue();
-    cpy_r_r8 = CPyStatics[44]; /* 'args' */
+    cpy_r_r8 = CPyStatics[43]; /* 'args' */
     cpy_r_r9 = CPyObject_GetAttr(cpy_r_r7, cpy_r_r8);
     CPy_DecRef(cpy_r_r7);
     if (unlikely(cpy_r_r9 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals);
         goto CPyL16;
     }
     if (likely(PyTuple_Check(cpy_r_r9)))
         cpy_r_r10 = cpy_r_r9;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals, "tuple", cpy_r_r9);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals, "tuple", cpy_r_r9);
         goto CPyL16;
     }
     cpy_r_r11 = CPyModule_builtins;
-    cpy_r_r12 = CPyStatics[45]; /* 'TypeError' */
+    cpy_r_r12 = CPyStatics[44]; /* 'TypeError' */
     cpy_r_r13 = CPyObject_GetAttr(cpy_r_r11, cpy_r_r12);
     if (unlikely(cpy_r_r13 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals);
         goto CPyL20;
     }
     cpy_r_r14 = PyList_New(0);
     if (unlikely(cpy_r_r14 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals);
         goto CPyL21;
     }
     cpy_r_r15 = CPyList_Extend(cpy_r_r14, cpy_r_r10);
     CPy_DecRef(cpy_r_r10);
     if (unlikely(cpy_r_r15 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals);
         goto CPyL22;
     } else
         goto CPyL23;
@@ -7943,12 +8010,12 @@ CPyL9: ;
     cpy_r_r16 = PyList_AsTuple(cpy_r_r14);
     CPy_DecRef(cpy_r_r14);
     if (unlikely(cpy_r_r16 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals);
         goto CPyL24;
     }
     cpy_r_r17 = PyDict_New();
     if (unlikely(cpy_r_r17 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals);
         goto CPyL25;
     }
     cpy_r_r18 = PyObject_Call(cpy_r_r13, cpy_r_r16, cpy_r_r17);
@@ -7956,13 +8023,13 @@ CPyL9: ;
     CPy_DecRef(cpy_r_r16);
     CPy_DecRef(cpy_r_r17);
     if (unlikely(cpy_r_r18 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals);
         goto CPyL16;
     }
     CPy_Raise(cpy_r_r18);
     CPy_DecRef(cpy_r_r18);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 178, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 181, CPyStatic__main___globals);
         goto CPyL16;
     } else
         goto CPyL26;
@@ -8056,7 +8123,7 @@ PyObject *CPyPy__main_____setitem___3_DictStruct_obj_____call__(PyObject *self, 
     CPy_INCREF(retbox);
     return retbox;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 150, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "__setitem__", 153, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -8146,14 +8213,14 @@ PyObject *CPyDef__main_____iter___3_DictStruct_gen_____mypyc_generator_helper__(
     PyObject *cpy_r_r44;
     cpy_r_r0 = ((dictstruct____main_____iter___3_DictStruct_genObject *)cpy_r___mypyc_self__)->___mypyc_env__;
     if (unlikely(cpy_r_r0 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_gen", "__mypyc_env__", 180, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_gen", "__mypyc_env__", 183, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_INCREF_NO_IMM(cpy_r_r0);
 CPyL1: ;
     cpy_r_r1 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_next_label__;
     if (unlikely(cpy_r_r1 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_next_label__", 180, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_next_label__", 183, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPyTagged_INCREF(cpy_r_r1);
@@ -8168,14 +8235,14 @@ CPyL2: ;
 CPyL3: ;
     CPyErr_SetObjectAndTraceback(cpy_r_type, cpy_r_value, cpy_r_traceback);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
 CPyL5: ;
     cpy_r_r4 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_self;
     if (unlikely(cpy_r_r4 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "self", 195, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "self", 198, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF_NO_IMM(cpy_r_r4);
@@ -8184,13 +8251,13 @@ CPyL6: ;
     cpy_r_r6 = CPyObject_GetAttr(cpy_r_r4, cpy_r_r5);
     CPy_DECREF_NO_IMM(cpy_r_r4);
     if (unlikely(cpy_r_r6 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 195, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 198, CPyStatic__main___globals);
         goto CPyL46;
     }
     if (likely(PyTuple_Check(cpy_r_r6)))
         cpy_r_r7 = cpy_r_r6;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__iter__", 195, CPyStatic__main___globals, "tuple", cpy_r_r6);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__iter__", 198, CPyStatic__main___globals, "tuple", cpy_r_r6);
         goto CPyL46;
     }
     if (((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__0 != NULL) {
@@ -8211,7 +8278,7 @@ CPyL6: ;
 CPyL10: ;
     cpy_r_r10 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__0;
     if (unlikely(cpy_r_r10 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__0", 195, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__0", 198, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF(cpy_r_r10);
@@ -8222,7 +8289,7 @@ CPyL11: ;
     cpy_r_r13 = cpy_r_r12 << 1;
     cpy_r_r14 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__1;
     if (unlikely(cpy_r_r14 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__1", 195, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__1", 198, CPyStatic__main___globals);
         goto CPyL46;
     }
 CPyL12: ;
@@ -8230,27 +8297,27 @@ CPyL12: ;
     if (!cpy_r_r15) goto CPyL38;
     cpy_r_r16 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__0;
     if (unlikely(cpy_r_r16 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__0", 195, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__0", 198, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF(cpy_r_r16);
 CPyL14: ;
     cpy_r_r17 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__1;
     if (unlikely(cpy_r_r17 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__1", 195, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__1", 198, CPyStatic__main___globals);
         goto CPyL48;
     }
 CPyL15: ;
     cpy_r_r18 = CPySequenceTuple_GetItem(cpy_r_r16, cpy_r_r17);
     CPy_DECREF(cpy_r_r16);
     if (unlikely(cpy_r_r18 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 195, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 198, CPyStatic__main___globals);
         goto CPyL46;
     }
     if (likely(PyUnicode_Check(cpy_r_r18)))
         cpy_r_r19 = cpy_r_r18;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__iter__", 195, CPyStatic__main___globals, "str", cpy_r_r18);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__iter__", 198, CPyStatic__main___globals, "str", cpy_r_r18);
         goto CPyL46;
     }
     if (((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_field != NULL) {
@@ -8259,19 +8326,19 @@ CPyL15: ;
     ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_field = cpy_r_r19;
     cpy_r_r20 = 1;
     if (unlikely(!cpy_r_r20)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 195, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 198, CPyStatic__main___globals);
         goto CPyL46;
     }
     cpy_r_r21 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_self;
     if (unlikely(cpy_r_r21 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "self", 196, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "self", 199, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF_NO_IMM(cpy_r_r21);
 CPyL19: ;
     cpy_r_r22 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_field;
     if (unlikely(cpy_r_r22 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "field", 196, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "field", 199, CPyStatic__main___globals);
         goto CPyL49;
     }
     CPy_INCREF(cpy_r_r22);
@@ -8285,7 +8352,7 @@ CPyL21: ;
     PyErr_SetString(PyExc_NameError, "value for final name \"UNSET\" was not set");
     cpy_r_r24 = 0;
     if (unlikely(!cpy_r_r24)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 196, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 199, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
@@ -8294,7 +8361,7 @@ CPyL23: ;
     CPy_DECREF_NO_IMM(cpy_r_r21);
     CPy_DECREF(cpy_r_r22);
     if (unlikely(cpy_r_r25 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 196, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 199, CPyStatic__main___globals);
         goto CPyL46;
     }
     if (((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_value != NULL) {
@@ -8303,12 +8370,12 @@ CPyL23: ;
     ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_value = cpy_r_r25;
     cpy_r_r26 = 1;
     if (unlikely(!cpy_r_r26)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 196, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 199, CPyStatic__main___globals);
         goto CPyL46;
     }
     cpy_r_r27 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_value;
     if (unlikely(cpy_r_r27 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "value", 197, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "value", 200, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF(cpy_r_r27);
@@ -8322,7 +8389,7 @@ CPyL27: ;
     PyErr_SetString(PyExc_NameError, "value for final name \"UNSET\" was not set");
     cpy_r_r29 = 0;
     if (unlikely(!cpy_r_r29)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 197, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 200, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
@@ -8333,7 +8400,7 @@ CPyL29: ;
     if (!cpy_r_r31) goto CPyL36;
     cpy_r_r32 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_field;
     if (unlikely(cpy_r_r32 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "field", 198, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "field", 201, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF(cpy_r_r32);
@@ -8345,7 +8412,7 @@ CPyL31: ;
     cpy_r_r33 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r33)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 198, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 201, CPyStatic__main___globals);
         goto CPyL52;
     }
     return cpy_r_r32;
@@ -8359,14 +8426,14 @@ CPyL33: ;
 CPyL34: ;
     CPyErr_SetObjectAndTraceback(cpy_r_type, cpy_r_value, cpy_r_traceback);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 198, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 201, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
 CPyL36: ;
     cpy_r_r36 = ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__1;
     if (unlikely(cpy_r_r36 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__1", 195, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "__iter__", "__iter___DictStruct_env", "__mypyc_temp__1", 198, CPyStatic__main___globals);
         goto CPyL46;
     }
 CPyL37: ;
@@ -8374,7 +8441,7 @@ CPyL37: ;
     ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__1 = cpy_r_r37;
     cpy_r_r38 = 1;
     if (unlikely(!cpy_r_r38)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 195, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 198, CPyStatic__main___globals);
         goto CPyL46;
     } else
         goto CPyL10;
@@ -8387,7 +8454,7 @@ CPyL38: ;
     cpy_r_r40 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r40)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPyGen_SetStopIterationValue(cpy_r_r39);
@@ -8406,7 +8473,7 @@ CPyL43: ;
     PyErr_SetNone(PyExc_StopIteration);
     cpy_r_r43 = 0;
     if (unlikely(!cpy_r_r43)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
@@ -8469,7 +8536,7 @@ PyObject *CPyPy__main_____iter___3_DictStruct_gen_____mypyc_generator_helper__(P
     PyObject *retval = CPyDef__main_____iter___3_DictStruct_gen_____mypyc_generator_helper__(arg___mypyc_self__, arg_type, arg_value, arg_traceback, arg_arg);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -8744,7 +8811,7 @@ PyObject *CPyDef__main_____iter___3_DictStruct_obj_____call__(PyObject *cpy_r___
     PyObject *cpy_r_r5;
     cpy_r_r0 = CPyDef__main_____iter___3_DictStruct_env();
     if (unlikely(cpy_r_r0 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
         goto CPyL6;
     }
     CPy_INCREF_NO_IMM(cpy_r_self);
@@ -8754,12 +8821,12 @@ PyObject *CPyDef__main_____iter___3_DictStruct_obj_____call__(PyObject *cpy_r___
     ((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->_self = cpy_r_self;
     cpy_r_r1 = 1;
     if (unlikely(!cpy_r_r1)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
         goto CPyL7;
     }
     cpy_r_r2 = CPyDef__main_____iter___3_DictStruct_gen();
     if (unlikely(cpy_r_r2 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
         goto CPyL7;
     }
     CPy_INCREF_NO_IMM(cpy_r_r0);
@@ -8769,7 +8836,7 @@ PyObject *CPyDef__main_____iter___3_DictStruct_obj_____call__(PyObject *cpy_r___
     ((dictstruct____main_____iter___3_DictStruct_genObject *)cpy_r_r2)->___mypyc_env__ = cpy_r_r0;
     cpy_r_r3 = 1;
     if (unlikely(!cpy_r_r3)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
         goto CPyL8;
     }
     if (((dictstruct____main_____iter___3_DictStruct_envObject *)cpy_r_r0)->___mypyc_next_label__ != CPY_INT_TAG) {
@@ -8779,7 +8846,7 @@ PyObject *CPyDef__main_____iter___3_DictStruct_obj_____call__(PyObject *cpy_r___
     cpy_r_r4 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r4)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
         goto CPyL9;
     }
     return cpy_r_r2;
@@ -8817,7 +8884,7 @@ PyObject *CPyPy__main_____iter___3_DictStruct_obj_____call__(PyObject *self, PyO
     PyObject *retval = CPyDef__main_____iter___3_DictStruct_obj_____call__(arg___mypyc_self__, arg_self);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "__iter__", 180, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "__iter__", 183, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -8873,12 +8940,12 @@ CPyTagged CPyDef__main_____len___3_DictStruct_obj_____call__(PyObject *cpy_r___m
     CPyTagged cpy_r_r10;
     cpy_r_r0 = PyList_New(0);
     if (unlikely(cpy_r_r0 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__len__", 212, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__len__", 215, CPyStatic__main___globals);
         goto CPyL7;
     }
     cpy_r_r1 = PyObject_GetIter(cpy_r_self);
     if (unlikely(cpy_r_r1 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__len__", 212, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__len__", 215, CPyStatic__main___globals);
         goto CPyL8;
     }
 CPyL2: ;
@@ -8887,7 +8954,7 @@ CPyL2: ;
     if (likely(PyUnicode_Check(cpy_r_r2)))
         cpy_r_r3 = cpy_r_r2;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__len__", 212, CPyStatic__main___globals, "str", cpy_r_r2);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__len__", 215, CPyStatic__main___globals, "str", cpy_r_r2);
         goto CPyL10;
     }
     CPy_INCREF(cpy_r_r3);
@@ -8896,14 +8963,14 @@ CPyL2: ;
     CPy_DECREF(cpy_r_r3);
     cpy_r_r5 = cpy_r_r4 >= 0;
     if (unlikely(!cpy_r_r5)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__len__", 212, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__len__", 215, CPyStatic__main___globals);
         goto CPyL11;
     } else
         goto CPyL2;
 CPyL5: ;
     cpy_r_r6 = CPy_NoErrOccurred();
     if (unlikely(!cpy_r_r6)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__len__", 212, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__len__", 215, CPyStatic__main___globals);
         goto CPyL8;
     }
     cpy_r_r7 = (CPyPtr)&((PyVarObject *)cpy_r_r0)->ob_size;
@@ -8954,7 +9021,7 @@ PyObject *CPyPy__main_____len___3_DictStruct_obj_____call__(PyObject *self, PyOb
     PyObject *retbox = CPyTagged_StealAsObject(retval);
     return retbox;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "__len__", 200, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "__len__", 203, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -9036,14 +9103,14 @@ PyObject *CPyDef__main___keys_DictStruct_gen_____mypyc_generator_helper__(PyObje
     cpy_r_r1 = cpy_r_r0;
     cpy_r_r2 = ((dictstruct____main___keys_DictStruct_genObject *)cpy_r___mypyc_self__)->___mypyc_env__;
     if (unlikely(cpy_r_r2 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "keys", "keys_DictStruct_gen", "__mypyc_env__", 214, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "keys", "keys_DictStruct_gen", "__mypyc_env__", 217, CPyStatic__main___globals);
         goto CPyL43;
     }
     CPy_INCREF_NO_IMM(cpy_r_r2);
 CPyL1: ;
     cpy_r_r3 = ((dictstruct____main___keys_DictStruct_envObject *)cpy_r_r2)->___mypyc_next_label__;
     if (unlikely(cpy_r_r3 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "keys", "keys_DictStruct_env", "__mypyc_next_label__", 214, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "keys", "keys_DictStruct_env", "__mypyc_next_label__", 217, CPyStatic__main___globals);
         goto CPyL44;
     }
     CPyTagged_INCREF(cpy_r_r3);
@@ -9058,14 +9125,14 @@ CPyL2: ;
 CPyL3: ;
     CPyErr_SetObjectAndTraceback(cpy_r_type, cpy_r_value, cpy_r_traceback);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
         goto CPyL42;
     }
     CPy_Unreachable();
 CPyL5: ;
     cpy_r_r6 = ((dictstruct____main___keys_DictStruct_envObject *)cpy_r_r2)->_self;
     if (unlikely(cpy_r_r6 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "keys", "keys_DictStruct_env", "self", 226, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "keys", "keys_DictStruct_env", "self", 229, CPyStatic__main___globals);
         goto CPyL44;
     }
     CPy_INCREF_NO_IMM(cpy_r_r6);
@@ -9073,7 +9140,7 @@ CPyL6: ;
     cpy_r_r7 = PyObject_GetIter(cpy_r_r6);
     CPy_DECREF_NO_IMM(cpy_r_r6);
     if (unlikely(cpy_r_r7 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 226, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 229, CPyStatic__main___globals);
         goto CPyL44;
     }
     if (((dictstruct____main___keys_DictStruct_envObject *)cpy_r_r2)->___mypyc_temp__2 != NULL) {
@@ -9101,7 +9168,7 @@ CPyL9: ;
 CPyL10: ;
     cpy_r_r11 = CPy_FetchStopIterationValue();
     if (unlikely(cpy_r_r11 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 226, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 229, CPyStatic__main___globals);
         goto CPyL47;
     }
     cpy_r_r12 = cpy_r_r11;
@@ -9116,7 +9183,7 @@ CPyL13: ;
     ((dictstruct____main___keys_DictStruct_envObject *)cpy_r_r2)->___mypyc_next_label__ = 2;
     cpy_r_r14 = 1;
     if (unlikely(!cpy_r_r14)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 226, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 229, CPyStatic__main___globals);
         goto CPyL48;
     } else
         goto CPyL49;
@@ -9128,7 +9195,7 @@ CPyL15: ;
     if (!cpy_r_r16) goto CPyL18;
     CPyErr_SetObjectAndTraceback(cpy_r_type, cpy_r_value, cpy_r_traceback);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 226, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 229, CPyStatic__main___globals);
         goto CPyL19;
     } else
         goto CPyL50;
@@ -9161,7 +9228,7 @@ CPyL21: ;
     cpy_r_r21 = CPy_YieldFromErrorHandle(cpy_r_r20, cpy_r_r19);
     CPy_DecRef(cpy_r_r20);
     if (unlikely(cpy_r_r21 == 2)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 226, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 229, CPyStatic__main___globals);
         goto CPyL51;
     }
     if (cpy_r_r21) goto CPyL25;
@@ -9237,7 +9304,7 @@ CPyL31: ;
 CPyL33: ;
     cpy_r_r28 = CPy_FetchStopIterationValue();
     if (unlikely(cpy_r_r28 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 226, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 229, CPyStatic__main___globals);
         goto CPyL47;
     }
     cpy_r_r12 = cpy_r_r28;
@@ -9251,7 +9318,7 @@ CPyL35: ;
     cpy_r_r30 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r2);
     if (unlikely(!cpy_r_r30)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
         goto CPyL42;
     }
     CPyGen_SetStopIterationValue(cpy_r_r29);
@@ -9270,7 +9337,7 @@ CPyL40: ;
     PyErr_SetNone(PyExc_StopIteration);
     cpy_r_r33 = 0;
     if (unlikely(!cpy_r_r33)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
         goto CPyL42;
     }
     CPy_Unreachable();
@@ -9348,7 +9415,7 @@ PyObject *CPyPy__main___keys_DictStruct_gen_____mypyc_generator_helper__(PyObjec
     PyObject *retval = CPyDef__main___keys_DictStruct_gen_____mypyc_generator_helper__(arg___mypyc_self__, arg_type, arg_value, arg_traceback, arg_arg);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -9623,7 +9690,7 @@ PyObject *CPyDef__main___keys_DictStruct_obj_____call__(PyObject *cpy_r___mypyc_
     PyObject *cpy_r_r5;
     cpy_r_r0 = CPyDef__main___keys_DictStruct_env();
     if (unlikely(cpy_r_r0 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
         goto CPyL6;
     }
     CPy_INCREF_NO_IMM(cpy_r_self);
@@ -9633,12 +9700,12 @@ PyObject *CPyDef__main___keys_DictStruct_obj_____call__(PyObject *cpy_r___mypyc_
     ((dictstruct____main___keys_DictStruct_envObject *)cpy_r_r0)->_self = cpy_r_self;
     cpy_r_r1 = 1;
     if (unlikely(!cpy_r_r1)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
         goto CPyL7;
     }
     cpy_r_r2 = CPyDef__main___keys_DictStruct_gen();
     if (unlikely(cpy_r_r2 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
         goto CPyL7;
     }
     CPy_INCREF_NO_IMM(cpy_r_r0);
@@ -9648,7 +9715,7 @@ PyObject *CPyDef__main___keys_DictStruct_obj_____call__(PyObject *cpy_r___mypyc_
     ((dictstruct____main___keys_DictStruct_genObject *)cpy_r_r2)->___mypyc_env__ = cpy_r_r0;
     cpy_r_r3 = 1;
     if (unlikely(!cpy_r_r3)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
         goto CPyL8;
     }
     if (((dictstruct____main___keys_DictStruct_envObject *)cpy_r_r0)->___mypyc_next_label__ != CPY_INT_TAG) {
@@ -9658,7 +9725,7 @@ PyObject *CPyDef__main___keys_DictStruct_obj_____call__(PyObject *cpy_r___mypyc_
     cpy_r_r4 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r4)) {
-        CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
         goto CPyL9;
     }
     return cpy_r_r2;
@@ -9696,7 +9763,7 @@ PyObject *CPyPy__main___keys_DictStruct_obj_____call__(PyObject *self, PyObject 
     PyObject *retval = CPyDef__main___keys_DictStruct_obj_____call__(arg___mypyc_self__, arg_self);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "keys", 214, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "keys", 217, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -9789,14 +9856,14 @@ PyObject *CPyDef__main___items_DictStruct_gen_____mypyc_generator_helper__(PyObj
     PyObject *cpy_r_r47;
     cpy_r_r0 = ((dictstruct____main___items_DictStruct_genObject *)cpy_r___mypyc_self__)->___mypyc_env__;
     if (unlikely(cpy_r_r0 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_gen", "__mypyc_env__", 228, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_gen", "__mypyc_env__", 231, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF_NO_IMM(cpy_r_r0);
 CPyL1: ;
     cpy_r_r1 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_next_label__;
     if (unlikely(cpy_r_r1 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_next_label__", 228, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_next_label__", 231, CPyStatic__main___globals);
         goto CPyL47;
     }
     CPyTagged_INCREF(cpy_r_r1);
@@ -9811,14 +9878,14 @@ CPyL2: ;
 CPyL3: ;
     CPyErr_SetObjectAndTraceback(cpy_r_type, cpy_r_value, cpy_r_traceback);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_Unreachable();
 CPyL5: ;
     cpy_r_r4 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_self;
     if (unlikely(cpy_r_r4 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "self", 240, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "self", 243, CPyStatic__main___globals);
         goto CPyL47;
     }
     CPy_INCREF_NO_IMM(cpy_r_r4);
@@ -9827,13 +9894,13 @@ CPyL6: ;
     cpy_r_r6 = CPyObject_GetAttr(cpy_r_r4, cpy_r_r5);
     CPy_DECREF_NO_IMM(cpy_r_r4);
     if (unlikely(cpy_r_r6 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 240, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 243, CPyStatic__main___globals);
         goto CPyL47;
     }
     if (likely(PyTuple_Check(cpy_r_r6)))
         cpy_r_r7 = cpy_r_r6;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "items", 240, CPyStatic__main___globals, "tuple", cpy_r_r6);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "items", 243, CPyStatic__main___globals, "tuple", cpy_r_r6);
         goto CPyL47;
     }
     if (((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__4 != NULL) {
@@ -9854,7 +9921,7 @@ CPyL6: ;
 CPyL10: ;
     cpy_r_r10 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__4;
     if (unlikely(cpy_r_r10 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__4", 240, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__4", 243, CPyStatic__main___globals);
         goto CPyL47;
     }
     CPy_INCREF(cpy_r_r10);
@@ -9865,7 +9932,7 @@ CPyL11: ;
     cpy_r_r13 = cpy_r_r12 << 1;
     cpy_r_r14 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__5;
     if (unlikely(cpy_r_r14 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__5", 240, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__5", 243, CPyStatic__main___globals);
         goto CPyL47;
     }
 CPyL12: ;
@@ -9873,27 +9940,27 @@ CPyL12: ;
     if (!cpy_r_r15) goto CPyL39;
     cpy_r_r16 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__4;
     if (unlikely(cpy_r_r16 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__4", 240, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__4", 243, CPyStatic__main___globals);
         goto CPyL47;
     }
     CPy_INCREF(cpy_r_r16);
 CPyL14: ;
     cpy_r_r17 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__5;
     if (unlikely(cpy_r_r17 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__5", 240, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__5", 243, CPyStatic__main___globals);
         goto CPyL49;
     }
 CPyL15: ;
     cpy_r_r18 = CPySequenceTuple_GetItem(cpy_r_r16, cpy_r_r17);
     CPy_DECREF(cpy_r_r16);
     if (unlikely(cpy_r_r18 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 240, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 243, CPyStatic__main___globals);
         goto CPyL47;
     }
     if (likely(PyUnicode_Check(cpy_r_r18)))
         cpy_r_r19 = cpy_r_r18;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "items", 240, CPyStatic__main___globals, "str", cpy_r_r18);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "items", 243, CPyStatic__main___globals, "str", cpy_r_r18);
         goto CPyL47;
     }
     if (((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_key != NULL) {
@@ -9902,19 +9969,19 @@ CPyL15: ;
     ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_key = cpy_r_r19;
     cpy_r_r20 = 1;
     if (unlikely(!cpy_r_r20)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 240, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 243, CPyStatic__main___globals);
         goto CPyL47;
     }
     cpy_r_r21 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_self;
     if (unlikely(cpy_r_r21 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "self", 241, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "self", 244, CPyStatic__main___globals);
         goto CPyL47;
     }
     CPy_INCREF_NO_IMM(cpy_r_r21);
 CPyL19: ;
     cpy_r_r22 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_key;
     if (unlikely(cpy_r_r22 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "key", 241, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "key", 244, CPyStatic__main___globals);
         goto CPyL50;
     }
     CPy_INCREF(cpy_r_r22);
@@ -9928,7 +9995,7 @@ CPyL21: ;
     PyErr_SetString(PyExc_NameError, "value for final name \"UNSET\" was not set");
     cpy_r_r24 = 0;
     if (unlikely(!cpy_r_r24)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 241, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 244, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_Unreachable();
@@ -9937,7 +10004,7 @@ CPyL23: ;
     CPy_DECREF_NO_IMM(cpy_r_r21);
     CPy_DECREF(cpy_r_r22);
     if (unlikely(cpy_r_r25 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 241, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 244, CPyStatic__main___globals);
         goto CPyL47;
     }
     if (((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_value != NULL) {
@@ -9946,12 +10013,12 @@ CPyL23: ;
     ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_value = cpy_r_r25;
     cpy_r_r26 = 1;
     if (unlikely(!cpy_r_r26)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 241, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 244, CPyStatic__main___globals);
         goto CPyL47;
     }
     cpy_r_r27 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_value;
     if (unlikely(cpy_r_r27 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "value", 242, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "value", 245, CPyStatic__main___globals);
         goto CPyL47;
     }
     CPy_INCREF(cpy_r_r27);
@@ -9965,7 +10032,7 @@ CPyL27: ;
     PyErr_SetString(PyExc_NameError, "value for final name \"UNSET\" was not set");
     cpy_r_r29 = 0;
     if (unlikely(!cpy_r_r29)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 242, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 245, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_Unreachable();
@@ -9976,14 +10043,14 @@ CPyL29: ;
     if (!cpy_r_r31) goto CPyL37;
     cpy_r_r32 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_key;
     if (unlikely(cpy_r_r32 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "key", 243, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "key", 246, CPyStatic__main___globals);
         goto CPyL47;
     }
     CPy_INCREF(cpy_r_r32);
 CPyL31: ;
     cpy_r_r33 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_value;
     if (unlikely(cpy_r_r33 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "value", 243, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "value", 246, CPyStatic__main___globals);
         goto CPyL53;
     }
     CPy_INCREF(cpy_r_r33);
@@ -10004,7 +10071,7 @@ CPyL32: ;
     cpy_r_r36 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r36)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 243, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 246, CPyStatic__main___globals);
         goto CPyL54;
     }
     return cpy_r_r35;
@@ -10018,14 +10085,14 @@ CPyL34: ;
 CPyL35: ;
     CPyErr_SetObjectAndTraceback(cpy_r_type, cpy_r_value, cpy_r_traceback);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 243, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 246, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_Unreachable();
 CPyL37: ;
     cpy_r_r39 = ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__5;
     if (unlikely(cpy_r_r39 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__5", 240, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "items", "items_DictStruct_env", "__mypyc_temp__5", 243, CPyStatic__main___globals);
         goto CPyL47;
     }
 CPyL38: ;
@@ -10033,7 +10100,7 @@ CPyL38: ;
     ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__5 = cpy_r_r40;
     cpy_r_r41 = 1;
     if (unlikely(!cpy_r_r41)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 240, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 243, CPyStatic__main___globals);
         goto CPyL47;
     } else
         goto CPyL10;
@@ -10046,7 +10113,7 @@ CPyL39: ;
     cpy_r_r43 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r43)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPyGen_SetStopIterationValue(cpy_r_r42);
@@ -10065,7 +10132,7 @@ CPyL44: ;
     PyErr_SetNone(PyExc_StopIteration);
     cpy_r_r46 = 0;
     if (unlikely(!cpy_r_r46)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_Unreachable();
@@ -10132,7 +10199,7 @@ PyObject *CPyPy__main___items_DictStruct_gen_____mypyc_generator_helper__(PyObje
     PyObject *retval = CPyDef__main___items_DictStruct_gen_____mypyc_generator_helper__(arg___mypyc_self__, arg_type, arg_value, arg_traceback, arg_arg);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -10407,7 +10474,7 @@ PyObject *CPyDef__main___items_DictStruct_obj_____call__(PyObject *cpy_r___mypyc
     PyObject *cpy_r_r5;
     cpy_r_r0 = CPyDef__main___items_DictStruct_env();
     if (unlikely(cpy_r_r0 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
         goto CPyL6;
     }
     CPy_INCREF_NO_IMM(cpy_r_self);
@@ -10417,12 +10484,12 @@ PyObject *CPyDef__main___items_DictStruct_obj_____call__(PyObject *cpy_r___mypyc
     ((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->_self = cpy_r_self;
     cpy_r_r1 = 1;
     if (unlikely(!cpy_r_r1)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
         goto CPyL7;
     }
     cpy_r_r2 = CPyDef__main___items_DictStruct_gen();
     if (unlikely(cpy_r_r2 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
         goto CPyL7;
     }
     CPy_INCREF_NO_IMM(cpy_r_r0);
@@ -10432,7 +10499,7 @@ PyObject *CPyDef__main___items_DictStruct_obj_____call__(PyObject *cpy_r___mypyc
     ((dictstruct____main___items_DictStruct_genObject *)cpy_r_r2)->___mypyc_env__ = cpy_r_r0;
     cpy_r_r3 = 1;
     if (unlikely(!cpy_r_r3)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
         goto CPyL8;
     }
     if (((dictstruct____main___items_DictStruct_envObject *)cpy_r_r0)->___mypyc_next_label__ != CPY_INT_TAG) {
@@ -10442,7 +10509,7 @@ PyObject *CPyDef__main___items_DictStruct_obj_____call__(PyObject *cpy_r___mypyc
     cpy_r_r4 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r4)) {
-        CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
         goto CPyL9;
     }
     return cpy_r_r2;
@@ -10480,7 +10547,7 @@ PyObject *CPyPy__main___items_DictStruct_obj_____call__(PyObject *self, PyObject
     PyObject *retval = CPyDef__main___items_DictStruct_obj_____call__(arg___mypyc_self__, arg_self);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "items", 228, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "items", 231, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -10570,14 +10637,14 @@ PyObject *CPyDef__main___values_DictStruct_gen_____mypyc_generator_helper__(PyOb
     PyObject *cpy_r_r44;
     cpy_r_r0 = ((dictstruct____main___values_DictStruct_genObject *)cpy_r___mypyc_self__)->___mypyc_env__;
     if (unlikely(cpy_r_r0 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_gen", "__mypyc_env__", 245, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_gen", "__mypyc_env__", 248, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_INCREF_NO_IMM(cpy_r_r0);
 CPyL1: ;
     cpy_r_r1 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_next_label__;
     if (unlikely(cpy_r_r1 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_next_label__", 245, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_next_label__", 248, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPyTagged_INCREF(cpy_r_r1);
@@ -10592,14 +10659,14 @@ CPyL2: ;
 CPyL3: ;
     CPyErr_SetObjectAndTraceback(cpy_r_type, cpy_r_value, cpy_r_traceback);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
 CPyL5: ;
     cpy_r_r4 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_self;
     if (unlikely(cpy_r_r4 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "self", 257, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "self", 260, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF_NO_IMM(cpy_r_r4);
@@ -10608,13 +10675,13 @@ CPyL6: ;
     cpy_r_r6 = CPyObject_GetAttr(cpy_r_r4, cpy_r_r5);
     CPy_DECREF_NO_IMM(cpy_r_r4);
     if (unlikely(cpy_r_r6 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 257, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 260, CPyStatic__main___globals);
         goto CPyL46;
     }
     if (likely(PyTuple_Check(cpy_r_r6)))
         cpy_r_r7 = cpy_r_r6;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "values", 257, CPyStatic__main___globals, "tuple", cpy_r_r6);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "values", 260, CPyStatic__main___globals, "tuple", cpy_r_r6);
         goto CPyL46;
     }
     if (((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__6 != NULL) {
@@ -10635,7 +10702,7 @@ CPyL6: ;
 CPyL10: ;
     cpy_r_r10 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__6;
     if (unlikely(cpy_r_r10 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__6", 257, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__6", 260, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF(cpy_r_r10);
@@ -10646,7 +10713,7 @@ CPyL11: ;
     cpy_r_r13 = cpy_r_r12 << 1;
     cpy_r_r14 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__7;
     if (unlikely(cpy_r_r14 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__7", 257, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__7", 260, CPyStatic__main___globals);
         goto CPyL46;
     }
 CPyL12: ;
@@ -10654,27 +10721,27 @@ CPyL12: ;
     if (!cpy_r_r15) goto CPyL38;
     cpy_r_r16 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__6;
     if (unlikely(cpy_r_r16 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__6", 257, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__6", 260, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF(cpy_r_r16);
 CPyL14: ;
     cpy_r_r17 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__7;
     if (unlikely(cpy_r_r17 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__7", 257, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__7", 260, CPyStatic__main___globals);
         goto CPyL48;
     }
 CPyL15: ;
     cpy_r_r18 = CPySequenceTuple_GetItem(cpy_r_r16, cpy_r_r17);
     CPy_DECREF(cpy_r_r16);
     if (unlikely(cpy_r_r18 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 257, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 260, CPyStatic__main___globals);
         goto CPyL46;
     }
     if (likely(PyUnicode_Check(cpy_r_r18)))
         cpy_r_r19 = cpy_r_r18;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "values", 257, CPyStatic__main___globals, "str", cpy_r_r18);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "values", 260, CPyStatic__main___globals, "str", cpy_r_r18);
         goto CPyL46;
     }
     if (((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_key != NULL) {
@@ -10683,19 +10750,19 @@ CPyL15: ;
     ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_key = cpy_r_r19;
     cpy_r_r20 = 1;
     if (unlikely(!cpy_r_r20)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 257, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 260, CPyStatic__main___globals);
         goto CPyL46;
     }
     cpy_r_r21 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_self;
     if (unlikely(cpy_r_r21 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "self", 258, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "self", 261, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF_NO_IMM(cpy_r_r21);
 CPyL19: ;
     cpy_r_r22 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_key;
     if (unlikely(cpy_r_r22 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "key", 258, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "key", 261, CPyStatic__main___globals);
         goto CPyL49;
     }
     CPy_INCREF(cpy_r_r22);
@@ -10709,7 +10776,7 @@ CPyL21: ;
     PyErr_SetString(PyExc_NameError, "value for final name \"UNSET\" was not set");
     cpy_r_r24 = 0;
     if (unlikely(!cpy_r_r24)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 258, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 261, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
@@ -10718,7 +10785,7 @@ CPyL23: ;
     CPy_DECREF_NO_IMM(cpy_r_r21);
     CPy_DECREF(cpy_r_r22);
     if (unlikely(cpy_r_r25 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 258, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 261, CPyStatic__main___globals);
         goto CPyL46;
     }
     if (((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_value != NULL) {
@@ -10727,12 +10794,12 @@ CPyL23: ;
     ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_value = cpy_r_r25;
     cpy_r_r26 = 1;
     if (unlikely(!cpy_r_r26)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 258, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 261, CPyStatic__main___globals);
         goto CPyL46;
     }
     cpy_r_r27 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_value;
     if (unlikely(cpy_r_r27 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "value", 259, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "value", 262, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF(cpy_r_r27);
@@ -10746,7 +10813,7 @@ CPyL27: ;
     PyErr_SetString(PyExc_NameError, "value for final name \"UNSET\" was not set");
     cpy_r_r29 = 0;
     if (unlikely(!cpy_r_r29)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 259, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 262, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
@@ -10757,7 +10824,7 @@ CPyL29: ;
     if (!cpy_r_r31) goto CPyL36;
     cpy_r_r32 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_value;
     if (unlikely(cpy_r_r32 == NULL)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "value", 260, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "value", 263, CPyStatic__main___globals);
         goto CPyL46;
     }
     CPy_INCREF(cpy_r_r32);
@@ -10769,7 +10836,7 @@ CPyL31: ;
     cpy_r_r33 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r33)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 260, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 263, CPyStatic__main___globals);
         goto CPyL52;
     }
     return cpy_r_r32;
@@ -10783,14 +10850,14 @@ CPyL33: ;
 CPyL34: ;
     CPyErr_SetObjectAndTraceback(cpy_r_type, cpy_r_value, cpy_r_traceback);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 260, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 263, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
 CPyL36: ;
     cpy_r_r36 = ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__7;
     if (unlikely(cpy_r_r36 == CPY_INT_TAG)) {
-        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__7", 257, CPyStatic__main___globals);
+        CPy_AttributeError("dictstruct/_main.py", "values", "values_DictStruct_env", "__mypyc_temp__7", 260, CPyStatic__main___globals);
         goto CPyL46;
     }
 CPyL37: ;
@@ -10798,7 +10865,7 @@ CPyL37: ;
     ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_temp__7 = cpy_r_r37;
     cpy_r_r38 = 1;
     if (unlikely(!cpy_r_r38)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 257, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 260, CPyStatic__main___globals);
         goto CPyL46;
     } else
         goto CPyL10;
@@ -10811,7 +10878,7 @@ CPyL38: ;
     cpy_r_r40 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r40)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPyGen_SetStopIterationValue(cpy_r_r39);
@@ -10830,7 +10897,7 @@ CPyL43: ;
     PyErr_SetNone(PyExc_StopIteration);
     cpy_r_r43 = 0;
     if (unlikely(!cpy_r_r43)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
         goto CPyL45;
     }
     CPy_Unreachable();
@@ -10893,7 +10960,7 @@ PyObject *CPyPy__main___values_DictStruct_gen_____mypyc_generator_helper__(PyObj
     PyObject *retval = CPyDef__main___values_DictStruct_gen_____mypyc_generator_helper__(arg___mypyc_self__, arg_type, arg_value, arg_traceback, arg_arg);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -11168,7 +11235,7 @@ PyObject *CPyDef__main___values_DictStruct_obj_____call__(PyObject *cpy_r___mypy
     PyObject *cpy_r_r5;
     cpy_r_r0 = CPyDef__main___values_DictStruct_env();
     if (unlikely(cpy_r_r0 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
         goto CPyL6;
     }
     CPy_INCREF_NO_IMM(cpy_r_self);
@@ -11178,12 +11245,12 @@ PyObject *CPyDef__main___values_DictStruct_obj_____call__(PyObject *cpy_r___mypy
     ((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->_self = cpy_r_self;
     cpy_r_r1 = 1;
     if (unlikely(!cpy_r_r1)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
         goto CPyL7;
     }
     cpy_r_r2 = CPyDef__main___values_DictStruct_gen();
     if (unlikely(cpy_r_r2 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
         goto CPyL7;
     }
     CPy_INCREF_NO_IMM(cpy_r_r0);
@@ -11193,7 +11260,7 @@ PyObject *CPyDef__main___values_DictStruct_obj_____call__(PyObject *cpy_r___mypy
     ((dictstruct____main___values_DictStruct_genObject *)cpy_r_r2)->___mypyc_env__ = cpy_r_r0;
     cpy_r_r3 = 1;
     if (unlikely(!cpy_r_r3)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
         goto CPyL8;
     }
     if (((dictstruct____main___values_DictStruct_envObject *)cpy_r_r0)->___mypyc_next_label__ != CPY_INT_TAG) {
@@ -11203,7 +11270,7 @@ PyObject *CPyDef__main___values_DictStruct_obj_____call__(PyObject *cpy_r___mypy
     cpy_r_r4 = 1;
     CPy_DECREF_NO_IMM(cpy_r_r0);
     if (unlikely(!cpy_r_r4)) {
-        CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
         goto CPyL9;
     }
     return cpy_r_r2;
@@ -11241,7 +11308,7 @@ PyObject *CPyPy__main___values_DictStruct_obj_____call__(PyObject *self, PyObjec
     PyObject *retval = CPyDef__main___values_DictStruct_obj_____call__(arg___mypyc_self__, arg_self);
     return retval;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "values", 245, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "values", 248, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -11393,17 +11460,17 @@ CPyTagged CPyDef__main_____hash___3_DictStruct_obj_____call__(PyObject *cpy_r___
     PyObject *cpy_r_r107;
     CPyTagged cpy_r_r108;
     CPyTagged cpy_r_r109;
-    cpy_r_r0 = CPyStatics[46]; /* '__struct_config__' */
+    cpy_r_r0 = CPyStatics[45]; /* '__struct_config__' */
     cpy_r_r1 = CPyObject_GetAttr(cpy_r_self, cpy_r_r0);
     if (unlikely(cpy_r_r1 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 279, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 282, CPyStatic__main___globals);
         goto CPyL79;
     }
-    cpy_r_r2 = CPyStatics[47]; /* 'frozen' */
+    cpy_r_r2 = CPyStatics[46]; /* 'frozen' */
     cpy_r_r3 = CPyObject_GetAttr(cpy_r_r1, cpy_r_r2);
     CPy_DECREF(cpy_r_r1);
     if (unlikely(cpy_r_r3 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 279, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 282, CPyStatic__main___globals);
         goto CPyL79;
     }
     if (unlikely(!PyBool_Check(cpy_r_r3))) {
@@ -11412,37 +11479,37 @@ CPyTagged CPyDef__main_____hash___3_DictStruct_obj_____call__(PyObject *cpy_r___
         cpy_r_r4 = cpy_r_r3 == Py_True;
     CPy_DECREF(cpy_r_r3);
     if (unlikely(cpy_r_r4 == 2)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 279, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 282, CPyStatic__main___globals);
         goto CPyL79;
     }
     if (cpy_r_r4) goto CPyL11;
-    cpy_r_r5 = CPyStatics[48]; /* "unhashable type: '" */
+    cpy_r_r5 = CPyStatics[47]; /* "unhashable type: '" */
     cpy_r_r6 = PyObject_Type(cpy_r_self);
     cpy_r_r7 = CPyStatics[11]; /* '__name__' */
     cpy_r_r8 = CPyObject_GetAttr(cpy_r_r6, cpy_r_r7);
     CPy_DECREF(cpy_r_r6);
     if (unlikely(cpy_r_r8 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 280, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
         goto CPyL79;
     }
     if (likely(PyUnicode_Check(cpy_r_r8)))
         cpy_r_r9 = cpy_r_r8;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 280, CPyStatic__main___globals, "str", cpy_r_r8);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals, "str", cpy_r_r8);
         goto CPyL79;
     }
-    cpy_r_r10 = CPyStatics[42]; /* "'" */
+    cpy_r_r10 = CPyStatics[41]; /* "'" */
     cpy_r_r11 = CPyStr_Build(3, cpy_r_r5, cpy_r_r9, cpy_r_r10);
     CPy_DECREF(cpy_r_r9);
     if (unlikely(cpy_r_r11 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 280, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
         goto CPyL79;
     }
     cpy_r_r12 = CPyModule_builtins;
-    cpy_r_r13 = CPyStatics[45]; /* 'TypeError' */
+    cpy_r_r13 = CPyStatics[44]; /* 'TypeError' */
     cpy_r_r14 = CPyObject_GetAttr(cpy_r_r12, cpy_r_r13);
     if (unlikely(cpy_r_r14 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 280, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
         goto CPyL80;
     }
     PyObject *cpy_r_r15[1] = {cpy_r_r11};
@@ -11450,35 +11517,35 @@ CPyTagged CPyDef__main_____hash___3_DictStruct_obj_____call__(PyObject *cpy_r___
     cpy_r_r17 = PyObject_Vectorcall(cpy_r_r14, cpy_r_r16, 1, 0);
     CPy_DECREF(cpy_r_r14);
     if (unlikely(cpy_r_r17 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 280, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
         goto CPyL80;
     }
     CPy_DECREF(cpy_r_r11);
     CPy_Raise(cpy_r_r17);
     CPy_DECREF(cpy_r_r17);
     if (unlikely(!0)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 280, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
         goto CPyL79;
     }
     CPy_Unreachable();
 CPyL11: ;
-    cpy_r_r18 = CPyStatics[49]; /* '__dict__' */
+    cpy_r_r18 = CPyStatics[48]; /* '__dict__' */
     cpy_r_r19 = CPyObject_GetAttr(cpy_r_self, cpy_r_r18);
     if (unlikely(cpy_r_r19 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 281, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 284, CPyStatic__main___globals);
         goto CPyL79;
     }
     if (likely(PyDict_Check(cpy_r_r19)))
         cpy_r_r20 = cpy_r_r19;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 281, CPyStatic__main___globals, "dict", cpy_r_r19);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 284, CPyStatic__main___globals, "dict", cpy_r_r19);
         goto CPyL79;
     }
-    cpy_r_r21 = CPyStatics[50]; /* '__hash__' */
+    cpy_r_r21 = CPyStatics[49]; /* '__hash__' */
     cpy_r_r22 = CPyDict_GetWithNone(cpy_r_r20, cpy_r_r21);
     CPy_DECREF(cpy_r_r20);
     if (unlikely(cpy_r_r22 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 281, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 284, CPyStatic__main___globals);
         goto CPyL79;
     }
     CPy_INCREF(cpy_r_r22);
@@ -11487,7 +11554,7 @@ CPyL11: ;
     CPy_DECREF(cpy_r_r22);
     cpy_r_r24 = cpy_r_r23 >= 0;
     if (unlikely(!cpy_r_r24)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 281, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 284, CPyStatic__main___globals);
         goto CPyL81;
     }
     cpy_r_r25 = cpy_r_r23;
@@ -11499,7 +11566,7 @@ CPyL11: ;
     }
     CPy_DECREF(cpy_r_cached_hash);
     if (unlikely(cpy_r_r26 == CPY_INT_TAG)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 282, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 285, CPyStatic__main___globals);
         goto CPyL79;
     }
     return cpy_r_r26;
@@ -11507,20 +11574,20 @@ CPyL18: ;
     cpy_r_r27 = CPyStatics[13]; /* '__struct_fields__' */
     cpy_r_r28 = CPyObject_GetAttr(cpy_r_self, cpy_r_r27);
     if (unlikely(cpy_r_r28 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 284, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 287, CPyStatic__main___globals);
         goto CPyL79;
     }
     if (likely(PyTuple_Check(cpy_r_r28)))
         cpy_r_r29 = cpy_r_r28;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 284, CPyStatic__main___globals, "tuple", cpy_r_r28);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 287, CPyStatic__main___globals, "tuple", cpy_r_r28);
         goto CPyL79;
     }
     cpy_r_r30 = (CPyPtr)&((PyVarObject *)cpy_r_r29)->ob_size;
     cpy_r_r31 = *(int64_t *)cpy_r_r30;
     cpy_r_r32 = PyList_New(cpy_r_r31);
     if (unlikely(cpy_r_r32 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 286, CPyStatic__main___globals);
         goto CPyL83;
     }
     cpy_r_r33 = 0;
@@ -11532,13 +11599,13 @@ CPyL22: ;
     if (!cpy_r_r37) goto CPyL84;
     cpy_r_r38 = CPySequenceTuple_GetItem(cpy_r_r29, cpy_r_r33);
     if (unlikely(cpy_r_r38 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 286, CPyStatic__main___globals);
         goto CPyL85;
     }
     if (likely(PyUnicode_Check(cpy_r_r38)))
         cpy_r_r39 = cpy_r_r38;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals, "str", cpy_r_r38);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 286, CPyStatic__main___globals, "str", cpy_r_r38);
         goto CPyL85;
     }
     cpy_r_r40 = CPyStatic__main____getattribute;
@@ -11550,7 +11617,7 @@ CPyL26: ;
     PyErr_SetString(PyExc_NameError, "value for final name \"_getattribute\" was not set");
     cpy_r_r41 = 0;
     if (unlikely(!cpy_r_r41)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 284, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 287, CPyStatic__main___globals);
         goto CPyL79;
     }
     CPy_Unreachable();
@@ -11559,13 +11626,13 @@ CPyL28: ;
     cpy_r_r43 = (PyObject **)&cpy_r_r42;
     cpy_r_r44 = PyObject_Vectorcall(cpy_r_r40, cpy_r_r43, 2, 0);
     if (unlikely(cpy_r_r44 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 284, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 287, CPyStatic__main___globals);
         goto CPyL87;
     }
     CPy_DECREF(cpy_r_r39);
     cpy_r_r45 = CPyList_SetItemUnsafe(cpy_r_r32, cpy_r_r33, cpy_r_r44);
     if (unlikely(!cpy_r_r45)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 286, CPyStatic__main___globals);
         goto CPyL85;
     }
     cpy_r_r46 = cpy_r_r33 + 2;
@@ -11575,43 +11642,43 @@ CPyL31: ;
     cpy_r_r47 = PyObject_GetIter(cpy_r_r32);
     CPy_DECREF_NO_IMM(cpy_r_r32);
     if (unlikely(cpy_r_r47 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 283, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 286, CPyStatic__main___globals);
         goto CPyL79;
     }
     cpy_r_r48 = CPyObject_Hash(cpy_r_r47);
     if (unlikely(cpy_r_r48 == CPY_INT_TAG)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 289, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 292, CPyStatic__main___globals);
         goto CPyL37;
     }
-    cpy_r_r49 = CPyStatics[49]; /* '__dict__' */
+    cpy_r_r49 = CPyStatics[48]; /* '__dict__' */
     cpy_r_r50 = CPyObject_GetAttr(cpy_r_self, cpy_r_r49);
     if (unlikely(cpy_r_r50 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 289, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 292, CPyStatic__main___globals);
         goto CPyL88;
     }
     if (likely(PyDict_Check(cpy_r_r50)))
         cpy_r_r51 = cpy_r_r50;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 289, CPyStatic__main___globals, "dict", cpy_r_r50);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 292, CPyStatic__main___globals, "dict", cpy_r_r50);
         goto CPyL88;
     }
-    cpy_r_r52 = CPyStatics[50]; /* '__hash__' */
+    cpy_r_r52 = CPyStatics[49]; /* '__hash__' */
     cpy_r_r53 = CPyTagged_StealAsObject(cpy_r_r48);
     cpy_r_r54 = CPyDict_SetItem(cpy_r_r51, cpy_r_r52, cpy_r_r53);
     CPy_DECREF(cpy_r_r51);
     CPy_DECREF(cpy_r_r53);
     cpy_r_r55 = cpy_r_r54 >= 0;
     if (unlikely(!cpy_r_r55)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 289, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 292, CPyStatic__main___globals);
     } else
         goto CPyL89;
 CPyL37: ;
     cpy_r_r56 = CPy_CatchError();
     cpy_r_r57 = CPyModule_builtins;
-    cpy_r_r58 = CPyStatics[45]; /* 'TypeError' */
+    cpy_r_r58 = CPyStatics[44]; /* 'TypeError' */
     cpy_r_r59 = CPyObject_GetAttr(cpy_r_r57, cpy_r_r58);
     if (unlikely(cpy_r_r59 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 290, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 293, CPyStatic__main___globals);
         goto CPyL90;
     }
     cpy_r_r60 = CPy_ExceptionMatches(cpy_r_r59);
@@ -11619,13 +11686,13 @@ CPyL37: ;
     if (!cpy_r_r60) goto CPyL91;
     cpy_r_r61 = PyList_New(0);
     if (unlikely(cpy_r_r61 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
         goto CPyL90;
     }
     cpy_r_r62 = PyObject_GetIter(cpy_r_r47);
     CPy_DecRef(cpy_r_r47);
     if (unlikely(cpy_r_r62 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
         goto CPyL92;
     }
 CPyL41: ;
@@ -11635,7 +11702,7 @@ CPyL41: ;
     cpy_r_r65 = PyObject_IsInstance(cpy_r_r63, cpy_r_r64);
     cpy_r_r66 = cpy_r_r65 >= 0;
     if (unlikely(!cpy_r_r66)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 292, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals);
         goto CPyL94;
     }
     cpy_r_r67 = cpy_r_r65;
@@ -11643,13 +11710,13 @@ CPyL41: ;
     if (likely(PyList_Check(cpy_r_r63)))
         cpy_r_r68 = cpy_r_r63;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 292, CPyStatic__main___globals, "list", cpy_r_r63);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals, "list", cpy_r_r63);
         goto CPyL95;
     }
     cpy_r_r69 = PyList_AsTuple(cpy_r_r68);
     CPy_DecRef(cpy_r_r68);
     if (unlikely(cpy_r_r69 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 292, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals);
         goto CPyL95;
     }
     cpy_r_r70 = cpy_r_r69;
@@ -11661,48 +11728,48 @@ CPyL48: ;
     CPy_DecRef(cpy_r_r70);
     cpy_r_r72 = cpy_r_r71 >= 0;
     if (unlikely(!cpy_r_r72)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
         goto CPyL95;
     } else
         goto CPyL41;
 CPyL49: ;
     cpy_r_r73 = CPy_NoErrOccurred();
     if (unlikely(!cpy_r_r73)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
         goto CPyL92;
     }
     cpy_r_r74 = PyObject_GetIter(cpy_r_r61);
     CPy_DecRef(cpy_r_r61);
     if (unlikely(cpy_r_r74 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r75 = CPyObject_Hash(cpy_r_r74);
     CPy_DecRef(cpy_r_r74);
     if (unlikely(cpy_r_r75 == CPY_INT_TAG)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
         goto CPyL58;
     }
-    cpy_r_r76 = CPyStatics[49]; /* '__dict__' */
+    cpy_r_r76 = CPyStatics[48]; /* '__dict__' */
     cpy_r_r77 = CPyObject_GetAttr(cpy_r_self, cpy_r_r76);
     if (unlikely(cpy_r_r77 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
         goto CPyL96;
     }
     if (likely(PyDict_Check(cpy_r_r77)))
         cpy_r_r78 = cpy_r_r77;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals, "dict", cpy_r_r77);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals, "dict", cpy_r_r77);
         goto CPyL96;
     }
-    cpy_r_r79 = CPyStatics[50]; /* '__hash__' */
+    cpy_r_r79 = CPyStatics[49]; /* '__hash__' */
     cpy_r_r80 = CPyTagged_StealAsObject(cpy_r_r75);
     cpy_r_r81 = CPyDict_SetItem(cpy_r_r78, cpy_r_r79, cpy_r_r80);
     CPy_DecRef(cpy_r_r78);
     CPy_DecRef(cpy_r_r80);
     cpy_r_r82 = cpy_r_r81 >= 0;
     if (unlikely(!cpy_r_r82)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 291, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
         goto CPyL58;
     } else
         goto CPyL57;
@@ -11731,38 +11798,38 @@ CPyL58: ;
 CPyL60: ;
     cpy_r_r84 = CPy_CatchError();
     cpy_r_r85 = CPyModule_builtins;
-    cpy_r_r86 = CPyStatics[51]; /* 'Exception' */
+    cpy_r_r86 = CPyStatics[50]; /* 'Exception' */
     cpy_r_r87 = CPyObject_GetAttr(cpy_r_r85, cpy_r_r86);
     if (unlikely(cpy_r_r87 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 294, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 297, CPyStatic__main___globals);
         goto CPyL72;
     }
     cpy_r_r88 = CPy_ExceptionMatches(cpy_r_r87);
     CPy_DecRef(cpy_r_r87);
     if (!cpy_r_r88) goto CPyL69;
     cpy_r_r89 = CPy_GetExcValue();
-    cpy_r_r90 = CPyStatics[44]; /* 'args' */
+    cpy_r_r90 = CPyStatics[43]; /* 'args' */
     cpy_r_r91 = CPyObject_GetAttr(cpy_r_r89, cpy_r_r90);
     if (unlikely(cpy_r_r91 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 298, CPyStatic__main___globals);
         goto CPyL98;
     }
     if (likely(PyTuple_Check(cpy_r_r91)))
         cpy_r_r92 = cpy_r_r91;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals, "tuple", cpy_r_r91);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 298, CPyStatic__main___globals, "tuple", cpy_r_r91);
         goto CPyL98;
     }
-    cpy_r_r93 = CPyStatics[52]; /* 'recursed in hash fn' */
+    cpy_r_r93 = CPyStatics[51]; /* 'recursed in hash fn' */
     cpy_r_r94 = PyList_New(0);
     if (unlikely(cpy_r_r94 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 298, CPyStatic__main___globals);
         goto CPyL99;
     }
     cpy_r_r95 = CPyList_Extend(cpy_r_r94, cpy_r_r92);
     CPy_DecRef(cpy_r_r92);
     if (unlikely(cpy_r_r95 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 298, CPyStatic__main___globals);
         goto CPyL100;
     } else
         goto CPyL101;
@@ -11770,22 +11837,22 @@ CPyL66: ;
     cpy_r_r96 = PyList_Append(cpy_r_r94, cpy_r_r93);
     cpy_r_r97 = cpy_r_r96 >= 0;
     if (unlikely(!cpy_r_r97)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 298, CPyStatic__main___globals);
         goto CPyL100;
     }
     cpy_r_r98 = PyList_AsTuple(cpy_r_r94);
     CPy_DecRef(cpy_r_r94);
     if (unlikely(cpy_r_r98 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 298, CPyStatic__main___globals);
         goto CPyL98;
     }
-    cpy_r_r99 = CPyStatics[44]; /* 'args' */
+    cpy_r_r99 = CPyStatics[43]; /* 'args' */
     cpy_r_r100 = PyObject_SetAttr(cpy_r_r89, cpy_r_r99, cpy_r_r98);
     CPy_DecRef(cpy_r_r89);
     CPy_DecRef(cpy_r_r98);
     cpy_r_r101 = cpy_r_r100 >= 0;
     if (unlikely(!cpy_r_r101)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 295, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 298, CPyStatic__main___globals);
         goto CPyL72;
     } else
         goto CPyL71;
@@ -11812,23 +11879,23 @@ CPyL72: ;
     if (!cpy_r_r102) goto CPyL79;
     CPy_Unreachable();
 CPyL74: ;
-    cpy_r_r103 = CPyStatics[49]; /* '__dict__' */
+    cpy_r_r103 = CPyStatics[48]; /* '__dict__' */
     cpy_r_r104 = CPyObject_GetAttr(cpy_r_self, cpy_r_r103);
     if (unlikely(cpy_r_r104 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 296, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 299, CPyStatic__main___globals);
         goto CPyL79;
     }
     if (likely(PyDict_Check(cpy_r_r104)))
         cpy_r_r105 = cpy_r_r104;
     else {
-        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 296, CPyStatic__main___globals, "dict", cpy_r_r104);
+        CPy_TypeErrorTraceback("dictstruct/_main.py", "__hash__", 299, CPyStatic__main___globals, "dict", cpy_r_r104);
         goto CPyL79;
     }
-    cpy_r_r106 = CPyStatics[50]; /* '__hash__' */
+    cpy_r_r106 = CPyStatics[49]; /* '__hash__' */
     cpy_r_r107 = CPyDict_GetItem(cpy_r_r105, cpy_r_r106);
     CPy_DECREF(cpy_r_r105);
     if (unlikely(cpy_r_r107 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 296, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 299, CPyStatic__main___globals);
         goto CPyL79;
     }
     if (likely(PyLong_Check(cpy_r_r107)))
@@ -11838,7 +11905,7 @@ CPyL74: ;
     }
     CPy_DECREF(cpy_r_r107);
     if (unlikely(cpy_r_r108 == CPY_INT_TAG)) {
-        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 296, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "__hash__", 299, CPyStatic__main___globals);
         goto CPyL79;
     }
     return cpy_r_r108;
@@ -11953,7 +12020,7 @@ PyObject *CPyPy__main_____hash___3_DictStruct_obj_____call__(PyObject *self, PyO
     PyObject *retbox = CPyTagged_StealAsObject(retval);
     return retbox;
 fail: ;
-    CPy_AddTraceback("dictstruct/_main.py", "__hash__", 262, CPyStatic__main___globals);
+    CPy_AddTraceback("dictstruct/_main.py", "__hash__", 265, CPyStatic__main___globals);
     return NULL;
 }
 
@@ -12121,7 +12188,7 @@ CPyL3: ;
     cpy_r_r13 = (void *)&cpy_r_r12;
     cpy_r_r14 = CPyStatics[68]; /* (('msgspec', 'msgspec', 'msgspec'),) */
     cpy_r_r15 = CPyStatic__main___globals;
-    cpy_r_r16 = CPyStatics[54]; /* 'dictstruct/_main.py' */
+    cpy_r_r16 = CPyStatics[53]; /* 'dictstruct/_main.py' */
     cpy_r_r17 = CPyStatics[25]; /* '<module>' */
     cpy_r_r18 = CPyImport_ImportMany(cpy_r_r14, cpy_r_r11, cpy_r_r15, cpy_r_r16, cpy_r_r17, cpy_r_r13);
     if (!cpy_r_r18) goto CPyL55;
@@ -12155,13 +12222,13 @@ CPyL3: ;
         goto CPyL55;
     }
     cpy_r_r30 = CPyModule_builtins;
-    cpy_r_r31 = CPyStatics[55]; /* 'object' */
+    cpy_r_r31 = CPyStatics[54]; /* 'object' */
     cpy_r_r32 = CPyObject_GetAttr(cpy_r_r30, cpy_r_r31);
     if (unlikely(cpy_r_r32 == NULL)) {
         CPy_AddTraceback("dictstruct/_main.py", "<module>", 9, CPyStatic__main___globals);
         goto CPyL55;
     }
-    cpy_r_r33 = CPyStatics[40]; /* '__getattribute__' */
+    cpy_r_r33 = CPyStatics[55]; /* '__getattribute__' */
     cpy_r_r34 = CPyObject_GetAttr(cpy_r_r32, cpy_r_r33);
     CPy_DECREF(cpy_r_r32);
     if (unlikely(cpy_r_r34 == NULL)) {
@@ -12291,20 +12358,20 @@ CPyL21: ;
     }
     cpy_r_r73 = CPyDef__main_____getattribute___3_DictStruct_obj();
     if (unlikely(cpy_r_r73 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 121, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 124, CPyStatic__main___globals);
         goto CPyL58;
     }
-    cpy_r_r74 = CPyStatics[40]; /* '__getattribute__' */
+    cpy_r_r74 = CPyStatics[55]; /* '__getattribute__' */
     cpy_r_r75 = CPyDict_SetItem(cpy_r_r54, cpy_r_r74, cpy_r_r73);
     CPy_DECREF_NO_IMM(cpy_r_r73);
     cpy_r_r76 = cpy_r_r75 >= 0;
     if (unlikely(!cpy_r_r76)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 121, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 124, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r77 = CPyDef__main_____setitem___3_DictStruct_obj();
     if (unlikely(cpy_r_r77 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 150, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 153, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r78 = CPyStatics[61]; /* '__setitem__' */
@@ -12312,12 +12379,12 @@ CPyL21: ;
     CPy_DECREF_NO_IMM(cpy_r_r77);
     cpy_r_r80 = cpy_r_r79 >= 0;
     if (unlikely(!cpy_r_r80)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 150, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 153, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r81 = CPyDef__main_____iter___3_DictStruct_obj();
     if (unlikely(cpy_r_r81 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 183, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r82 = CPyStatics[32]; /* '__iter__' */
@@ -12325,12 +12392,12 @@ CPyL21: ;
     CPy_DECREF_NO_IMM(cpy_r_r81);
     cpy_r_r84 = cpy_r_r83 >= 0;
     if (unlikely(!cpy_r_r84)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 180, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 183, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r85 = CPyDef__main_____len___3_DictStruct_obj();
     if (unlikely(cpy_r_r85 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 200, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 203, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r86 = CPyStatics[62]; /* '__len__' */
@@ -12338,12 +12405,12 @@ CPyL21: ;
     CPy_DECREF_NO_IMM(cpy_r_r85);
     cpy_r_r88 = cpy_r_r87 >= 0;
     if (unlikely(!cpy_r_r88)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 200, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 203, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r89 = CPyDef__main___keys_DictStruct_obj();
     if (unlikely(cpy_r_r89 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 217, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r90 = CPyStatics[63]; /* 'keys' */
@@ -12351,12 +12418,12 @@ CPyL21: ;
     CPy_DECREF_NO_IMM(cpy_r_r89);
     cpy_r_r92 = cpy_r_r91 >= 0;
     if (unlikely(!cpy_r_r92)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 214, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 217, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r93 = CPyDef__main___items_DictStruct_obj();
     if (unlikely(cpy_r_r93 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 231, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r94 = CPyStatics[33]; /* 'items' */
@@ -12364,12 +12431,12 @@ CPyL21: ;
     CPy_DECREF_NO_IMM(cpy_r_r93);
     cpy_r_r96 = cpy_r_r95 >= 0;
     if (unlikely(!cpy_r_r96)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 228, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 231, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r97 = CPyDef__main___values_DictStruct_obj();
     if (unlikely(cpy_r_r97 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 248, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r98 = CPyStatics[34]; /* 'values' */
@@ -12377,20 +12444,20 @@ CPyL21: ;
     CPy_DECREF_NO_IMM(cpy_r_r97);
     cpy_r_r100 = cpy_r_r99 >= 0;
     if (unlikely(!cpy_r_r100)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 245, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 248, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r101 = CPyDef__main_____hash___3_DictStruct_obj();
     if (unlikely(cpy_r_r101 == NULL)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 262, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 265, CPyStatic__main___globals);
         goto CPyL58;
     }
-    cpy_r_r102 = CPyStatics[50]; /* '__hash__' */
+    cpy_r_r102 = CPyStatics[49]; /* '__hash__' */
     cpy_r_r103 = CPyDict_SetItem(cpy_r_r54, cpy_r_r102, cpy_r_r101);
     CPy_DECREF_NO_IMM(cpy_r_r101);
     cpy_r_r104 = cpy_r_r103 >= 0;
     if (unlikely(!cpy_r_r104)) {
-        CPy_AddTraceback("dictstruct/_main.py", "<module>", 262, CPyStatic__main___globals);
+        CPy_AddTraceback("dictstruct/_main.py", "<module>", 265, CPyStatic__main___globals);
         goto CPyL58;
     }
     cpy_r_r105 = CPyStatics[6]; /* 'DictStruct' */
@@ -12522,11 +12589,11 @@ const char * const CPyLit_Str[] = {
     "\005\006typing\amsgspec\023dictstruct/_lazy.py\b<module>\nmypyc_attr",
     "\006\017mypy_extensions\005UNSET\v__prepare__\vclassmethod\f__contains__\b__iter__",
     "\005\005items\006values\017__annotations__\026mypyc filler docstring\a__doc__",
-    "\005\n__module__\fnative_class\020__getattribute__\bKeyError\001\'",
-    "\005\033\' object has no attribute \'\004args\tTypeError\021__struct_config__\006frozen",
-    "\005\022unhashable type: \'\b__dict__\b__hash__\tException\023recursed in hash fn",
-    "\a\aLiteral\023dictstruct/_main.py\006object\r_getattribute\006Struct\b__bool__\003get",
-    "\004\v__getitem__\v__setitem__\a__len__\004keys",
+    "\006\n__module__\fnative_class\bKeyError\001\'\033\' object has no attribute \'\004args",
+    "\005\tTypeError\021__struct_config__\006frozen\022unhashable type: \'\b__dict__",
+    "\005\b__hash__\tException\023recursed in hash fn\aLiteral\023dictstruct/_main.py",
+    "\a\006object\020__getattribute__\r_getattribute\006Struct\b__bool__\003get\v__getitem__",
+    "\003\v__setitem__\a__len__\004keys",
     "",
 };
 const char * const CPyLit_Bytes[] = {
@@ -12539,7 +12606,7 @@ const double CPyLit_Float[] = {0};
 const double CPyLit_Complex[] = {0};
 const int CPyLit_Tuple[] = {
     8, 1, 4, 1, 6, 4, 18, 19, 20, 21, 3, 23, 23, 23, 1, 67, 1, 26, 1,
-    39, 5, 18, 19, 20, 53, 21
+    39, 5, 18, 19, 20, 52, 21
 };
 const int CPyLit_FrozenSet[] = {0};
 CPyModule *CPyModule_dictstruct_internal = NULL;
