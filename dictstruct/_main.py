@@ -1,12 +1,16 @@
 from typing import Any, Final, Iterator, Literal, Tuple
 
-from msgspec import UNSET, Struct
+import msgspec
+from mypy_extensions import mypyc_attr
 
+
+UNSET: Final = msgspec.UNSET
 
 _getattribute: Final = object.__getattribute__
 
 
-class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
+@mypyc_attr(native_class=False)
+class DictStruct(msgspec.Struct, dict=True):  # type: ignore [call-arg, misc]
     """
     A base class that extends the :class:`msgspec.Struct` class to be compatible with the standard python dictionary API.
 
@@ -110,9 +114,12 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             KeyError: ('field2', MyStruct(field1='value'))
         """
         try:
-            return getattr(self, attr)
+            value = _getattribute(self, attr)
         except AttributeError as e:
             raise KeyError(attr, self) from e.__cause__
+        if value is UNSET:
+            raise KeyError(attr, self)
+        return value
 
     def __getattribute__(self, attr: str) -> Any:
         """

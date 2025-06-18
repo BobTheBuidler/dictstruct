@@ -1,11 +1,16 @@
-from typing import Any, Iterator, Tuple
+from typing import Any, Final, Iterator, Tuple
 
-from msgspec import UNSET
+import msgspec
+from mypy_extensions import mypyc_attr
 
 from dictstruct._main import DictStruct
 
 
-class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
+UNSET: Final = msgspec.UNSET
+
+
+@mypyc_attr(native_class=False)
+class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg, misc]
     """
     A subclass of :class:`DictStruct` that supports Just-In-Time (JIT) decoding of field values.
 
