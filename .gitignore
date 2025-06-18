@@ -7,3 +7,6 @@ build/**/*.typed
 build/ops.txt
 dictstruct.egg-info/
 dist/
+*.o
+*.so
+*.pyd
