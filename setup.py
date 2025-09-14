@@ -14,14 +14,18 @@ with Path("pyproject.toml").open("rb") as f:
     poetry_config = pyproject_data["tool"]["poetry"]
 
 
-ext_modules = [] if sys.version_info < (3, 9) else mypycify(
-    [
-        "dictstruct",
-        "--pretty",
-        "--install-types",
-        "--non-interactive",
-        "--disable-error-code=unused-ignore",
-    ]
+ext_modules = (
+    []
+    if sys.version_info < (3, 9)
+    else mypycify(
+        [
+            "dictstruct",
+            "--pretty",
+            "--install-types",
+            "--non-interactive",
+            "--disable-error-code=unused-ignore",
+        ]
+    )
 )
 
 
