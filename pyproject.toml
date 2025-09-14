@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dictstruct"
-version = "0.0.6"
+version = "0.0.7"
 description = "A msgspec.Struct implementation compatible with the standard dictionary API"
 authors = ["BobTheBuidler <bobthebuidlerdefi@gmail.com>"]
 
