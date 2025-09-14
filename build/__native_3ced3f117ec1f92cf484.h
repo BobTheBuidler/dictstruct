@@ -177,6 +177,7 @@ typedef struct {
 
 struct export_table_3ced3f117ec1f92cf484 {
     char (*CPyDef_dictstruct_____top_level__)(void);
+    PyObject **CPyStatic__main___UNSET;
     PyObject **CPyStatic__main____getattribute;
     PyTypeObject **CPyType__main___DictStruct;
     PyTypeObject **CPyType__main_____bool___3_DictStruct_obj;

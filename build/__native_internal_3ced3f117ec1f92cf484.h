@@ -6,7 +6,7 @@
 
 int CPyGlobalsInit(void);
 
-extern PyObject *CPyStatics[62];
+extern PyObject *CPyStatics[65];
 extern const char * const CPyLit_Str[];
 extern const char * const CPyLit_Bytes[];
 extern const char * const CPyLit_Int[];
@@ -26,6 +26,7 @@ extern CPyModule *CPyModule_typing;
 extern CPyModule *CPyModule_msgspec;
 extern CPyModule *CPyModule_mypy_extensions;
 extern char CPyDef_dictstruct_____top_level__(void);
+extern PyObject *CPyStatic__main___UNSET;
 extern PyObject *CPyStatic__main____getattribute;
 extern PyTypeObject *CPyType__main___DictStruct;
 extern PyTypeObject *CPyType__main_____bool___3_DictStruct_obj;
