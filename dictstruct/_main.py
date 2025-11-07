@@ -69,7 +69,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
         >>> 'field2' in s
         False
     """
-    
+
     def get(self, key: str, default: Any = None) -> Any:
         """
         Get the value associated with a key, or a default value if the key is not present.

@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-  from dictstruct._main import DictStruct
+    from dictstruct._main import DictStruct
 
 
 _DS = TypeVar("_DS", bound="DictStruct")
