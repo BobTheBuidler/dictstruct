@@ -2,6 +2,8 @@ from typing import Any, Final, Iterator, Literal, Tuple
 
 from msgspec import UNSET, Struct
 
+import _compiled
+
 
 _getattribute: Final = object.__getattribute__
 
@@ -48,26 +50,25 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
         """
         return True
 
-    def __contains__(self, key: str) -> bool:
-        """
-        Check if a key is in the struct.
+    __contains__: Final = _compiled.__contains__
+    """
+    Check if a key is in the struct.
 
-        Args:
-            key: The key to check.
+    Args:
+        key: The key to check.
 
-        Returns:
-            True if the key is present and not :obj:`~msgspec.UNSET`, False otherwise.
+    Returns:
+        True if the key is present and not :obj:`~msgspec.UNSET`, False otherwise.
 
-        Example:
-            >>> class MyStruct(DictStruct):
-            ...     field1: str
-            >>> s = MyStruct(field1="value")
-            >>> 'field1' in s
-            True
-            >>> 'field2' in s
-            False
-        """
-        return key in self.__struct_fields__ and getattr(self, key, UNSET) is not UNSET
+    Example:
+        >>> class MyStruct(DictStruct):
+        ...     field1: str
+        >>> s = MyStruct(field1="value")
+        >>> 'field1' in s
+        True
+        >>> 'field2' in s
+        False
+    """
 
     def get(self, key: str, default: Any = None) -> Any:
         """
