@@ -16,6 +16,6 @@ msgspec = [
 ]
 
 [tool.poetry.group.dev.dependencies]
-pytest = "*"
+pytest = ">=8,<10"
 sphinx = "*"
 sphinx-rtd-theme = "*"
