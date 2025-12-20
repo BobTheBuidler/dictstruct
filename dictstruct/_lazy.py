@@ -1,4 +1,5 @@
-from typing import Any, Iterator, Tuple
+from typing import Any, Tuple
+from collections.abc import Iterator
 
 from msgspec import UNSET
 
@@ -116,7 +117,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             if value is not UNSET:
                 yield field[1:] if field[0] == "_" else field
 
-    def items(self) -> Iterator[Tuple[str, Any]]:
+    def items(self) -> Iterator[tuple[str, Any]]:
         """
         Returns an iterator over the struct's field name and value pairs.
 
