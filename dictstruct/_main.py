@@ -1,4 +1,5 @@
-from typing import Any, Final, Iterator, Literal, Tuple
+from typing import Any, Final, Literal, Tuple
+from collections.abc import Iterator
 
 from msgspec import UNSET, Struct
 
@@ -221,7 +222,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
         """
         yield from self
 
-    def items(self) -> Iterator[Tuple[str, Any]]:
+    def items(self) -> Iterator[tuple[str, Any]]:
         """
         Returns an iterator over the struct's field name and value pairs.
 
