@@ -1,6 +1,5 @@
 import pytest
 from dictstruct._main import DictStruct
-from msgspec import UNSET
 
 
 class MyStruct(DictStruct):
