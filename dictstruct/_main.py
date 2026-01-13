@@ -1,8 +1,7 @@
-from typing import Any, Final, Literal
 from collections.abc import Iterator
+from typing import Any, Final, Literal
 
 from msgspec import UNSET, Struct
-
 
 _getattribute: Final = object.__getattribute__
 
