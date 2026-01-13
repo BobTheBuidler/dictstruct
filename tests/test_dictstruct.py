@@ -70,3 +70,4 @@ def test_values(my_struct):
 def test_hash(my_struct):
     with pytest.raises(TypeError):
         hash(my_struct)
+
