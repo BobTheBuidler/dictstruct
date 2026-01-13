@@ -1,4 +1,5 @@
 import pytest
+
 from dictstruct._main import DictStruct
 
 
