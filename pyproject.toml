@@ -18,4 +18,4 @@ msgspec = [
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8,<10"
 sphinx = ">=7,<10"
-sphinx-rtd-theme = "*"
+sphinx-rtd-theme = "3.1.0"
