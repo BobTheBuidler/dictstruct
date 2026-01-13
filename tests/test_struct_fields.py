@@ -24,9 +24,9 @@ class VisibilityLazyStruct(LazyDictStruct):
 
 def test_struct_fields_register_and_init():
     fields = VisibilityStruct.__struct_fields__
-    assert "field1" in fields and "field2" in fields, (
-        "DictStruct subclasses must register annotated fields at runtime."
-    )
+    assert (
+        "field1" in fields and "field2" in fields
+    ), "DictStruct subclasses must register annotated fields at runtime."
     instance = VisibilityStruct(field1="value", field2=42)
     assert instance.field1 == "value"
     assert instance.field2 == 42
@@ -34,9 +34,9 @@ def test_struct_fields_register_and_init():
 
 def test_lazy_struct_fields_register_and_decode():
     fields = VisibilityLazyStruct.__struct_fields__
-    assert "field1" in fields and "field2" in fields, (
-        "LazyDictStruct subclasses must materialize underscored fields."
-    )
+    assert (
+        "field1" in fields and "field2" in fields
+    ), "LazyDictStruct subclasses must materialize underscored fields."
     data = b'{"field1": "value", "field2": 42}'
     instance = json.decode(data, type=VisibilityLazyStruct)
     assert instance.field1 == "value"
