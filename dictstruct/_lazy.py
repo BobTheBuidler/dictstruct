@@ -69,9 +69,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             # TODO: debug this
             return
 
-        resolved_fields = tuple(
-            field[1:] if field[0] == "_" else field for field in struct_fields
-        )
+        resolved_fields = tuple(field[1:] if field[0] == "_" else field for field in struct_fields)
         cls.__struct_fields__ = resolved_fields
 
     def __contains__(self, key: str) -> bool:
