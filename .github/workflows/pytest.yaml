@@ -55,16 +55,46 @@ jobs:
             .poetry_cache  # Poetry package cache for faster installs
           key: poetry-${{ runner.os }}-${{ matrix.pyversion }}-${{ hashFiles('poetry.lock') }}
 
-      - name: Install Poetry
+      - name: Load cached Poetry installation (non-Windows)
+        if: runner.os != 'Windows'
+        id: cached-poetry
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.local  # Linux Poetry install location
+            ~/Library/Application Support/pypoetry  # macOS Poetry install location
+          key: poetry-${{ runner.os }}-${{ matrix.pyversion }}-0  # increment to reset cache
+
+      - name: Install Poetry (non-Windows)
+        if: runner.os != 'Windows' && steps.cached-poetry.outputs.cache-hit != 'true'
+        uses: snok/install-poetry@v1
+
+      - name: Install Poetry (Windows)
+        if: runner.os == 'Windows'
         run: |
           python -m pip install --upgrade pip
           python -m pip install poetry
 
-      - name: Install Dependencies
+      - name: Install Dependencies (non-Windows)
+        if: runner.os != 'Windows'
+        run: poetry install --no-interaction
+        shell: bash
+
+      - name: Install Dependencies (Windows)
+        if: runner.os == 'Windows'
         run: python -m poetry install --no-interaction
         shell: bash
 
-      - name: Run test suite
+      - name: Run test suite (non-Windows)
+        if: runner.os != 'Windows'
+        env:
+          PYTEST_NETWORK: mainnet
+          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN  }}
+        run: poetry run pytest tests
+        shell: bash
+
+      - name: Run test suite (Windows)
+        if: runner.os == 'Windows'
         env:
           PYTEST_NETWORK: mainnet
           ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN  }}
