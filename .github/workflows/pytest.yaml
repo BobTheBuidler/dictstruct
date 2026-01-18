@@ -46,6 +46,10 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.pyversion }}
+          cache: pip  # speeds up pip install on Windows when installing Poetry
+          cache-dependency-path: |
+            pyproject.toml
+            poetry.lock
 
       - name: Cache Poetry virtualenv and cache
         uses: actions/cache@v5
