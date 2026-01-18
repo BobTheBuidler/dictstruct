@@ -6,7 +6,7 @@ pytest.importorskip("pytest_codspeed")
 from msgspec import json
 from pytest_codspeed import BenchmarkFixture
 
-from benchmarks.batch import run_10k, run_50k, consume_items, consume_iter, consume_values
+from benchmarks.utils import run_10k, run_50k, consume_items, consume_iter, consume_values
 from benchmarks.data import LazyStruct, lazy_payload, lazy_struct
 
 
