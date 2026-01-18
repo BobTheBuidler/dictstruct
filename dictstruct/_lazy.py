@@ -66,17 +66,24 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             return
 
         try:
-            struct_fields = cls.__struct_fields__
-        except AttributeError as e:
-            # TODO: debug this
+            cls.__struct_fields__
+        except AttributeError:
             return
 
-        resolved_fields = tuple(field[1:] if field[0] == "_" else field for field in struct_fields)
-        cls.__struct_fields__ = resolved_fields
-        cls.__lazy_field_pairs__ = tuple(zip(struct_fields, resolved_fields))
-        cls.__lazy_public_to_raw__ = {
-            public_name: raw_name for raw_name, public_name in cls.__lazy_field_pairs__
-        }
+    @classmethod
+    def _lazy_field_maps(cls) -> tuple[tuple[tuple[str, str], ...], dict[str, str]]:
+        try:
+            return cls._lazy_field_pairs, cls._lazy_public_to_raw
+        except AttributeError:
+            struct_fields = cls.__struct_fields__
+            field_pairs = tuple(
+                (raw_name, raw_name[1:] if raw_name[0] == "_" else raw_name)
+                for raw_name in struct_fields
+            )
+            public_to_raw = {public_name: raw_name for raw_name, public_name in field_pairs}
+            cls._lazy_field_pairs = field_pairs
+            cls._lazy_public_to_raw = public_to_raw
+            return field_pairs, public_to_raw
 
     def __contains__(self, key: str) -> bool:
         """
@@ -97,7 +104,8 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> 'field2' in s
             False
         """
-        raw_name = self.__lazy_public_to_raw__.get(key)
+        _, public_to_raw = type(self)._lazy_field_maps()
+        raw_name = public_to_raw.get(key)
         if raw_name is None:
             return False
         return _getattribute(self, raw_name) is not UNSET
@@ -117,7 +125,8 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(iter(s))
             ['field1', 'field2']
         """
-        for raw_name, public_name in self.__lazy_field_pairs__:
+        field_pairs, _ = type(self)._lazy_field_maps()
+        for raw_name, public_name in field_pairs:
             if _getattribute(self, raw_name) is not UNSET:
                 yield public_name
 
@@ -133,10 +142,11 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(s.items())
             [('field1', 'value'), ('field2', 42)]
         """
-        for key in self.__struct_fields__:
-            value = getattr(self, key, UNSET)
+        field_pairs, _ = type(self)._lazy_field_maps()
+        for _, public_name in field_pairs:
+            value = getattr(self, public_name, UNSET)
             if value is not UNSET:
-                yield key, value
+                yield public_name, value
 
     def values(self) -> Iterator[Any]:
         """
@@ -150,7 +160,8 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(s.values())
             ['value', 42]
         """
-        for key in self.__struct_fields__:
-            value = getattr(self, key, UNSET)
+        field_pairs, _ = type(self)._lazy_field_maps()
+        for _, public_name in field_pairs:
+            value = getattr(self, public_name, UNSET)
             if value is not UNSET:
                 yield value
