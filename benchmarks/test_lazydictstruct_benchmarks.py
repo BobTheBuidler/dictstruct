@@ -6,44 +6,21 @@ pytest.importorskip("pytest_codspeed")
 from msgspec import json
 from pytest_codspeed import BenchmarkFixture
 
-from benchmarks.batch import batch
+from benchmarks.batch import run_10k, run_50k, consume_items, consume_iter, consume_values
 from benchmarks.data import LazyStruct, lazy_payload, lazy_struct
 
 FAST_ITERATIONS = 50000
 DECODE_ITERATIONS = 10000
 
 
-def consume_iter(obj) -> None:
-    for _ in obj:
-        pass
-
-
-def consume_items(obj) -> None:
-    for _ in obj.items():
-        pass
-
-
-def consume_values(obj) -> None:
-    for _ in obj.values():
-        pass
-
-
 @pytest.mark.benchmark(group="lazy-contains")
-@pytest.mark.parametrize(
-    "key",
-    ["field1", "missing"],
-    ids=["hit", "miss"],
-)
+@pytest.mark.parametrize("key", ["field1", "missing"], ids=["hit", "miss"])
 def test_contains(benchmark: BenchmarkFixture, key: str) -> None:
     benchmark(batch, FAST_ITERATIONS, operator.contains, lazy_struct, key)
 
 
 @pytest.mark.benchmark(group="lazy-get")
-@pytest.mark.parametrize(
-    "key",
-    ["field1", "missing"],
-    ids=["hit", "miss"],
-)
+@pytest.mark.parametrize("key", ["field1", "missing"], ids=["hit", "miss"] )
 def test_get(benchmark: BenchmarkFixture, key: str) -> None:
     benchmark(batch, FAST_ITERATIONS, lazy_struct.get, key, "default")
 
@@ -69,11 +46,7 @@ def test_values(benchmark: BenchmarkFixture) -> None:
 
 
 @pytest.mark.benchmark(group="lazy-attr")
-@pytest.mark.parametrize(
-    "attr",
-    ["field1", "field2", "field3"],
-    ids=["int", "str", "list"],
-)
+@pytest.mark.parametrize("attr", ["field1", "field2", "field3"], ids=["int", "str", "list"])
 def test_attribute_access(benchmark: BenchmarkFixture, attr: str) -> None:
     getter = operator.attrgetter(attr)
     benchmark(batch, FAST_ITERATIONS, getter, lazy_struct)
