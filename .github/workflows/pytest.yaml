@@ -17,8 +17,8 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     env:
-      POETRY_CACHE_DIR: .poetry_cache
-      POETRY_VIRTUALENVS_IN_PROJECT: "true"
+      POETRY_CACHE_DIR: .poetry_cache  # keep Poetry cache in-repo so it can be cached
+      POETRY_VIRTUALENVS_IN_PROJECT: "true"  # create .venv in the repo for caching
     strategy:
       fail-fast: false
       matrix:
@@ -51,8 +51,8 @@ jobs:
         uses: actions/cache@v5
         with:
           path: |
-            .venv
-            .poetry_cache
+            .venv  # Poetry venv when POETRY_VIRTUALENVS_IN_PROJECT=true
+            .poetry_cache  # Poetry package cache for faster installs
           key: poetry-${{ runner.os }}-${{ matrix.pyversion }}-${{ hashFiles('poetry.lock') }}
 
       - name: Install Poetry
