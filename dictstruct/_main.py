@@ -1,9 +1,17 @@
 from collections.abc import Iterator
 from typing import Any, Final, Literal
 
-from msgspec import UNSET, Struct
+from msgspec import UNSET, Raw, Struct
 
 _getattribute: Final = object.__getattribute__
+
+
+def _coerce_hashable(value: Any) -> Any:
+    if isinstance(value, list):
+        return tuple(_coerce_hashable(item) for item in value)
+    if isinstance(value, Raw):
+        return bytes(value)
+    return value
 
 
 class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
@@ -272,17 +280,13 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
         """
         if not self.__struct_config__.frozen:
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
-        if cached_hash := self.__dict__.get("__hash__"):
+        cached_hash = self.__dict__.get("__hash__")
+        if cached_hash is not None:
             return cached_hash  # type: ignore [no-any-return]
         fields = tuple(_getattribute(self, field_name) for field_name in self.__struct_fields__)
         try:
-            # Skip if-checks, just try it
-            try:
-                self.__dict__["__hash__"] = hash(fields)
-            except TypeError:  # unhashable type: 'list'
-                self.__dict__["__hash__"] = hash(
-                    tuple(tuple(f) if isinstance(f, list) else f for f in fields)
-                )
-        except Exception as e:
-            e.args = *e.args, "recursed in hash fn"
-        return self.__dict__["__hash__"]  # type: ignore [no-any-return]
+            hashed = hash(fields)
+        except TypeError:  # unhashable type
+            hashed = hash(tuple(_coerce_hashable(field) for field in fields))
+        self.__dict__["__hash__"] = hashed
+        return hashed  # type: ignore [no-any-return]
