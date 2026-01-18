@@ -19,3 +19,8 @@ def consume_items(obj) -> None:
 def consume_values(obj) -> None:
     for _ in obj.values():
         pass
+
+
+def consume_keys(obj) -> None:
+    for _ in obj.keys():
+        pass

@@ -27,6 +27,11 @@ def test_getitem(benchmark: BenchmarkFixture) -> None:
     benchmark(run_50k, operator.getitem, lazy_struct, "field1")
 
 
+@pytest.mark.benchmark(group="lazy-len")
+def test_len(benchmark: BenchmarkFixture) -> None:
+    benchmark(run_50k, len, lazy_struct)
+
+
 @pytest.mark.benchmark(group="lazy-iter")
 def test_iter(benchmark: BenchmarkFixture) -> None:
     benchmark(run_50k, consume_iter, lazy_struct)
