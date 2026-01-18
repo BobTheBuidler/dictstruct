@@ -37,6 +37,15 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
         KeyError: ('field3', MyStruct(field1='value'))
     """
 
+    def __init_subclass__(cls, *args: Any, **kwargs: Any) -> None:
+        super().__init_subclass__(*args, **kwargs)
+        if cls.__name__ == "StructMeta":
+            return
+        try:
+            cls.__struct_field_set__ = frozenset(cls.__struct_fields__)
+        except AttributeError:
+            return
+
     def __bool__(self) -> Literal[True]:
         """Unlike a dictionary, a Struct will always exist.
 
@@ -67,7 +76,10 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             >>> 'field2' in s
             False
         """
-        return key in self.__struct_fields__ and getattr(self, key, UNSET) is not UNSET
+        field_set = getattr(self, "__struct_field_set__", None)
+        if field_set is None:
+            field_set = self.__struct_fields__
+        return key in field_set and getattr(self, key, UNSET) is not UNSET
 
     def get(self, key: str, default: Any = None) -> Any:
         """
@@ -109,10 +121,16 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
                 ...
             KeyError: ('field2', MyStruct(field1='value'))
         """
+        field_set = getattr(self, "__struct_field_set__", None)
+        if field_set is not None and attr not in field_set:
+            raise KeyError(attr, self)
         try:
-            return getattr(self, attr)
+            value = _getattribute(self, attr)
         except AttributeError as e:
             raise KeyError(attr, self) from e.__cause__
+        if value is UNSET:
+            raise KeyError(attr, self)
+        return value
 
     def __getattribute__(self, attr: str) -> Any:
         """
