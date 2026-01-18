@@ -9,8 +9,8 @@ from pytest_codspeed import BenchmarkFixture
 from benchmarks.batch import batch
 from benchmarks.data import LazyStruct, lazy_payload, lazy_struct
 
-FAST_ITERATIONS = 1000
-DECODE_ITERATIONS = 200
+FAST_ITERATIONS = 50000
+DECODE_ITERATIONS = 10000
 
 
 def consume_iter(obj) -> None:
