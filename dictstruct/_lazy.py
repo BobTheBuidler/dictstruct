@@ -1,9 +1,11 @@
 from collections.abc import Iterator
-from typing import Any
+from typing import Any, Final
 
 from msgspec import UNSET
 
 from dictstruct._main import DictStruct
+
+_getattribute: Final = object.__getattribute__
 
 
 class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
@@ -71,6 +73,10 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
 
         resolved_fields = tuple(field[1:] if field[0] == "_" else field for field in struct_fields)
         cls.__struct_fields__ = resolved_fields
+        cls.__lazy_field_pairs__ = tuple(zip(struct_fields, resolved_fields))
+        cls.__lazy_public_to_raw__ = {
+            public_name: raw_name for raw_name, public_name in cls.__lazy_field_pairs__
+        }
 
     def __contains__(self, key: str) -> bool:
         """
@@ -91,9 +97,10 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> 'field2' in s
             False
         """
-        fields = self.__struct_fields__
-        in_fields = key in fields or f"_{key}" in fields
-        return in_fields and getattr(self, key, UNSET) is not UNSET
+        raw_name = self.__lazy_public_to_raw__.get(key)
+        if raw_name is None:
+            return False
+        return _getattribute(self, raw_name) is not UNSET
 
     def __iter__(self) -> Iterator[str]:
         """
@@ -110,10 +117,9 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(iter(s))
             ['field1', 'field2']
         """
-        for field in self.__struct_fields__:
-            value = getattr(self, field, UNSET)
-            if value is not UNSET:
-                yield field[1:] if field[0] == "_" else field
+        for raw_name, public_name in self.__lazy_field_pairs__:
+            if _getattribute(self, raw_name) is not UNSET:
+                yield public_name
 
     def items(self) -> Iterator[tuple[str, Any]]:
         """
@@ -128,8 +134,6 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             [('field1', 'value'), ('field2', 42)]
         """
         for key in self.__struct_fields__:
-            if key[0] == "_":
-                key = key[1:]
             value = getattr(self, key, UNSET)
             if value is not UNSET:
                 yield key, value
@@ -147,8 +151,6 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             ['value', 42]
         """
         for key in self.__struct_fields__:
-            if key[0] == "_":
-                key = key[1:]
             value = getattr(self, key, UNSET)
             if value is not UNSET:
                 yield value
