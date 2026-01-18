@@ -6,7 +6,7 @@ from msgspec import UNSET
 from dictstruct._main import DictStruct
 
 
-class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
+class LazyDictStruct(DictStruct, frozen=True):
     """
     A subclass of :class:`DictStruct` that supports Just-In-Time (JIT) decoding of field values.
 
