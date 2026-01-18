@@ -6,23 +6,8 @@ pytest.importorskip("pytest_codspeed")
 from msgspec import json
 from pytest_codspeed import BenchmarkFixture
 
-from benchmarks.batch import run_10k, run_50k
 from benchmarks.data import JsonStruct, frozen_struct, json_payload, large_struct, small_struct
-
-
-def consume_iter(obj) -> None:
-    for _ in obj:
-        pass
-
-
-def consume_items(obj) -> None:
-    for _ in obj.items():
-        pass
-
-
-def consume_values(obj) -> None:
-    for _ in obj.values():
-        pass
+from benchmarks.utils import run_10k, run_50k, consume_items, consume_iter, consume_values
 
 
 @pytest.mark.benchmark(group="contains")
