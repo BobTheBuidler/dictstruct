@@ -274,14 +274,14 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
         if cached_hash := self.__dict__.get("__hash__"):
             return cached_hash  # type: ignore [no-any-return]
-        fields = (_getattribute(self, field_name) for field_name in self.__struct_fields__)
+        fields = tuple(_getattribute(self, field_name) for field_name in self.__struct_fields__)
         try:
             # Skip if-checks, just try it
             try:
                 self.__dict__["__hash__"] = hash(fields)
             except TypeError:  # unhashable type: 'list'
                 self.__dict__["__hash__"] = hash(
-                    tuple(f) if isinstance(f, list) else f for f in fields
+                    tuple(tuple(f) if isinstance(f, list) else f for f in fields)
                 )
         except Exception as e:
             e.args = *e.args, "recursed in hash fn"
