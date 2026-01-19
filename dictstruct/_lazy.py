@@ -45,8 +45,8 @@ class LazyDictStruct(DictStruct, frozen=True):
         :class:`DictStruct` for the base class implementation.
     """
 
-    _lazy_field_pairs: ClassVar[tuple[tuple[str, str], ...]]
-    _lazy_public_to_raw: ClassVar[dict[str, str]]
+    __lazy_field_pairs__: ClassVar[tuple[tuple[str, str], ...]]
+    __lazy_public_to_raw__: ClassVar[dict[str, str]]
 
     def __init_subclass__(cls, *args: Any, **kwargs: Any) -> None:
         """
@@ -77,7 +77,7 @@ class LazyDictStruct(DictStruct, frozen=True):
     @classmethod
     def __lazy_field_maps__(cls) -> tuple[tuple[tuple[str, str], ...], dict[str, str]]:
         try:
-            return cls._lazy_field_pairs, cls._lazy_public_to_raw
+            return cls.__lazy_field_pairs__, cls.__lazy_public_to_raw__
         except AttributeError:
             struct_fields = cls.__struct_fields__
             field_pairs = tuple(
@@ -85,8 +85,8 @@ class LazyDictStruct(DictStruct, frozen=True):
                 for raw_name in struct_fields
             )
             public_to_raw = {public_name: raw_name for raw_name, public_name in field_pairs}
-            cls._lazy_field_pairs = field_pairs
-            cls._lazy_public_to_raw = public_to_raw
+            cls.__lazy_field_pairs__ = field_pairs
+            cls.__lazy_public_to_raw__ = public_to_raw
             return field_pairs, public_to_raw
 
     def __contains__(self, key: str) -> bool:
