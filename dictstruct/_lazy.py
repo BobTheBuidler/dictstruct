@@ -105,7 +105,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> 'field2' in s
             False
         """
-        # "type(self) vs self: self would go through DictStruct.__getattribute__ (custom) on every call. type(self) does a direct class lookup and still respects subclass overrides of the helper. It’s a small but real hot‑path win and avoids any instance‑level surprises."
+        # "type(self) vs self: self would go through DictStruct.__getattribute__ (custom) on every call. type(self) does a direct class lookup and still respects subclass overrides of the helper. It's a small but real hot-path win and avoids any instance-level surprises."
         _, public_to_raw = type(self).__lazy_field_maps__()
         raw_name = public_to_raw.get(key)
         if raw_name is None:
