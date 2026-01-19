@@ -203,7 +203,14 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             >>> len(s)
             2
         """
-        return sum(1 for _ in self)
+        if self.__struct_config__.frozen:
+            cached_len = self.__dict__.get("__len__")
+            if cached_len is not None:
+                return cached_len
+        length = sum(1 for _ in self)
+        if self.__struct_config__.frozen:
+            self.__dict__["__len__"] = length
+        return length
 
     def keys(self) -> Iterator[str]:
         """
