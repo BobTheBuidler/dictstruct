@@ -8,7 +8,7 @@ from dictstruct._main import DictStruct
 _getattribute: Final = object.__getattribute__
 
 
-class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [misc]
+class LazyDictStruct(DictStruct, frozen=True):
     """
     A subclass of :class:`DictStruct` that supports Just-In-Time (JIT) decoding of field values.
 
