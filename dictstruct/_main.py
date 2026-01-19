@@ -1,5 +1,5 @@
 from collections.abc import Iterator
-from typing import Any, Final, Literal
+from typing import Any, Final, Literal, Optional
 
 from msgspec import UNSET, Raw, Struct
 
@@ -14,7 +14,7 @@ def _coerce_hashable(value: Any) -> Any:
     return value
 
 
-class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
+class DictStruct(Struct, dict=True):
     """
     A base class that extends the :class:`msgspec.Struct` class to be compatible with the standard python dictionary API.
 
@@ -280,13 +280,13 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
         """
         if not self.__struct_config__.frozen:
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
-        cached_hash = self.__dict__.get("__hash__")
+        cached_hash: Optional[int] = self.__dict__.get("__hash__")
         if cached_hash is not None:
-            return cached_hash  # type: ignore [no-any-return]
+            return cached_hash
         fields = tuple(_getattribute(self, field_name) for field_name in self.__struct_fields__)
         try:
             hashed = hash(fields)
         except TypeError:  # unhashable type
             hashed = hash(tuple(_coerce_hashable(field) for field in fields))
         self.__dict__["__hash__"] = hashed
-        return hashed  # type: ignore [no-any-return]
+        return hashed

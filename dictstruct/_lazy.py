@@ -1,5 +1,5 @@
 from collections.abc import Iterator
-from typing import Any, Final
+from typing import Any, ClassVar, Final
 
 from msgspec import UNSET
 
@@ -8,7 +8,7 @@ from dictstruct._main import DictStruct
 _getattribute: Final = object.__getattribute__
 
 
-class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
+class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [misc]
     """
     A subclass of :class:`DictStruct` that supports Just-In-Time (JIT) decoding of field values.
 
@@ -45,6 +45,9 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
         :class:`DictStruct` for the base class implementation.
     """
 
+    __lazy_field_pairs__: ClassVar[tuple[tuple[str, str], ...]]
+    __lazy_public_to_raw__: ClassVar[dict[str, str]]
+
     def __init_subclass__(cls, *args: Any, **kwargs: Any) -> None:
         """
         Initialize a subclass of :class:`LazyDictStruct`.
@@ -74,7 +77,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
     @classmethod
     def __lazy_field_maps__(cls) -> tuple[tuple[tuple[str, str], ...], dict[str, str]]:
         try:
-            return cls._lazy_field_pairs, cls._lazy_public_to_raw
+            return cls.__lazy_field_pairs__, cls.__lazy_public_to_raw__
         except AttributeError:
             struct_fields = cls.__struct_fields__
             field_pairs = tuple(
@@ -82,8 +85,8 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
                 for raw_name in struct_fields
             )
             public_to_raw = {public_name: raw_name for raw_name, public_name in field_pairs}
-            cls._lazy_field_pairs = field_pairs
-            cls._lazy_public_to_raw = public_to_raw
+            cls.__lazy_field_pairs__ = field_pairs
+            cls.__lazy_public_to_raw__ = public_to_raw
             return field_pairs, public_to_raw
 
     def __contains__(self, key: str) -> bool:
