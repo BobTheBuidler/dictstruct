@@ -203,7 +203,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             >>> len(s)
             2
         """
-        return len([key for key in self])
+        return sum(1 for _ in self)
 
     def keys(self) -> Iterator[str]:
         """
