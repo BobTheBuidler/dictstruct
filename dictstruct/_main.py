@@ -205,7 +205,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             ['field1', 'field2']
         """
         for field in self.__struct_fields__:
-            value = getattr(self, field, UNSET)
+            value = _getattribute(self, field)
             if value is not UNSET:
                 yield field
 
@@ -250,7 +250,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             [('field1', 'value'), ('field2', 42)]
         """
         for key in self.__struct_fields__:
-            value = getattr(self, key, UNSET)
+            value = _getattribute(self, key)
             if value is not UNSET:
                 yield key, value
 
@@ -267,7 +267,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             ['value', 42]
         """
         for key in self.__struct_fields__:
-            value = getattr(self, key, UNSET)
+            value = _getattribute(self, key)
             if value is not UNSET:
                 yield value
 
