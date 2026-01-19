@@ -1,20 +1,12 @@
 from collections.abc import Iterator
 from typing import Any, Final, Literal
 
-from msgspec import UNSET, Raw, Struct
+from msgspec import UNSET, Struct
 
 _getattribute: Final = object.__getattribute__
 
 
-def _coerce_hashable(value: Any) -> Any:
-    if isinstance(value, list):
-        return tuple(_coerce_hashable(item) for item in value)
-    if isinstance(value, Raw):
-        return bytes(value)
-    return value
-
-
-class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
+class DictStruct(Struct, dict=True):
     """
     A base class that extends the :class:`msgspec.Struct` class to be compatible with the standard python dictionary API.
 
@@ -44,6 +36,10 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             ...
         KeyError: ('field3', MyStruct(field1='value'))
     """
+
+    def __init_subclass__(cls, *args: Any, **kwargs: Any) -> None:
+        # Forward struct configuration options like `frozen` to msgspec.Struct.
+        super().__init_subclass__(*args, **kwargs)
 
     def __bool__(self) -> Literal[True]:
         """Unlike a dictionary, a Struct will always exist.
@@ -195,7 +191,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             ['field1', 'field2']
         """
         for field in self.__struct_fields__:
-            value = _getattribute(self, field)
+            value = getattr(self, field, UNSET)
             if value is not UNSET:
                 yield field
 
@@ -240,7 +236,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             [('field1', 'value'), ('field2', 42)]
         """
         for key in self.__struct_fields__:
-            value = _getattribute(self, key)
+            value = getattr(self, key, UNSET)
             if value is not UNSET:
                 yield key, value
 
@@ -257,7 +253,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             ['value', 42]
         """
         for key in self.__struct_fields__:
-            value = _getattribute(self, key)
+            value = getattr(self, key, UNSET)
             if value is not UNSET:
                 yield value
 
@@ -280,13 +276,17 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
         """
         if not self.__struct_config__.frozen:
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
-        cached_hash = self.__dict__.get("__hash__")
-        if cached_hash is not None:
+        if cached_hash := self.__dict__.get("__hash__"):
             return cached_hash  # type: ignore [no-any-return]
-        fields = tuple(_getattribute(self, field_name) for field_name in self.__struct_fields__)
+        fields = (_getattribute(self, field_name) for field_name in self.__struct_fields__)
         try:
-            hashed = hash(fields)
-        except TypeError:  # unhashable type
-            hashed = hash(tuple(_coerce_hashable(field) for field in fields))
-        self.__dict__["__hash__"] = hashed
-        return hashed  # type: ignore [no-any-return]
+            # Skip if-checks, just try it
+            try:
+                self.__dict__["__hash__"] = hash(fields)
+            except TypeError:  # unhashable type: 'list'
+                self.__dict__["__hash__"] = hash(
+                    tuple(f) if isinstance(f, list) else f for f in fields
+                )
+        except Exception as e:
+            e.args = *e.args, "recursed in hash fn"
+        return self.__dict__["__hash__"]  # type: ignore [no-any-return]
