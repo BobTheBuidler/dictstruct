@@ -1,5 +1,5 @@
 from collections.abc import Iterator
-from typing import Any, Final
+from typing import Any, ClassVar, Final
 
 from msgspec import UNSET
 
@@ -8,7 +8,7 @@ from dictstruct._main import DictStruct
 _getattribute: Final = object.__getattribute__
 
 
-class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
+class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [misc]
     """
     A subclass of :class:`DictStruct` that supports Just-In-Time (JIT) decoding of field values.
 
@@ -45,6 +45,10 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
         :class:`DictStruct` for the base class implementation.
     """
 
+    _lazy_field_pairs: ClassVar[tuple[tuple[str, str], ...]]
+    _lazy_public_to_raw: ClassVar[dict[str, str]]
+    _lazy_raw_fields: ClassVar[tuple[str, ...]]
+
     def __init_subclass__(cls, *args: Any, **kwargs: Any) -> None:
         """
         Initialize a subclass of :class:`LazyDictStruct`.
@@ -66,9 +70,15 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             return
 
         try:
-            cls.__struct_fields__
+            raw_fields = cls.__struct_fields__
         except AttributeError:
             return
+
+        cls._lazy_raw_fields = raw_fields
+        resolved_fields = tuple(
+            raw_name[1:] if raw_name[0] == "_" else raw_name for raw_name in raw_fields
+        )
+        cls.__struct_fields__ = resolved_fields
 
     # "A classmethod + class attrs is the lightest way to do that without storing extra data on every instance."
     @classmethod
@@ -76,7 +86,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
         try:
             return cls._lazy_field_pairs, cls._lazy_public_to_raw
         except AttributeError:
-            struct_fields = cls.__struct_fields__
+            struct_fields = getattr(cls, "_lazy_raw_fields", cls.__struct_fields__)
             field_pairs = tuple(
                 (raw_name, raw_name[1:] if raw_name[0] == "_" else raw_name)
                 for raw_name in struct_fields
