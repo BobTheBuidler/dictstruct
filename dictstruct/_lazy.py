@@ -71,7 +71,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             return
 
     @classmethod
-    def _lazy_field_maps(cls) -> tuple[tuple[tuple[str, str], ...], dict[str, str]]:
+    def lazy_field_maps(cls) -> tuple[tuple[tuple[str, str], ...], dict[str, str]]:
         try:
             return cls._lazy_field_pairs, cls._lazy_public_to_raw
         except AttributeError:
@@ -104,7 +104,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> 'field2' in s
             False
         """
-        _, public_to_raw = type(self)._lazy_field_maps()
+        _, public_to_raw = type(self).lazy_field_maps()
         raw_name = public_to_raw.get(key)
         if raw_name is None:
             return False
@@ -125,7 +125,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(iter(s))
             ['field1', 'field2']
         """
-        field_pairs, _ = type(self)._lazy_field_maps()
+        field_pairs, _ = type(self).lazy_field_maps()
         for raw_name, public_name in field_pairs:
             if _getattribute(self, raw_name) is not UNSET:
                 yield public_name
@@ -142,7 +142,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(s.items())
             [('field1', 'value'), ('field2', 42)]
         """
-        field_pairs, _ = type(self)._lazy_field_maps()
+        field_pairs, _ = type(self).lazy_field_maps()
         for _, public_name in field_pairs:
             value = getattr(self, public_name, UNSET)
             if value is not UNSET:
@@ -160,7 +160,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(s.values())
             ['value', 42]
         """
-        field_pairs, _ = type(self)._lazy_field_maps()
+        field_pairs, _ = type(self).lazy_field_maps()
         for _, public_name in field_pairs:
             value = getattr(self, public_name, UNSET)
             if value is not UNSET:
