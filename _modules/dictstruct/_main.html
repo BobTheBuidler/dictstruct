@@ -67,7 +67,7 @@
              
   <h1>Source code for dictstruct._main</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">msgspec</span><span class="w"> </span><span class="kn">import</span> <span class="n">UNSET</span><span class="p">,</span> <span class="n">Raw</span><span class="p">,</span> <span class="n">Struct</span>
 
@@ -84,7 +84,7 @@
 
 <div class="viewcode-block" id="DictStruct">
 <a class="viewcode-back" href="../../index.html#dictstruct.DictStruct">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">DictStruct</span><span class="p">(</span><span class="n">Struct</span><span class="p">,</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># type: ignore [call-arg, misc]</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DictStruct</span><span class="p">(</span><span class="n">Struct</span><span class="p">,</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A base class that extends the :class:`msgspec.Struct` class to be compatible with the standard python dictionary API.</span>
 
@@ -385,16 +385,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__struct_config__</span><span class="o">.</span><span class="n">frozen</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unhashable type: &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-        <span class="n">cached_hash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;__hash__&quot;</span><span class="p">)</span>
+        <span class="n">cached_hash</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;__hash__&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">cached_hash</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">cached_hash</span>  <span class="c1"># type: ignore [no-any-return]</span>
+            <span class="k">return</span> <span class="n">cached_hash</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">_getattribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__struct_fields__</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">hashed</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>  <span class="c1"># unhashable type</span>
             <span class="n">hashed</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">_coerce_hashable</span><span class="p">(</span><span class="n">field</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;__hash__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hashed</span>
-        <span class="k">return</span> <span class="n">hashed</span>  <span class="c1"># type: ignore [no-any-return]</span></div>
+        <span class="k">return</span> <span class="n">hashed</span></div>
 </div>
 
 </pre></div>
