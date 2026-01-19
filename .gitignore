@@ -2,5 +2,6 @@ __pycache__/
 .hypothesis/
 .mypy_cache/
 .pytest_cache/
-.worktrees/
+.worktrees
 dist/
+.worktrees/
