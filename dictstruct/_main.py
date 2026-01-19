@@ -1,5 +1,5 @@
 from collections.abc import Iterator
-from typing import Any, Final, Literal, cast
+from typing import Any, Final, Literal, Optional
 
 from msgspec import UNSET, Raw, Struct
 
@@ -280,9 +280,9 @@ class DictStruct(Struct, dict=True):
         """
         if not self.__struct_config__.frozen:
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
-        cached_hash = self.__dict__.get("__hash__")
+        cached_hash: Optional[int] = self.__dict__.get("__hash__")
         if cached_hash is not None:
-            return cast(int, cached_hash)
+            return cached_hash
         fields = tuple(_getattribute(self, field_name) for field_name in self.__struct_fields__)
         try:
             hashed = hash(fields)
