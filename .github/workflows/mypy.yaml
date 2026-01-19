@@ -40,4 +40,4 @@ jobs:
         pip install mypy
 
     - name: Run MyPy
-      run: mypy ./dictstruct --strict --pretty --ignore-missing-imports --show-error-codes --show-error-context --no-warn-no-return
+      run: mypy
