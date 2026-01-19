@@ -138,9 +138,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
         """
         value = _getattribute(self, attr)
         if value is UNSET:
-            raise AttributeError(
-                f"'{type(self).__name__}' object has no attribute '{attr}'"
-            )
+            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{attr}'")
         return value
 
     def __setitem__(self, attr: str, value: Any) -> None:
@@ -189,7 +187,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             ['field1', 'field2']
         """
         for field in self.__struct_fields__:
-            value = getattr(self, field, UNSET)
+            value = _getattribute(self, field)
             if value is not UNSET:
                 yield field
 
@@ -234,7 +232,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             [('field1', 'value'), ('field2', 42)]
         """
         for key in self.__struct_fields__:
-            value = getattr(self, key, UNSET)
+            value = _getattribute(self, key)
             if value is not UNSET:
                 yield key, value
 
@@ -251,7 +249,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             ['value', 42]
         """
         for key in self.__struct_fields__:
-            value = getattr(self, key, UNSET)
+            value = _getattribute(self, key)
             if value is not UNSET:
                 yield value
 
@@ -276,9 +274,7 @@ class DictStruct(Struct, dict=True):  # type: ignore [call-arg, misc]
             raise TypeError(f"unhashable type: '{type(self).__name__}'")
         if cached_hash := self.__dict__.get("__hash__"):
             return cached_hash  # type: ignore [no-any-return]
-        fields = (
-            _getattribute(self, field_name) for field_name in self.__struct_fields__
-        )
+        fields = (_getattribute(self, field_name) for field_name in self.__struct_fields__)
         try:
             # Skip if-checks, just try it
             try:

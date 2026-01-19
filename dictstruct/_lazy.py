@@ -1,9 +1,11 @@
 from collections.abc import Iterator
-from typing import Any
+from typing import Any, Final
 
 from msgspec import UNSET
 
 from dictstruct._main import DictStruct
+
+_getattribute: Final = object.__getattribute__
 
 
 class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
@@ -64,15 +66,25 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             return
 
         try:
-            struct_fields = cls.__struct_fields__
-        except AttributeError as e:
-            # TODO: debug this
+            cls.__struct_fields__
+        except AttributeError:
             return
 
-        resolved_fields = tuple(
-            field[1:] if field[0] == "_" else field for field in struct_fields
-        )
-        cls.__struct_fields__ = resolved_fields
+    # "A classmethod + class attrs is the lightest way to do that without storing extra data on every instance."
+    @classmethod
+    def __lazy_field_maps__(cls) -> tuple[tuple[tuple[str, str], ...], dict[str, str]]:
+        try:
+            return cls._lazy_field_pairs, cls._lazy_public_to_raw
+        except AttributeError:
+            struct_fields = cls.__struct_fields__
+            field_pairs = tuple(
+                (raw_name, raw_name[1:] if raw_name[0] == "_" else raw_name)
+                for raw_name in struct_fields
+            )
+            public_to_raw = {public_name: raw_name for raw_name, public_name in field_pairs}
+            cls._lazy_field_pairs = field_pairs
+            cls._lazy_public_to_raw = public_to_raw
+            return field_pairs, public_to_raw
 
     def __contains__(self, key: str) -> bool:
         """
@@ -93,9 +105,12 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> 'field2' in s
             False
         """
-        fields = self.__struct_fields__
-        in_fields = key in fields or f"_{key}" in fields
-        return in_fields and getattr(self, key, UNSET) is not UNSET
+        # "type(self) vs self: self would go through DictStruct.__getattribute__ (custom) on every call. type(self) does a direct class lookup and still respects subclass overrides of the helper. It's a small but real hot-path win and avoids any instance-level surprises."
+        _, public_to_raw = type(self).__lazy_field_maps__()
+        raw_name = public_to_raw.get(key)
+        if raw_name is None:
+            return False
+        return _getattribute(self, raw_name) is not UNSET
 
     def __iter__(self) -> Iterator[str]:
         """
@@ -112,10 +127,10 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(iter(s))
             ['field1', 'field2']
         """
-        for field in self.__struct_fields__:
-            value = getattr(self, field, UNSET)
-            if value is not UNSET:
-                yield field[1:] if field[0] == "_" else field
+        field_pairs, _ = type(self).__lazy_field_maps__()
+        for raw_name, public_name in field_pairs:
+            if _getattribute(self, raw_name) is not UNSET:
+                yield public_name
 
     def items(self) -> Iterator[tuple[str, Any]]:
         """
@@ -129,12 +144,11 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(s.items())
             [('field1', 'value'), ('field2', 42)]
         """
-        for key in self.__struct_fields__:
-            if key[0] == "_":
-                key = key[1:]
-            value = getattr(self, key, UNSET)
+        field_pairs, _ = type(self).__lazy_field_maps__()
+        for _, public_name in field_pairs:
+            value = getattr(self, public_name, UNSET)
             if value is not UNSET:
-                yield key, value
+                yield public_name, value
 
     def values(self) -> Iterator[Any]:
         """
@@ -148,9 +162,8 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [call-arg]
             >>> list(s.values())
             ['value', 42]
         """
-        for key in self.__struct_fields__:
-            if key[0] == "_":
-                key = key[1:]
-            value = getattr(self, key, UNSET)
+        field_pairs, _ = type(self).__lazy_field_maps__()
+        for _, public_name in field_pairs:
+            value = getattr(self, public_name, UNSET)
             if value is not UNSET:
                 yield value
