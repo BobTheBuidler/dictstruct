@@ -16,6 +16,9 @@ concurrency:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    env:
+      POETRY_CACHE_DIR: .poetry_cache  # keep Poetry cache in-repo so it can be cached
+      POETRY_VIRTUALENVS_IN_PROJECT: "true"  # create .venv in the repo for caching
     strategy:
       fail-fast: false
       matrix:
@@ -43,26 +46,62 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.pyversion }}
+          cache: pip  # speeds up pip install on Windows when installing Poetry
+          cache-dependency-path: |
+            pyproject.toml
+            poetry.lock
 
-      - name: Load cached Poetry installation
+      - name: Cache Poetry virtualenv and cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            .venv  # Poetry venv when POETRY_VIRTUALENVS_IN_PROJECT=true
+            .poetry_cache  # Poetry package cache for faster installs
+          key: poetry-${{ runner.os }}-${{ matrix.pyversion }}-${{ hashFiles('poetry.lock') }}
+
+      - name: Load cached Poetry installation (non-Windows)
+        if: runner.os != 'Windows'
         id: cached-poetry
         uses: actions/cache@v5
         with:
-          path: ~/.local  # the path depends on the OS
+          path: |
+            ~/.local  # Linux Poetry install location
+            ~/Library/Application Support/pypoetry  # macOS Poetry install location
           key: poetry-${{ runner.os }}-${{ matrix.pyversion }}-0  # increment to reset cache
-          
-      - name: Install Poetry
-        if: steps.cached-poetry.outputs.cache-hit != 'true'
+
+      - name: Install Poetry (non-Windows)
+        if: runner.os != 'Windows' && steps.cached-poetry.outputs.cache-hit != 'true'
         uses: snok/install-poetry@v1
 
-      - name: Install Dependencies
+      - name: Install Poetry (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+
+      - name: Install Dependencies (non-Windows)
+        if: runner.os != 'Windows'
         run: poetry install --no-interaction
         shell: bash
 
-      - name: Run test suite
+      - name: Install Dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: python -m poetry install --no-interaction
+        shell: bash
+
+      - name: Run test suite (non-Windows)
+        if: runner.os != 'Windows'
         env:
           PYTEST_NETWORK: mainnet
           ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN  }}
         run: poetry run pytest tests
+        shell: bash
+
+      - name: Run test suite (Windows)
+        if: runner.os == 'Windows'
+        env:
+          PYTEST_NETWORK: mainnet
+          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN  }}
+        run: python -m poetry run pytest tests
         shell: bash
       
