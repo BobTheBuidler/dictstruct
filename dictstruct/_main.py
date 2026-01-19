@@ -45,10 +45,6 @@ class DictStruct(Struct, dict=True):
         KeyError: ('field3', MyStruct(field1='value'))
     """
 
-    def __init_subclass__(cls, *args: Any, **kwargs: Any) -> None:
-        # Forward struct configuration options like `frozen` to msgspec.Struct.
-        super().__init_subclass__(*args, **kwargs)
-
     def __bool__(self) -> Literal[True]:
         """Unlike a dictionary, a Struct will always exist.
 

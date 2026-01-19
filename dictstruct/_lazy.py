@@ -47,7 +47,6 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [misc]
 
     _lazy_field_pairs: ClassVar[tuple[tuple[str, str], ...]]
     _lazy_public_to_raw: ClassVar[dict[str, str]]
-    _lazy_raw_fields: ClassVar[tuple[str, ...]]
 
     def __init_subclass__(cls, *args: Any, **kwargs: Any) -> None:
         """
@@ -70,15 +69,9 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [misc]
             return
 
         try:
-            raw_fields = cls.__struct_fields__
+            cls.__struct_fields__
         except AttributeError:
             return
-
-        cls._lazy_raw_fields = raw_fields
-        resolved_fields = tuple(
-            raw_name[1:] if raw_name[0] == "_" else raw_name for raw_name in raw_fields
-        )
-        cls.__struct_fields__ = resolved_fields
 
     # "A classmethod + class attrs is the lightest way to do that without storing extra data on every instance."
     @classmethod
@@ -86,7 +79,7 @@ class LazyDictStruct(DictStruct, frozen=True):  # type: ignore [misc]
         try:
             return cls._lazy_field_pairs, cls._lazy_public_to_raw
         except AttributeError:
-            struct_fields = getattr(cls, "_lazy_raw_fields", cls.__struct_fields__)
+            struct_fields = cls.__struct_fields__
             field_pairs = tuple(
                 (raw_name, raw_name[1:] if raw_name[0] == "_" else raw_name)
                 for raw_name in struct_fields
