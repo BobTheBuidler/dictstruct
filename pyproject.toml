@@ -22,3 +22,12 @@ sphinx-rtd-theme = "3.1.0"
 
 [tool.black]
 line-length = 100
+
+[tool.mypy]
+files = ["dictstruct"]
+ignore_missing_imports = true
+no_warn_no_return = true
+pretty = true
+show_error_codes = true
+show_error_context = true
+strict = true
