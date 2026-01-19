@@ -6,8 +6,8 @@ pytest.importorskip("pytest_codspeed")
 from msgspec import json
 from pytest_codspeed import BenchmarkFixture
 
-from benchmarks.utils import run_10k, run_50k, consume_items, consume_iter, consume_values
 from benchmarks.data import LazyStruct, lazy_payload, lazy_struct
+from benchmarks.utils import consume_items, consume_iter, consume_values, run_10k, run_50k
 
 
 @pytest.mark.benchmark(group="lazy-contains")
@@ -17,7 +17,7 @@ def test_contains(benchmark: BenchmarkFixture, key: str) -> None:
 
 
 @pytest.mark.benchmark(group="lazy-get")
-@pytest.mark.parametrize("key", ["field1", "missing"], ids=["hit", "miss"] )
+@pytest.mark.parametrize("key", ["field1", "missing"], ids=["hit", "miss"])
 def test_get(benchmark: BenchmarkFixture, key: str) -> None:
     benchmark(run_50k, lazy_struct.get, key, "default")
 

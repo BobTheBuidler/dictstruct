@@ -7,7 +7,7 @@ from msgspec import json
 from pytest_codspeed import BenchmarkFixture
 
 from benchmarks.data import JsonStruct, frozen_struct, json_payload, large_struct, small_struct
-from benchmarks.utils import run_10k, run_50k, consume_items, consume_iter, consume_values
+from benchmarks.utils import consume_items, consume_iter, consume_values, run_10k, run_50k
 
 
 @pytest.mark.benchmark(group="contains")
