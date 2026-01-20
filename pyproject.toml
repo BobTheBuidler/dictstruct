@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dictstruct"
-version = "0.0.9"
+version = "0.0.8"
 description = "A msgspec.Struct implementation compatible with the standard dictionary API"
 authors = ["BobTheBuidler <bobthebuidlerdefi@gmail.com>"]
 
@@ -25,9 +25,9 @@ line-length = 100
 
 [tool.mypy]
 files = ["dictstruct"]
-ignore_missing_imports = true
-no_warn_no_return = true
+strict = true
 pretty = true
+ignore_missing_imports = true
 show_error_codes = true
 show_error_context = true
-strict = true
+warn_no_return = false
