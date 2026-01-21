@@ -94,7 +94,7 @@ jobs:
         env:
           PYTEST_NETWORK: mainnet
           ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN  }}
-        run: poetry run pytest tests
+        run: poetry run pytest
         shell: bash
 
       - name: Run test suite (Windows)
@@ -102,6 +102,6 @@ jobs:
         env:
           PYTEST_NETWORK: mainnet
           ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN  }}
-        run: python -m poetry run pytest tests
+        run: python -m poetry run pytest
         shell: bash
       
