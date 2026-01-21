@@ -16,4 +16,6 @@ All agents must follow these rules:
 10) For unittest workflows, prefer python -m unittest without inline args; if discovery arguments are required, centralize them in a single script and call that from CI.
 11) If the branch you're assigned to work on is from a remote (ie origin/master or upstream/awesome-feature) you must ensure you fetch and pull from the remote before you begin your work.
 
+12) Maximize the use of caching in GitHub workflow files to minimize run duration.
+13) Use one of `paths` or `paths-ignore` in every workflow file to make sure workflows only run when required.
 Reference: https://www.conventionalcommits.org/en/v1.0.0/
