@@ -52,7 +52,7 @@ jobs:
           pip install . -r requirements-codspeed.txt
 
       - name: Run CodSpeed
-        uses: CodSpeedHQ/action@v4
+        uses: CodSpeedHQ/action@v5
         env:
           PYTEST_ADDOPTS: "-c benchmarks/pytest.ini"
         with:
